@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react'
+import { useNavigate } from 'react-router-dom';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -54,6 +55,7 @@ const FloatingIcon = ({ icon, x, y, size, duration, delay }) => (
 );
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -105,45 +107,7 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-black text-gray-300">
       {/* Navigation */}
-      <motion.nav 
-        className="py-6 border-b border-gray-900 sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <motion.div 
-            className="flex items-center"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <span className="text-2xl font-bold text-white">RAJDOOT</span>
-          </motion.div>
-          <div className="hidden md:flex space-x-10">
-            {["Features", "Pricing", "Documentation", "Waitlist"].map((item, index) => (
-              <motion.a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-white transition"
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
-              >
-                {item}
-              </motion.a>
-            ))}
-          </div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 rounded-sm font-medium transition border border-gray-800">
-              Sign In
-            </button>
-          </motion.div>
-        </div>
-      </motion.nav>
+    
 
       {/* Hero Section with Animated Background */}
       <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
@@ -223,6 +187,7 @@ const Landing = () => {
               Get Started
             </motion.button>
             <motion.button 
+              onClick={()=>navigate('/docs')}
               className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -461,73 +426,7 @@ const Landing = () => {
       </section>
       
       {/* Footer */}
-      <footer className="bg-black py-16 mt-24 border-t border-gray-900">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="grid md:grid-cols-4 gap-12"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div variants={fadeIn}>
-              <motion.h3 
-                className="text-xl font-bold text-white mb-6"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                RAJDOOT
-              </motion.h3>
-              <p className="text-gray-500">
-                Sophisticated messaging APIs for developers. Elegant, reliable, and affordable.
-              </p>
-            </motion.div>
-            
-            {[
-              {
-                title: "Product",
-                links: ["Features", "Pricing", "Documentation", "API Reference"]
-              },
-              {
-                title: "Company",
-                links: ["About Us", "Blog", "Careers", "Contact"]
-              },
-              {
-                title: "Legal",
-                links: ["Privacy Policy", "Terms of Service", "Cookie Policy"]
-              }
-            ].map((column, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                <h4 className="font-semibold mb-6 text-white">{column.title}</h4>
-                <ul className="space-y-3">
-                  {column.links.map((link, linkIndex) => (
-                    <motion.li key={linkIndex}>
-                      <motion.a 
-                        href="#" 
-                        className="text-gray-500 hover:text-white transition"
-                        whileHover={{ x: 5 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      >
-                        {link}
-                      </motion.a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          <motion.div 
-            className="border-t border-gray-900 mt-16 pt-10 text-center text-gray-600"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.7 }}
-          >
-            <p>&copy; 2025 Rajdoot. All rights reserved.</p>
-          </motion.div>
-        </div>
-      </footer>
+      
     </div>
   );
 };
