@@ -2,13 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicRoutes from "./routes/PublicRoutes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import LandingPage from "./pages/LandingPage";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 // import APIKeys from "./pages/APIKeys";
 // import Pricing from "./pages/Pricing";
 import Docs from "./pages/Documentation";
 import DashboardLayout from "./layouts/DashboardLayout";
+import AuthLayout from "./layouts/AuthLayout";
 // import NotFound from "./pages/NotFound";
 
 function App() {
@@ -22,15 +23,15 @@ function App() {
         </Route>
 
         {/* Auth Routes */}
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
-        {/* Private Routes (Require Authentication) */}
+        {/* Protected Dashboard Routes with DashboardLayout */}
         <Route element={<PrivateRoutes />}>
-          <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route path="/api-keys" element={<APIKeys />} /> */}
-          </Route>
         </Route>
 
         {/* 404 Page */}

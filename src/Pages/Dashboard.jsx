@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import Documentation from './Documentation';
+import icon from '../assets/image/logo.png';
+import { PanelLeft, ChevronRight, House, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { user, loading } = useAuth();
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -17,24 +23,24 @@ const Dashboard = () => {
     switch (activeTab) {
       case 'home':
         return (
-          <div className="p-6">
+          <div className="p-6 bg-[#18181a] m-4 rounded-2xl">
             <h1 className="text-2xl font-bold mb-4 text-gray-200">Welcome to your Dashboard</h1>
             <p className="mb-4 text-gray-300">Get started with your API integration journey.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <DashboardCard 
-                title="API Calls" 
-                value="1,234" 
-                change="+12.3%" 
+              <DashboardCard
+                title="API Calls"
+                value="1,234"
+                change="+12.3%"
               />
-              <DashboardCard 
-                title="Response Time" 
-                value="42ms" 
-                change="-5.7%" 
+              <DashboardCard
+                title="Response Time"
+                value="42ms"
+                change="-5.7%"
               />
-              <DashboardCard 
-                title="Error Rate" 
-                value="0.8%" 
-                change="+0.2%" 
+              <DashboardCard
+                title="Error Rate"
+                value="0.8%"
+                change="+0.2%"
               />
             </div>
           </div>
@@ -73,16 +79,8 @@ const Dashboard = () => {
           </div>
         );
       case 'documentation':
-        return (
-          <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4 text-gray-200">API Documentation</h1>
-            <p className="mb-4 text-gray-300">Learn how to use our API effectively.</p>
-            <div className="bg-gray-800 p-4 rounded">
-              <h2 className="text-lg font-semibold mb-2 text-gray-200">Getting Started</h2>
-              <p className="text-gray-300">Follow these steps to integrate our API into your application...</p>
-            </div>
-          </div>
-        );
+
+        return <Documentation />;
       case 'api':
         return (
           <div className="p-6">
@@ -110,8 +108,8 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-gray-800 p-4 rounded">
                 <h2 className="text-lg font-semibold mb-2 text-gray-200">Request</h2>
-                <textarea 
-                  className="w-full h-40 p-2 border rounded font-mono text-sm bg-gray-700 text-gray-200 border-gray-600" 
+                <textarea
+                  className="w-full h-40 p-2 border rounded font-mono text-sm bg-gray-700 text-gray-200 border-gray-600"
                   defaultValue={`{\n  "method": "GET",\n  "endpoint": "/users",\n  "params": {\n    "limit": 10\n  }\n}`}
                 />
               </div>
@@ -199,52 +197,66 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="flex h-screen bg-gray-900">
+    <div className="flex h-screen bg-[#000]">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-gray-800 text-white transition-all duration-300 ease-in-out flex flex-col`}>
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          {sidebarOpen && <h1 className="text-xl font-bold">API Dashboard</h1>}
-          <button onClick={toggleSidebar} className="p-1 rounded hover:bg-gray-700">
-            {sidebarOpen ? '◀' : '▶'}
-          </button>
+      <div className={`${sidebarOpen ? 'w-64' : 'w-14'} bg-[#18181a] text-white transition-all duration-300 ease-in-out flex flex-col py-3 `}>
+        <div className={` ${sidebarOpen ? "px-2 py-2" : "py-4"}flex items-center justify-between hover:bg-[#282729] mx-2 rounded-lg hover:shadow-lg transition-all duration-200`}>
+          <div className='flex items-center '>
+            <div className={`${sidebarOpen ? "w-10 h-10" : "w-8 h-8"} rounded-lg bg-blue-500 p-1 flex items-center justify-center`}>
+              <img src={icon} alt="logo" className="w-full h-full m-1" />
+            </div>
+            {sidebarOpen && <div className='mx-2 my-2 transition-all duration-200 '>
+              <h2 className=" font-medium leading-4">Project</h2>
+              <p className=' capitalize'>{user?.plan?.type}</p>
+            </div>}
+          </div>
+
         </div>
-        <nav className="flex-grow">
+        <nav className="flex-grow mt-20">
           <ul>
             {[
-              { id: 'new-api', label: 'Create New API', icon: '➕' },
+              { id: 'new-api', label: 'Create New API' },
               { id: 'home', label: 'Home', icon: '🏠' },
-              { id: 'documentation', label: 'Documentation', icon: '📚' },
-              { id: 'api', label: 'API Explorer', icon: '🔍' },
-              { id: 'try', label: 'Try API', icon: '🧪' },
-              { id: 'account', label: 'Account', icon: '👤' },
-              { id: 'settings', label: 'Settings', icon: '⚙️' }
+              { id: 'documentation', label: 'Documentation' },
+              { id: 'api', label: 'API Explorer' },
+              { id: 'try', label: 'Try API' },
+              { id: 'account', label: 'Account' },
+              { id: 'settings', label: 'Settings' }
             ].map(item => (
-              <li key={item.id}>
+              <li key={item.id} className="mb-1 flex justify-between">
                 <button
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex items-center w-full p-3 ${activeTab === item.id ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-colors duration-200`}
+                  className={`flex items-center w-full px-4 py-2 gap-1 ${activeTab === item.id ? 'bg-gray-700' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
                 >
-                  <span className="text-lg mr-3">{item.icon}</span>
+                  {item.id == "home" ? <House size={20} color="#fff" />
+                    : item.id == "try" ? <SquareTerminal size={20} color="#fff" /> :
+                      item.id == "settings" ? <Settings size={20} color="#fff" /> :
+                        item.id == "new-api" ? <BadgePlus size={20} color="#fff" /> :
+                          item.id == "documentation" ? <LayoutDashboard size={20} color="#fff" /> :
+                            item.id == "api" ? <ChevronsLeftRight size={20} color="#fff" /> :
+                              item.id == "account" ? <User size={20} color="#fff" /> :
+                                <span>{item.icon}</span>}
                   {sidebarOpen && <span>{item.label}</span>}
+                  <ChevronRight size={20} color="#fff" />
                 </button>
               </li>
             ))}
           </ul>
         </nav>
-        <div className="p-4 border-t border-gray-700">
+        <div className="px-4 py-2">
           {sidebarOpen ? (
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center mr-2">
-                J
+              <div className="w-8 h-8 rounded-lg bg-gray-600 flex items-center justify-center mr-2 overflow-hidden">
+                <img src={user?.image} alt="" srcset="" />
               </div>
               <div>
-                <p className="font-medium">John Doe</p>
-                <p className="text-xs text-gray-400">Admin</p>
+                <p className="font-medium capitalize">{user?.name}</p>
+                <p className="text-xs ">{user?.email}</p>
               </div>
             </div>
           ) : (
-            <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center mx-auto">
-              J
+            <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center mx-auto overflow-hidden">
+              <img src={user?.image} alt="" srcset="" />
             </div>
           )}
         </div>
@@ -253,17 +265,17 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-grow overflow-auto">
         {/* Top bar with username and balance */}
-        <div className="bg-gray-800 p-4 shadow flex justify-between items-center">
+        <div className="py-2 px-4 shadow flex justify-between items-center ">
+          <button onClick={toggleSidebar} className="p-2 rounded hover:bg-[#18181a]">
+            <PanelLeft size={20} color="#fff" />
+          </button>
           <div>
-            <h2 className="text-lg font-medium text-gray-200">John Doe</h2>
-            <p className="text-sm text-gray-400">Developer</p>
-          </div>
-          <div className="text-right">
-            <p className="text-sm text-gray-400">Account Balance</p>
-            <p className="text-lg font-bold text-gray-200">$1,250.00</p>
+
           </div>
         </div>
+        <div className='flex-1 min-h-max bg-[#18181a] m-2 rounded-2xl'>
         {renderContent()}
+        </div>
       </div>
     </div>
   );

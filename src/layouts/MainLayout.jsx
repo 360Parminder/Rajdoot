@@ -3,7 +3,7 @@ import Footer from "../components/Footer/Footer";
 
 const MainLayout = ({ children }) => {
   return (
-    <div>
+    <div className="bg-gray-800">
       <Header />
       <main>{children}</main>
       <Footer />

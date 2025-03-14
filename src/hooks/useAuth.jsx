@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../api/config"; // Ensure you have axios configured
+import axios from "../api/config"; // Ensure axios is set up
 
 const AuthContext = createContext(null);
 
@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Check if user is already logged in (persist session)
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
@@ -28,19 +27,19 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
-  // Login function
   const login = async (email, password) => {
     try {
-      const { data } = await axios.post("/auth/login", { email, password });
+      const { data } = await axios.post("/users/login", { email, password });
+      console.log(data);
+      
       localStorage.setItem("token", data.token);
-      setUser(data.user);
+      setUser(data.data.user);
       navigate("/dashboard");
     } catch (error) {
       throw new Error(error.response?.data?.message || "Login failed");
     }
   };
 
-  // Register function
   const register = async (name, email, password) => {
     try {
       const { data } = await axios.post("/auth/register", { name, email, password });
@@ -52,7 +51,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Logout function
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
@@ -66,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use authentication context
+// Named export instead of default export
 export const useAuth = () => {
   return useContext(AuthContext);
 };

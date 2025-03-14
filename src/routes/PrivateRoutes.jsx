@@ -11,9 +11,9 @@ const PrivateRoutes = () => {
     <DashboardLayout>
       <Outlet />
     </DashboardLayout>
-  ) : (
-    <Navigate to="/login" replace />
-  );
+  ):(
+      <Navigate to="/login" replace />
+    );
 };
 
 export default PrivateRoutes;
