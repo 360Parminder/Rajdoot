@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Documentation from './Documentation';
 import icon from '../assets/image/logo.png';
-import { PanelLeft, ChevronRight, House, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
+import { PanelLeft, ChevronRight, House,Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
@@ -26,22 +26,30 @@ const Dashboard = () => {
           <div className="p-6 bg-[#18181a] m-4 rounded-2xl">
             <h1 className="text-2xl font-bold mb-4 text-gray-200">Welcome to your Dashboard</h1>
             <p className="mb-4 text-gray-300">Get started with your API integration journey.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <DashboardCard
+            <div className="flex gap-5">
+              {/* <DashboardCard
                 title="API Calls"
                 value="1,234"
                 change="+12.3%"
-              />
-              <DashboardCard
-                title="Response Time"
-                value="42ms"
-                change="-5.7%"
-              />
-              <DashboardCard
-                title="Error Rate"
-                value="0.8%"
-                change="+0.2%"
-              />
+              /> */}
+              <div className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'> 
+                  <div className=' relative'>
+                    <label className=' text-white' htmlFor="">API ID</label>
+                    <div className='relative'>
+                    <input type="text" disabled="true" className=' relative appearance-none w-full p-2 pr-12  border border-[#7170709a] rounded-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150' placeholder='API ID'/>
+                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer'/>                  
+                    </div>
+                  </div>
+                  <div>
+                    <label className='text-white' htmlFor="">API Key</label>
+                    <div className='relative'>
+                    <input type="text" className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key'/>
+                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer'/>
+                    </div>
+                  </div>
+              </div>
+            
+             
             </div>
           </div>
         );
@@ -226,7 +234,7 @@ const Dashboard = () => {
               <li key={item.id} className="mb-1 flex justify-between">
                 <button
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex items-center w-full px-4 py-2 gap-1 ${activeTab === item.id ? 'bg-gray-700' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
+                  className={`flex items-center w-full px-4 py-2 gap-1 ${activeTab === item.id ? 'bg-[#282729]' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
                 >
                   {item.id == "home" ? <House size={20} color="#fff" />
                     : item.id == "try" ? <SquareTerminal size={20} color="#fff" /> :
@@ -265,12 +273,12 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-grow overflow-auto">
         {/* Top bar with username and balance */}
-        <div className="py-2 px-4 shadow flex justify-between items-center ">
+        <div className="py-2 px-4 shadow flex items-center ">
           <button onClick={toggleSidebar} className="p-2 rounded hover:bg-[#18181a]">
             <PanelLeft size={20} color="#fff" />
           </button>
           <div>
-
+            <h3 className="text-gray-200 capitalize">{activeTab=='home'?`Hello ${user?.name}`:""}</h3>
           </div>
         </div>
         <div className='flex-1 min-h-max bg-[#18181a] m-2 rounded-2xl'>
