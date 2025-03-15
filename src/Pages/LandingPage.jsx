@@ -54,7 +54,7 @@ const FloatingIcon = ({ icon, x, y, size, duration, delay }) => (
   </motion.div>
 );
 
-const Landing = () => {
+const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -431,4 +431,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default LandingPage;
