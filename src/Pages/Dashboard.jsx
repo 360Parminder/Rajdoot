@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Documentation from './Documentation';
 import icon from '../assets/image/logo.png';
-import { PanelLeft, ChevronRight, House,Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
+import { PanelLeft, ChevronRight, House, Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
@@ -32,24 +32,24 @@ const Dashboard = () => {
                 value="1,234"
                 change="+12.3%"
               /> */}
-              <div className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'> 
-                  <div className=' relative'>
-                    <label className=' text-white' htmlFor="">API ID</label>
-                    <div className='relative'>
-                    <input type="text" disabled="true" className=' relative appearance-none w-full p-2 pr-12  border border-[#7170709a] rounded-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150' placeholder='API ID'/>
-                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer'/>                  
-                    </div>
+              <div className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'>
+                <div className=' relative'>
+                  <label className=' text-white' htmlFor="">API ID</label>
+                  <div className='relative'>
+                    <input type="text" disabled="true" className=' relative appearance-none w-full p-2 pr-12  border border-[#7170709a] rounded-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150' placeholder='API ID' />
+                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
                   </div>
-                  <div>
-                    <label className='text-white' htmlFor="">API Key</label>
-                    <div className='relative'>
-                    <input type="text" className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key'/>
-                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer'/>
-                    </div>
+                </div>
+                <div>
+                  <label className='text-white' htmlFor="">API Key</label>
+                  <div className='relative'>
+                    <input type="text" className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key' />
+                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
                   </div>
+                </div>
               </div>
-            
-             
+
+
             </div>
           </div>
         );
@@ -213,10 +213,12 @@ const Dashboard = () => {
             <div className={`${sidebarOpen ? "w-10 h-10" : "w-8 h-8"} rounded-lg bg-blue-500 p-1 flex items-center justify-center`}>
               <img src={icon} alt="logo" className="w-full h-full m-1" />
             </div>
-            {sidebarOpen && <div className='mx-2 my-2 transition-all duration-200 '>
-              <h2 className=" font-medium leading-4">Project</h2>
-              <p className=' capitalize'>{user?.plan?.type}</p>
-            </div>}
+            {sidebarOpen &&
+              <div className='mx-2 my-2 transition-all duration-200 '>
+                <h2 className=" font-medium leading-4">Project</h2>
+                <p className='capitalize'>{user?.plan?.type}</p>
+              </div>
+            }
           </div>
 
         </div>
@@ -234,7 +236,7 @@ const Dashboard = () => {
               <li key={item.id} className="mb-1 flex justify-between">
                 <button
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex items-center w-full px-4 py-2 gap-1 ${activeTab === item.id ? 'bg-[#282729]' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
+                  className={`flex items-center w-full ${sidebarOpen?"px-4 py-2 mx-2":"p-2 mx-2"} gap-2.5 ${activeTab === item.id ? 'bg-[#282729]' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
                 >
                   {item.id == "home" ? <House size={20} color="#fff" />
                     : item.id == "try" ? <SquareTerminal size={20} color="#fff" /> :
@@ -244,13 +246,20 @@ const Dashboard = () => {
                             item.id == "api" ? <ChevronsLeftRight size={20} color="#fff" /> :
                               item.id == "account" ? <User size={20} color="#fff" /> :
                                 <span>{item.icon}</span>}
-                  {sidebarOpen && <span>{item.label}</span>}
-                  <ChevronRight size={20} color="#fff" />
+                  {sidebarOpen &&
+                    <>
+                      <span>{item.label}</span>
+                      <ChevronRight size={20} color="#fff" />
+
+                    </>
+                  }
+
                 </button>
               </li>
             ))}
           </ul>
         </nav>
+        {/* user profile details */}
         <div className="px-4 py-2">
           {sidebarOpen ? (
             <div className="flex items-center">
@@ -258,7 +267,7 @@ const Dashboard = () => {
                 <img src={user?.image} alt="" srcset="" />
               </div>
               <div>
-                <p className="font-medium capitalize">{user?.name}</p>
+                <p className="font-medium capitalize ">{user?.name}</p>
                 <p className="text-xs ">{user?.email}</p>
               </div>
             </div>
@@ -278,11 +287,11 @@ const Dashboard = () => {
             <PanelLeft size={20} color="#fff" />
           </button>
           <div>
-            <h3 className="text-gray-200 capitalize">{activeTab=='home'?`Hello ${user?.name}`:""}</h3>
+            <h3 className="text-gray-200 capitalize">{activeTab == 'home' ? `Hello ${user?.name}` : ""}</h3>
           </div>
         </div>
         <div className='flex-1 min-h-max bg-[#18181a] m-2 rounded-2xl'>
-        {renderContent()}
+          {renderContent()}
         </div>
       </div>
     </div>
