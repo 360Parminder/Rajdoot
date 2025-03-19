@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Documentation from './Documentation';
 import icon from '../assets/image/logo.png';
 import { PanelLeft, ChevronRight, House, Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
+import ApiContext from '../context/apiContext';
 const Dashboard = () => {
+
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { user, loading } = useAuth();
+  const {value}= useContext(ApiContext);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);

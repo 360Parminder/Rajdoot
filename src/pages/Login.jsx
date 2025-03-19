@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-black ">
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden border bg-black ">
       <FloatingParticles/>
         {/* Animated floating particles using Framer Motion */}
       <div className="w-full max-w-md p-8 space-y-8 bg-[#3232329a] border-[1px] border-[#7170709a] backdrop-blur rounded-2xl shadow-2xl  overflow-hidden">

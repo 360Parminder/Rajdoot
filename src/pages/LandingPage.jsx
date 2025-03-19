@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom';
+import { joinWaitlist } from '../api/waitlist';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -71,10 +72,18 @@ const LandingPage = () => {
     };
   }, []);
   
-  const handleSubmit = (e) => {
+  const handleSubmit =async(e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setEmail('');
+    const {data} = await joinWaitlist(email);
+    console.log(data);
+    
+    if (data.success) {
+      setIsSubmitted(true);
+      setEmail(''); 
+    }
+    else{
+      alert(data.message);
+    }
   };
 
   // Array of SVG icons paths to use in the background
@@ -180,6 +189,7 @@ const LandingPage = () => {
             transition={{ delay: 0.5, duration: 0.7 }}
           >
             <motion.button 
+              onClick={()=>navigate('/register')}
               className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

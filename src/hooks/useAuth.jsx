@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/config"; // Ensure axios is set up
+import ErrorCard from "../components/Card/ErrorCard";
 
 const AuthContext = createContext(null);
 
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data.data.user);
       navigate("/dashboard");
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Login failed");
+      return <ErrorCard message={error.response?.data?.message || "Login failed"} />;
     }
   };
 
