@@ -7,3 +7,9 @@ input:-webkit-autofill:active {
     transition: background-color 5000000s ease-in-out 0s;
     -webkit-text-fill-color: #fff !important;
 }
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #1a202c;
+    /* color: #fff; */
+}

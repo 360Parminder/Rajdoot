@@ -5,13 +5,23 @@ import Documentation from './Documentation';
 import icon from '../assets/image/logo.png';
 import { PanelLeft, ChevronRight, House, Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User } from 'lucide-react';
 import ApiContext from '../context/apiContext';
+import SuccessCard from '../components/Card/SuccessCard';
+import useMessageCard from '../hooks/useMessageCard';
+import MessageCard from '../components/Card/MessageCard';
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { user, loading } = useAuth();
-  const {value}= useContext(ApiContext);
+  const { value } = useContext(ApiContext);
+  console.log(value);
+  const { message, showMessage, setMessage } = useMessageCard();
+  const handleCopy = (text, label) => {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    showMessage("Copied", `${label} copied to clipboard`, "success");
+};
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -29,31 +39,38 @@ const Dashboard = () => {
           <div className="p-6 bg-[#18181a] m-4 rounded-2xl">
             <h1 className="text-2xl font-bold mb-4 text-gray-200">Welcome to your Dashboard</h1>
             <p className="mb-4 text-gray-300">Get started with your API integration journey.</p>
-            <div className="flex gap-5">
+            <div className="flex gap-5 flex-wrap">
               {/* <DashboardCard
                 title="API Calls"
                 value="1,234"
                 change="+12.3%"
               /> */}
-              <div className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'>
-                <div className=' relative'>
-                  <label className=' text-white' htmlFor="">API ID</label>
-                  <div className='relative'>
-                    <input type="text" disabled="true" className=' relative appearance-none w-full p-2 pr-12  border border-[#7170709a] rounded-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150' placeholder='API ID' />
-                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
+              {value?.apis.map((item, index) => (
+                <div key={index} className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'>
+                  <div className=' relative'>
+                    <label className=' text-white' htmlFor="">API ID</label>
+                    <div className='relative'>
+                      <input type="text" disabled={true} defaultValue={item?.keyId} className=' relative appearance-none w-full p-2 pr-12  border border-[#7170709a] rounded-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150' placeholder='API ID' />
+                      <button onClick={() => handleCopy(item?.keyId, "API ID")}  className='bg-[#282729] hover:bg-[#282729] text-white px-4 py-2 rounded'>
+                        <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label className='text-white' htmlFor="">API Key</label>
+                    <div className='relative'>
+                      <input type="text" defaultValue={item?.secretKey} className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key' />
+                      <button onClick={() => handleCopy(item?.secretKey, "API Key")}  className='bg-[#282729] hover:bg-[#282729] text-white px-4 py-2 rounded'>
+                        <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <label className='text-white' htmlFor="">API Key</label>
-                  <div className='relative'>
-                    <input type="text" className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key' />
-                    <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
-                  </div>
-                </div>
-              </div>
+              ))}
 
 
             </div>
+              {message && <MessageCard title={message.title} message={message.message} type={message.type} onClose={() => setMessage(null)} />}
           </div>
         );
       case 'new-api':
@@ -135,20 +152,20 @@ const Dashboard = () => {
         );
       case 'account':
         return (
-          <div className="p-6">
+          <div className="p-6 ">
             <h1 className="text-2xl font-bold mb-4 text-gray-200">Account Settings</h1>
             <p className="mb-4 text-gray-300">Manage your account information and preferences.</p>
-            <div className="bg-gray-800 shadow rounded p-4 mb-4">
+            <div className="bg-[#282729] shadow rounded p-4 mb-4">
               <h2 className="text-lg font-semibold mb-2 text-gray-200">Profile Information</h2>
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1 text-gray-300">Name</label>
-                <input type="text" className="w-full p-2 border rounded bg-gray-700 text-gray-200 border-gray-600" defaultValue="John Doe" />
+                <input type="text" className="w-full p-2 border rounded  text-gray-200 border-[#7170709a]" defaultValue={user?.name} />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1 text-gray-300">Email</label>
-                <input type="email" className="w-full p-2 border rounded bg-gray-700 text-gray-200 border-gray-600" defaultValue="john@example.com" />
+                <input type="email" className="w-full p-2 border rounded  text-gray-200 border-[#7170709a]" defaultValue={user.email} />
               </div>
-              <button className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded">
+              <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-4 py-2 rounded">
                 Save Changes
               </button>
             </div>
@@ -212,7 +229,7 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'w-64' : 'w-14'} bg-[#18181a] text-white transition-all duration-300 ease-in-out flex flex-col py-3 `}>
         <div className={` ${sidebarOpen ? "px-2 py-2" : "py-4"}flex items-center justify-between hover:bg-[#282729] mx-2 rounded-lg hover:shadow-lg transition-all duration-200`}>
-          <div className='flex items-center '>
+          <button onClick={()=>navigate('/')} className='flex items-center '>
             <div className={`${sidebarOpen ? "w-10 h-10" : "w-8 h-8"} rounded-lg bg-blue-500 p-1 flex items-center justify-center`}>
               <img src={icon} alt="logo" className="w-full h-full m-1" />
             </div>
@@ -222,7 +239,7 @@ const Dashboard = () => {
                 <p className='capitalize'>{user?.plan?.type}</p>
               </div>
             }
-          </div>
+          </button>
 
         </div>
         <nav className="flex-grow mt-20">
@@ -239,7 +256,7 @@ const Dashboard = () => {
               <li key={item.id} className="mb-1 flex justify-between">
                 <button
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex items-center w-full ${sidebarOpen?"px-4 py-2 mx-2":"p-2 mx-2"} gap-2.5 ${activeTab === item.id ? 'bg-[#282729]' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
+                  className={`flex items-center w-full ${sidebarOpen ? "px-4 py-2 mx-2" : "p-2 mx-2"} gap-2.5 ${activeTab === item.id ? 'bg-[#282729]' : 'hover:bg-[#282729]'} transition-colors duration-200 rounded-lg mx-2`}
                 >
                   {item.id == "home" ? <House size={20} color="#fff" />
                     : item.id == "try" ? <SquareTerminal size={20} color="#fff" /> :
@@ -267,7 +284,7 @@ const Dashboard = () => {
           {sidebarOpen ? (
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-lg bg-gray-600 flex items-center justify-center mr-2 overflow-hidden">
-                <img src={user?.image} alt="" srcset="" />
+                <img src={user?.image} alt="" srcSet="" />
               </div>
               <div>
                 <p className="font-medium capitalize ">{user?.name}</p>
@@ -276,7 +293,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center mx-auto overflow-hidden">
-              <img src={user?.image} alt="" srcset="" />
+              <img src={user?.image} alt="" srcSet="" />
             </div>
           )}
         </div>
@@ -285,10 +302,36 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-grow overflow-auto">
         {/* Top bar with username and balance */}
-        <div className="py-2 px-4 shadow flex items-center ">
-          <button onClick={toggleSidebar} className="p-2 rounded hover:bg-[#18181a]">
-            <PanelLeft size={20} color="#fff" />
-          </button>
+        <div className="py-2 px-4 shadow flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <button onClick={toggleSidebar} className="p-2 rounded hover:bg-[#18181a]">
+              <PanelLeft size={20} color="#fff" />
+            </button>
+            {/* Breadcrumb navigation */}
+            <nav className="text-gray-300">
+              <ol className="flex items-center space-x-2">
+                <li className="flex items-center">
+                  <House size={16} className="mr-1" />
+                  <span className="hover:text-gray-100 cursor-pointer" onClick={() => handleTabClick('home')}>Dashboard</span>
+                </li>
+                {activeTab !== 'home' && (
+                  <>
+                    <li className="flex items-center">
+                      <ChevronRight size={14} className="mx-1" />
+                      <span className="text-gray-100">
+                        {activeTab === 'new-api' ? 'Create New API' :
+                          activeTab === 'documentation' ? 'Documentation' :
+                            activeTab === 'api' ? 'API Explorer' :
+                              activeTab === 'try' ? 'Try API' :
+                                activeTab === 'account' ? 'Account' :
+                                  'Settings'}
+                      </span>
+                    </li>
+                  </>
+                )}
+              </ol>
+            </nav>
+          </div>
           <div>
             <h3 className="text-gray-200 capitalize">{activeTab == 'home' ? `Hello ${user?.name}` : ""}</h3>
           </div>

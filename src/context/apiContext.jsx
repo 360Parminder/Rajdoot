@@ -9,15 +9,15 @@ export const ApiProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     // Fetch all APIs
-    const fetchApis = useCallback(async () => {
+    const fetchApis = async () => {
         setLoading(true);
         setError(null);
 
         try {
             const response = await axios.get("/api-keys/view-api-keys");
-            console.log(response.data);
+            console.log(response.data.data);
             
-            setApis(response.data);
+            setApis(response.data.data);
             return response.data;
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to fetch APIs');
@@ -25,10 +25,10 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }
 
     // Create a new API
-    const createApi = useCallback(async (apiData) => {
+    const createApi = async (apiData) => {
         setLoading(true);
         setError(null);
 
@@ -42,7 +42,7 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, []);
+    };
 
     // Delete an API
     const deleteApi = useCallback(async (apiId) => {
@@ -61,6 +61,12 @@ export const ApiProvider = ({ children }) => {
         }
     }, []);
 
+    useEffect(() => {
+        fetchApis();
+    }
+    , []);
+
+
     const value = {
         apis,
         loading,
@@ -70,7 +76,7 @@ export const ApiProvider = ({ children }) => {
         deleteApi,
     };
 
-    return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;
+    return <ApiContext.Provider value={{value}}>{children}</ApiContext.Provider>;
 };
 
 export const useApi = () => {

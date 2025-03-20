@@ -15,10 +15,14 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const { data } = await axios.get("/auth/me", {
-            headers: { Authorization: `Bearer ${token}` },
+          const { data } = await axios.get("/users/:id", {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
           });
-          setUser(data.user);
+          // console.log(data.data.user);
+          
+          setUser(data.data.user);
         } catch (error) {
           logout();
         }
@@ -32,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await axios.post("/users/login", { email, password });
       console.log(data);
-      
+
       localStorage.setItem("token", data.token);
       setUser(data.data.user);
       navigate("/dashboard");
@@ -43,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const { data } = await axios.post("/auth/register", { name, email, password });
+      const { data } = await axios.post("/users/signup", { name, email, password });
       localStorage.setItem("token", data.token);
       setUser(data.user);
       navigate("/dashboard");

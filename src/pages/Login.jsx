@@ -16,6 +16,12 @@ const Login = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
 
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            navigate('/dashboard');
+        }
+    }
+    , [navigate]);
   const handleLogin = async(e) => {
     e.preventDefault();
     setIsAnimating(true);
@@ -94,7 +100,7 @@ const Login = () => {
                   autoComplete="current-password"
                   required
                   className="appearance-none relative block w-full px-4 py-3 pl-12 pr-12  border border-[#7170709a] rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
-                  placeholder="••••••••"
+                  placeholder="••••••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   />
