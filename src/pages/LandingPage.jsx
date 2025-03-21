@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react'
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { joinWaitlist } from '../api/waitlist';
 
+// Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -31,123 +32,32 @@ const slideIn = {
   }
 };
 
-// Floating icon component
-const FloatingIcon = ({ icon, x, y, size, duration, delay }) => (
-  <motion.div
-    className="absolute text-gray-800"
-    initial={{ opacity: 0 }}
-    animate={{ 
-      opacity: [0, 0.3, 0.1, 0.3, 0], 
-      x: [x, x + 20, x - 30, x + 10, x],
-      y: [y, y - 30, y - 60, y - 100, y - 140]
-    }}
-    transition={{ 
-      duration: duration, 
-      repeat: Infinity, 
-      delay: delay,
-      repeatDelay: Math.random() * 2
-    }}
-    style={{ width: size, height: size }}
-  >
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      {icon}
-    </svg>
-  </motion.div>
-);
-
 const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  
-  const handleSubmit =async(e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const {data} = await joinWaitlist(email);
-    console.log(data);
-    
-    if (data.success) {
-      setIsSubmitted(true);
-      setEmail(''); 
-    }
-    else{
-      alert(data.message);
+    try {
+      const { data } = await joinWaitlist(email);
+      
+      if (data.success) {
+        setIsSubmitted(true);
+        setEmail(''); 
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error joining waitlist:", error);
+      alert("Failed to join waitlist. Please try again later.");
     }
   };
-
-  // Array of SVG icons paths to use in the background
-  const iconPaths = [
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>,
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>,
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>,
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"></path>,
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>,
-  ];
-
-  // Generate 20 floating icons with random positions, sizes, and animations
-  const generateFloatingIcons = (count) => {
-    const icons = [];
-    for (let i = 0; i < count; i++) {
-      icons.push({
-        icon: iconPaths[Math.floor(Math.random() * iconPaths.length)],
-        x: Math.random() * 100 + '%',
-        y: Math.random() * 100,
-        size: Math.random() * 30 + 20,
-        duration: Math.random() * 10 + 15,
-        delay: Math.random() * 5
-      });
-    }
-    return icons;
-  };
-
-  const floatingIcons = generateFloatingIcons(20);
 
   return (
     <div className="min-h-screen bg-black text-gray-300">
-      {/* Navigation */}
-    
-
       {/* Hero Section with Animated Background */}
       <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        {/* Animated Background */}
-        <motion.div 
-          className="absolute inset-0 opacity-10"
-          animate={{ 
-            backgroundPosition: `0px ${scrollY * 0.5}px` 
-          }}
-          style={{
-            backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 200px), radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 200px)',
-            backgroundSize: '100% 100%'
-          }}
-        />
-        
-        {/* Floating Icons */}
-        <div className="absolute inset-0 overflow-hidden">
-          {floatingIcons.map((icon, index) => (
-            <FloatingIcon 
-              key={index}
-              icon={icon.icon}
-              x={icon.x}
-              y={icon.y}
-              size={icon.size}
-              duration={icon.duration}
-              delay={icon.delay}
-            />
-          ))}
-        </div>
-        
-        {/* Animated Gradient Overlay */}
         <motion.div 
           className="absolute inset-0"
           animate={{ 
@@ -189,7 +99,7 @@ const LandingPage = () => {
             transition={{ delay: 0.5, duration: 0.7 }}
           >
             <motion.button 
-              onClick={()=>navigate('/register')}
+              onClick={() => navigate('/register')}
               className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -197,7 +107,7 @@ const LandingPage = () => {
               Get Started
             </motion.button>
             <motion.button 
-              onClick={()=>navigate('/docs')}
+              onClick={() => navigate('/docs')}
               className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -434,9 +344,6 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
-      
-      {/* Footer */}
-      
     </div>
   );
 };
