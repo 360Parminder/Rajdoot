@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { joinWaitlist } from '../api/waitlist';
+import { useAuth } from '../hooks/useAuth';
 
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6 }
   }
@@ -25,8 +26,8 @@ const staggerContainer = {
 
 const slideIn = {
   hidden: { x: -60, opacity: 0 },
-  visible: { 
-    x: 0, 
+  visible: {
+    x: 0,
     opacity: 1,
     transition: { duration: 0.6, ease: "easeOut" }
   }
@@ -36,14 +37,15 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
-  const handleSubmit = async(e) => {
+  const { user } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await joinWaitlist(email);
       if (data.success) {
         setIsSubmitted(true);
-        setEmail(''); 
+        setEmail('');
       } else {
         alert(data.message);
       }
@@ -57,9 +59,9 @@ const LandingPage = () => {
     <div className="min-h-screen bg-black text-gray-300">
       {/* Hero Section with Animated Background */}
       <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
-          animate={{ 
+          animate={{
             background: [
               'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)',
               'linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)',
@@ -72,9 +74,9 @@ const LandingPage = () => {
             repeatType: "reverse"
           }}
         />
-        
+
         <div className="container mx-auto px-6 flex flex-col items-center text-center relative">
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-6xl font-bold mb-6 text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,30 +84,34 @@ const LandingPage = () => {
           >
             Sophisticated Messaging APIs for Developers
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            Rajdoot delivers elegant and reliable messaging APIs similar to Twilio and Telesign, 
+            Rajdoot delivers elegant and reliable messaging APIs similar to Twilio and Telesign,
             with unparalleled performance and minimalist design.
           </motion.p>
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            <motion.button 
-              onClick={() => navigate('/register')}
-              className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get Started
-            </motion.button>
-            <motion.button 
+            {
+              !user ? (
+                <motion.button
+                  onClick={() => navigate('/register')}
+                  className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Get Started
+                </motion.button>
+              ) : null
+            }
+            <motion.button
               onClick={() => navigate('/docs')}
               className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
               whileHover={{ scale: 1.05 }}
@@ -120,7 +126,7 @@ const LandingPage = () => {
       {/* Features */}
       <section id="features" className="py-24 border-b border-gray-900">
         <div className="container mx-auto px-6">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-center mb-20 text-white"
             initial="hidden"
             whileInView="visible"
@@ -129,8 +135,8 @@ const LandingPage = () => {
           >
             Why Choose Rajdoot
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-16"
             variants={staggerContainer}
             initial="hidden"
@@ -154,13 +160,13 @@ const LandingPage = () => {
                 description: "Simple REST APIs, comprehensive documentation, and client libraries for all major programming languages."
               }
             ].map((feature, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="bg-gray-900 p-10 rounded-sm"
                 variants={fadeIn}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <motion.div 
+                <motion.div
                   className="w-16 h-16 rounded-sm flex items-center justify-center mb-8 border border-gray-800"
                   whileHover={{ rotate: 5, scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -180,7 +186,7 @@ const LandingPage = () => {
       {/* Pricing */}
       <section id="pricing" className="py-24 border-b border-gray-900 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-6">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-center mb-20 text-white"
             initial="hidden"
             whileInView="visible"
@@ -189,8 +195,8 @@ const LandingPage = () => {
           >
             Transparent Pricing
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             variants={staggerContainer}
             initial="hidden"
@@ -223,14 +229,14 @@ const LandingPage = () => {
                 buttonText: "Contact Sales"
               }
             ].map((plan, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className={`bg-black rounded-sm overflow-hidden border ${plan.popular ? 'border-white transform scale-105 shadow-2xl' : 'border-gray-900'}`}
                 variants={fadeIn}
                 whileHover={!plan.popular ? { y: -10, transition: { duration: 0.3 } } : {}}
               >
                 {plan.popular && (
-                  <motion.div 
+                  <motion.div
                     className="bg-white py-2 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -242,7 +248,7 @@ const LandingPage = () => {
                 <div className="p-10">
                   <h3 className="text-xl font-semibold mb-4 text-white">{plan.title}</h3>
                   <p className="text-4xl font-bold mb-8 text-white">{plan.price}<span className="text-lg text-gray-500">{plan.period}</span></p>
-                  <motion.ul 
+                  <motion.ul
                     className="space-y-4 mb-10"
                     variants={staggerContainer}
                     initial="hidden"
@@ -260,7 +266,7 @@ const LandingPage = () => {
                   </motion.ul>
                 </div>
                 <div className="p-8 bg-gray-900 border-t border-gray-800">
-                  <motion.button 
+                  <motion.button
                     className={`w-full ${plan.popular ? 'bg-white hover:bg-gray-200 text-black' : 'bg-black hover:bg-gray-800 text-white border border-gray-800'} px-6 py-3 rounded-sm font-medium transition`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -277,14 +283,14 @@ const LandingPage = () => {
       {/* Waitlist Section */}
       <section id="waitlist" className="py-24">
         <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div 
+          <motion.div
             className="bg-gray-900 p-12 rounded-sm border border-gray-800"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-3xl font-bold text-center mb-8 text-white"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -293,19 +299,19 @@ const LandingPage = () => {
             >
               Join Our OTP API Waitlist
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-gray-400 text-center mb-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Be the first to access our upcoming OTP authentication APIs. 
+              Be the first to access our upcoming OTP authentication APIs.
               Early access members will receive exclusive benefits and discounted pricing.
             </motion.p>
-            
+
             {isSubmitted ? (
-              <motion.div 
+              <motion.div
                 className="bg-black text-white p-6 rounded-sm text-center border border-gray-800"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -314,8 +320,8 @@ const LandingPage = () => {
                 <p>Thank you for joining our waitlist. We'll notify you when our OTP APIs are ready.</p>
               </motion.div>
             ) : (
-              <motion.form 
-                onSubmit={handleSubmit} 
+              <motion.form
+                onSubmit={handleSubmit}
                 className="flex flex-col md:flex-row gap-4"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -330,8 +336,8 @@ const LandingPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <motion.button 
-                  type="submit" 
+                <motion.button
+                  type="submit"
                   className="bg-white hover:bg-gray-200 text-black px-8 py-4 rounded-sm font-medium transition"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
