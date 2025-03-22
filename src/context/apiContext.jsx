@@ -1,12 +1,15 @@
 import React, { createContext, useContext, useState, useCallback, use, useEffect } from 'react';
 import axios from '../api/config';
+import { useAuth } from '../hooks/useAuth';
 // Create the API context
 const ApiContext = createContext();
 
 export const ApiProvider = ({ children }) => {
+    const { user } = useAuth();
     const [apis, setApis] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
 
     // Fetch all APIs
     const fetchApis = async () => {
@@ -59,7 +62,7 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         fetchApis();
