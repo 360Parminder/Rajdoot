@@ -41,7 +41,6 @@ const LandingPage = () => {
     e.preventDefault();
     try {
       const { data } = await joinWaitlist(email);
-      
       if (data.success) {
         setIsSubmitted(true);
         setEmail(''); 
