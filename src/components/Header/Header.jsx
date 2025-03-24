@@ -39,7 +39,7 @@ const Header = () => {
         <motion.div
           className="flex items-center gap-4"
         >
-          {
+          {/* {
             user ? (
               <>
                 <motion.button
@@ -65,7 +65,15 @@ const Header = () => {
                 Login
               </button>
             )
-          }
+          } */}
+
+          <motion.span
+            className="text-white px-4 py-2 rounded-md border border-blue-500 bg-gradient-to-r from-blue-600 to-indigo-600"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Coming Soon
+          </motion.span>
         </motion.div>
       </div>
     </motion.nav>

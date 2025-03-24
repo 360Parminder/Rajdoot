@@ -58,72 +58,73 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-black text-gray-300">
       {/* Hero Section with Animated Background */}
-      <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)',
-              'linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)',
-              'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)'
-            ]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-
-        <div className="container mx-auto px-6 flex flex-col items-center text-center relative">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-6 text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            Sophisticated Messaging APIs for Developers
-          </motion.h1>
-          <motion.p
-            className="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            Rajdoot delivers elegant and reliable messaging APIs similar to Twilio and Telesign,
-            with unparalleled performance and minimalist design.
-          </motion.p>
+        <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-          >
-            {
-              !user ? (
-                <motion.button
-                  onClick={() => navigate('/register')}
-                  className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Get Started
-                </motion.button>
-              ) : null
-            }
-            <motion.button
-              onClick={() => navigate('/docs')}
-              className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Documentation
-            </motion.button>
-          </motion.div>
-        </div>
-      </header>
+            className="absolute inset-0"
+            animate={{
+          background: [
+            'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)',
+            'linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)',
+            'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)'
+          ]
+            }}
+            transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse"
+            }}
+          />
 
-      {/* Features */}
+          <div className="container mx-auto px-6 flex flex-col items-center text-center relative">
+            <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-6 text-white"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+            >
+          Elevate Your Applications with Powerful Messaging APIs
+            </motion.h1>
+            <motion.p
+          className="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.7 }}
+            >
+          Rajdoot combines enterprise-grade reliability with developer-friendly design.
+          Build secure, scalable messaging solutions with just a few lines of code.
+            </motion.p>
+            <motion.div
+          className="flex flex-col sm:flex-row gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+            >
+          {/* {
+            !user ? (
+              <motion.button
+            onClick={() => navigate('/register')}
+            className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+              >
+            Get Started
+              </motion.button>
+            ) : null
+          } */}
+                  
+          <motion.button
+            onClick={() => navigate('/docs')}
+            className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Documentation
+          </motion.button>
+            </motion.div>
+          </div>
+        </header>
+
+        {/* Features */}
       <section id="features" className="py-24 border-b border-gray-900">
         <div className="container mx-auto px-6">
           <motion.h2
