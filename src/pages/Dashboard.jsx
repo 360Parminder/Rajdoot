@@ -1,20 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback, useMemo } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Documentation from './Documentation';
 import icon from '../assets/image/logo.png';
-import { PanelLeft, ChevronRight, House, Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User,Eye,EyeClosed } from 'lucide-react';
+import { PanelLeft, ChevronRight, House, Copy, SquareTerminal, Settings, BadgePlus, LayoutDashboard, ChevronsLeftRight, User, Eye, EyeClosed } from 'lucide-react';
 import ApiContext from '../context/apiContext';
 import SuccessCard from '../components/Card/SuccessCard';
 import useMessageCard from '../hooks/useMessageCard';
 import MessageCard from '../components/Card/MessageCard';
+import useApi from '../hooks/useApi';
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showApiKey, setShowApiKey] = useState(false);
-  const { user, loading } = useAuth();
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const { user } = useAuth();
+  const { post, loading } = useApi();
   const { value } = useContext(ApiContext);
   console.log(value);
   const { message, showMessage, setMessage } = useMessageCard();
@@ -30,6 +34,16 @@ const Dashboard = () => {
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+  const createApi = async () => {
+    try {
+      const response = await post("/api-keys/create-api-key", { name, description });
+      console.log(response);
+
+      showMessage("Created", "API Key created successfully", "success");
+    } catch (error) {
+      showMessage("Error", error.message, "error");
+    }
   };
 
   // Render the content based on active tab
@@ -60,7 +74,7 @@ const Dashboard = () => {
                   <div>
                     <label className='text-white' htmlFor="">API Key</label>
                     <div className='relative'>
-                      <input type="text" defaultValue={item?.secretKey} className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key' />
+                      <input type="password" defaultValue={item?.secretKey} className='w-full p-2 border rounded text-gray-200 border-[#7170709a]' placeholder='API Key' />
                       <button onClick={() => handleCopy(item?.secretKey, "API Key")} className='bg-[#282729] hover:bg-[#282729] text-white px-4 py-2 rounded'>
                         <Copy size={20} color="#fff" className='absolute right-3 top-2.5 cursor-pointer' />
                       </button>
@@ -71,7 +85,7 @@ const Dashboard = () => {
 
 
             </div>
-            {message && <MessageCard title={message.title} message={message.message} type={message.type} onClose={() => setMessage(null)} />}
+            
           </div>
         );
       case 'new-api':
@@ -82,17 +96,23 @@ const Dashboard = () => {
             <div className="bg-[#282729] shadow rounded p-4">
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1 text-gray-300">API Name</label>
-                <input type="text" className="w-full p-2 border rounded  text-gray-200 border-[#7170709a]" placeholder="e.g., User Authentication API" />
+                <input type="text" onChange={(e) => setName(e.target.value)} className="w-full p-2 border rounded  text-gray-200 border-[#7170709a]" placeholder="e.g., User Authentication API" />
               </div>
-             
-              
+
+
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1 text-gray-300">Description</label>
-                <textarea className="w-full p-2 border rounded h-24  text-gray-200 border-[#7170709a]" placeholder="Describe what this API endpoint does..."></textarea>
+                <textarea onChange={(e) => setDescription(e.target.value)} className="w-full p-2 border rounded h-24  text-gray-200 border-[#7170709a]" placeholder="Describe what this API endpoint does..."></textarea>
               </div>
-              <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-4 py-2 rounded">
-                Create API
-              </button>
+              {
+                loading ?
+                 <span className="bg-[#18181a] text-white px-4 py-2 rounded">
+                  Creating...
+                </span> :
+                 <button onClick={createApi} className="bg-[#18181a] hover:bg-[#7170709a] text-white px-4 py-2 rounded">
+                  Create API
+                </button>
+              }
             </div>
           </div>
         );
@@ -207,53 +227,53 @@ const Dashboard = () => {
             <div className="bg-[#282729] p-4 rounded">
               <h2 className="text-lg font-semibold mb-2 text-gray-200">API Endpoints</h2>
               <table className="w-full text-left text-gray-200">
-          <thead>
-            <tr className="border-b border-[#7170709a]">
-              <th className="py-3 px-2">API Id</th>
-              <th className="py-3 px-2">API Key</th>
-              <th className="py-3 px-2">Expires On</th>
-              <th className="py-3 px-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {value?.apis.map((item, index) => (
-              <tr key={index} className="border-b border-[#7170709a]">
-                <td className="py-3 px-2">{item?.keyId}</td>
-                <td className="py-3 px-2 relative">
-            <div className="flex items-center">
-              <input 
-                type={showApiKey ? "text" : "password"} 
-                className="w-[85%] p-2 border rounded text-gray-200 border-[#7170709a]" 
-                value={item?.secretKey} 
-                readOnly 
-              />
-              <button 
-                onClick={() => setShowApiKey(!showApiKey)} 
-                className="absolute right-4 text-gray-300 hover:text-white"
-              >
-                {showApiKey ?  <EyeClosed size={24} color='#fff'/>: <Eye size={24} color='#fff'/> }
-              </button>
-            </div>
-                </td>
-                <td className="py-3 px-2">
-            {item?.expiresOn || "Never"}
-                </td>
-                <td className="py-3 px-2">
-            <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-3 py-1 rounded mr-2">
-              Update
-            </button>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
-              Delete
-            </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                <thead>
+                  <tr className="border-b border-[#7170709a]">
+                    <th className="py-3 px-2">API Id</th>
+                    <th className="py-3 px-2">API Key</th>
+                    <th className="py-3 px-2">Expires On</th>
+                    <th className="py-3 px-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {value?.apis.map((item, index) => (
+                    <tr key={index} className="border-b border-[#7170709a]">
+                      <td className="py-3 px-2">{item?.keyId}</td>
+                      <td className="py-3 px-2 relative">
+                        <div className="flex items-center">
+                          <input
+                            type={showApiKey ? "text" : "password"}
+                            className="w-[85%] p-2 border rounded text-gray-200 border-[#7170709a]"
+                            value={item?.secretKey}
+                            readOnly
+                          />
+                          <button
+                            onClick={() => setShowApiKey(!showApiKey)}
+                            className="absolute right-4 text-gray-300 hover:text-white"
+                          >
+                            {showApiKey ? <EyeClosed size={24} color='#fff' /> : <Eye size={24} color='#fff' />}
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-3 px-2">
+                        {item?.expiresOn || "Never"}
+                      </td>
+                      <td className="py-3 px-2">
+                        <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-3 py-1 rounded mr-2">
+                          Update
+                        </button>
+                        <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
         );
-        default:
+      default:
         return <div className="text-gray-300">Select a tab</div>;
     }
   };
@@ -445,6 +465,7 @@ const Dashboard = () => {
           {renderContent()}
         </div>
       </div>
+      {message && <MessageCard title={message.title} message={message.message} type={message.type} onClose={() => setMessage(null)} />}
     </div>
   );
 };
