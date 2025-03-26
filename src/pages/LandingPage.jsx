@@ -210,12 +210,12 @@ const LandingPage = () => {
                 price: "$0",
                 period: "/month",
                 popular: false,
-                features: ["100 SMS messages/month", "Basic API access", "Community support"],
+                features: ["50 SMS messages/month", "Basic API access", "Community support"],
                 buttonText: "Start Free"
               },
               {
                 title: "Pro",
-                price: "$49",
+                price: "$7",
                 period: "/month",
                 popular: true,
                 features: ["5,000 SMS messages/month", "Full API access", "Email support", "Detailed analytics"],
@@ -268,6 +268,8 @@ const LandingPage = () => {
                 </div>
                 <div className="p-8 bg-gray-900 border-t border-gray-800">
                   <motion.button
+                    onClick={() => navigate('/register')}
+
                     className={`w-full ${plan.popular ? 'bg-white hover:bg-gray-200 text-black' : 'bg-black hover:bg-gray-800 text-white border border-gray-800'} px-6 py-3 rounded-sm font-medium transition`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

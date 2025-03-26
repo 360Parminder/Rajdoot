@@ -1,6 +1,9 @@
 import { motion } from 'motion/react'
+import { path } from 'motion/react-client';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+    const navigate = useNavigate();
     const staggerContainer = {
         hidden: { opacity: 0 },
         visible: {
@@ -52,15 +55,18 @@ const Footer = () => {
             {[
               {
                 title: "Product",
-                links: ["Features", "Pricing", "Documentation", "API Reference"]
+                links: ["Features", "Pricing", "Documentation", "API Reference"],
+                path: ["/features", "/pricing", "/docs", "/api-reference"]
               },
               {
                 title: "Company",
-                links: ["About Us", "Blog", "Careers", "Contact"]
+                links: ["About Us", "Blog", "Careers", "Contact"],
+                path: ["/about", "/blog", "/careers", "/contact"]
               },
               {
                 title: "Legal",
-                links: ["Privacy Policy", "Terms of Service", "Cookie Policy"]
+                links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
+                path: ["/privacy-policy", "/terms-of-service", "/cookie-policy"]
               }
             ].map((column, index) => (
               <motion.div key={index} variants={fadeIn}>
@@ -68,14 +74,14 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {column.links.map((link, linkIndex) => (
                     <motion.li key={linkIndex}>
-                      <motion.a 
-                        href="#" 
+                      <motion.button 
+                        onClick={() => navigate(column.path[linkIndex])}
                         className="text-gray-500 hover:text-white transition"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
                         {link}
-                      </motion.a>
+                      </motion.button>
                     </motion.li>
                   ))}
                 </ul>

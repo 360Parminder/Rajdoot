@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Docs from "./pages/Documentation";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 // import NotFound from "./pages/NotFound";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/pricing" element={<Pricing />} /> */}
           <Route path="/docs" element={<Docs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
         </Route>
 
         {/* Auth Routes */}
