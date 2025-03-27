@@ -1,18 +1,12 @@
 import React from 'react';
-import PageHelmet from '../component/common/Helmet';
-import Breadcrumb from '../elements/common/Breadcrumb';
-import Footer from '../component/footer/Footer';
-import ScrollToTop from '../component/common/ScrollToTop';
+// import ScrollToTop from '../components/Common/ScrollToTop';
 
 const TermsService = () => {
     return (
         <>
-            <PageHelmet pageTitle="Terms of Service" />
-            <ScrollToTop />
+            {/* <ScrollToTop /> */}
 
-            <Breadcrumb title={'Terms of Service'} />
-
-            <div className="py-24 bg-gray-50">
+            <div className="container mx-auto py-24 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-white shadow-lg rounded-lg p-8">
                         <h2 className="text-3xl font-bold text-gray-800 mb-4">Terms of Service</h2>
@@ -62,7 +56,6 @@ const TermsService = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     );
 };

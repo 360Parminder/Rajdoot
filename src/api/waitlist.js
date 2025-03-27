@@ -4,7 +4,7 @@ import axios from "./config";
 
 export const joinWaitlist = async (email) => {
     try {
-        const {data} = await axios.post(`/waitlist/join`,{
+        const {data} = await axios.post(`/api/v1/waitlist/join`,{
             email
         });
         return{data};
