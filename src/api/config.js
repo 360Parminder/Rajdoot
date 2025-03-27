@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Check for Vite-specific env var first, then standard env var, then fallback to localhost
 const API_BASE_URL = import.meta.env.VITE_API_URL || 
-          import.meta.env.API_URL || 
+          process.env.API_URL || 
           "http://localhost:8005/api/v1";
 
 const api = axios.create({
