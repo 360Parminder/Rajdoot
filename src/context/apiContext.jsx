@@ -11,8 +11,9 @@ export const ApiProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
 
+
     // Fetch all APIs
-    const fetchApis = async () => {
+    const fetchApis = useCallback(async () => {
         setLoading(true);
         setError(null);
 
@@ -28,7 +29,7 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }
+    }, [user]);
 
     // Create a new API
     const createApi = async (apiData) => {
@@ -63,11 +64,6 @@ export const ApiProvider = ({ children }) => {
             setLoading(false);
         }
     }, [user]);
-
-    useEffect(() => {
-        fetchApis();
-    }
-    , []);
 
 
     const value = {
