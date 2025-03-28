@@ -11,8 +11,9 @@ import Docs from "./pages/Documentation";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import TermsService from "./pages/TermsService";
-// import PrivacyPolicy from "./pages/PrivacyPolicy";
-// import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/Policy/CookiePolicy";
+
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/pricing" element={<Pricing />} /> */}
           <Route path="/docs" element={<Docs />} />
-          {/* <Route path="/privacy-policy" element={<PrivacyPolicy/>}/> */}
           <Route path="/terms-of-service" element={<TermsService/>} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+          <Route path="/cookie-policy" element={<CookiePolicy/>} />
 
         </Route>
 
