@@ -13,6 +13,9 @@ import AuthLayout from "./layouts/AuthLayout";
 import TermsService from "./pages/TermsService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/Policy/CookiePolicy";
+import Contact from "./pages/Policy/Contact";
+import About from "./pages/Policy/About";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -26,6 +29,9 @@ function App() {
           <Route path="/terms-of-service" element={<TermsService/>} />
           <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
           <Route path="/cookie-policy" element={<CookiePolicy/>} />
+          <Route path="/contact" element={<Contact/>} />
+          <Route path="/about" element={<About/>} />
+
 
         </Route>
 
@@ -42,9 +48,7 @@ function App() {
         </Route>
 
         {/* 404 Page */}
-        <Route path="*" element={<div>
-          <h1>404 - Not Found</h1>
-        </div>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     
   );
