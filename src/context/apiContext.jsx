@@ -10,8 +10,6 @@ export const ApiProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-console.log(logedIn);
-
 
     // Fetch all APIs
     const fetchApis = async () => {
@@ -19,10 +17,6 @@ console.log(logedIn);
         setError(null);
         try {
             const response = await axios.get("/api-keys/view-api-keys");
-            console.log(response.data);
-            
-            console.log(response.data.data);
-            
             setApis(response.data.data);
             return response.data;
         } catch (err) {
