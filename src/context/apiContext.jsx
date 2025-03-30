@@ -5,20 +5,22 @@ import { useAuth } from '../hooks/useAuth';
 const ApiContext = createContext();
 
 export const ApiProvider = ({ children }) => {
-    const { user } = useAuth();
+    const { user,logedIn } = useAuth();
     const [apis, setApis] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+console.log(logedIn);
 
 
     // Fetch all APIs
-    const fetchApis = useCallback(async () => {
+    const fetchApis = async () => {
         setLoading(true);
         setError(null);
-
         try {
             const response = await axios.get("/api-keys/view-api-keys");
+            console.log(response.data);
+            
             console.log(response.data.data);
             
             setApis(response.data.data);
@@ -29,7 +31,7 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, [user]);
+    };
 
     // Create a new API
     const createApi = async (apiData) => {
@@ -64,6 +66,12 @@ export const ApiProvider = ({ children }) => {
             setLoading(false);
         }
     }, [user]);
+    
+    useEffect(() => {
+        if (logedIn) {
+            fetchApis();
+        }
+    }, [logedIn]);
 
 
     const value = {

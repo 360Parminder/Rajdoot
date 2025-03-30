@@ -58,7 +58,7 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-black text-gray-300">
       {/* Hero Section with Animated Background */}
-        <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+        <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900    to-black relative overflow-hidden">
           <motion.div
             className="absolute inset-0"
             animate={{

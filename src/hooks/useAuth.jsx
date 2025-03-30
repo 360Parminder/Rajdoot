@@ -7,6 +7,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [logedIn, setLogedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -14,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       if (token) {
+
         try {
           const { data } = await axios.get("/users/:id", {
             headers: {
@@ -23,11 +25,14 @@ export const AuthProvider = ({ children }) => {
           // console.log(data.data.user);
           
           setUser(data.data.user);
+          setLogedIn(true);
         } catch (error) {
           logout();
+
         }
       }
       setLoading(false);
+
     };
     fetchUser();
   }, []);
@@ -39,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
       localStorage.setItem("token", data.token);
       setUser(data.data.user);
+      setLogedIn(true);
       navigate("/dashboard");
     } catch (error) {
       return <ErrorCard message={error.response?.data?.message || "Login failed"} />;
@@ -63,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, logedIn }}>
       {children}
     </AuthContext.Provider>
   );
