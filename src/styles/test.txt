@@ -1,0 +1,183 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Check, Zap, Star, Crown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import FloatingParticles from '../components/Background/FloatingParticles';
+import { useAuth } from '../hooks/useAuth';
+
+const Plans = () => {
+    const { user } = useAuth();
+    
+    // Mock data for current plan
+    const currentPlan = {
+        name: "Pro Plan",
+        price: "₹999",
+        period: "month",
+        features: [
+            "10,000 messages per month",
+            "Priority support",
+            "Advanced analytics",
+            "Custom templates",
+            "API access"
+        ],
+        status: "active",
+        renewalDate: "2024-05-15"
+    };
+
+    // Available plans
+    const plans = [
+        {
+            name: "Starter",
+            price: "₹499",
+            period: "month",
+            icon: <Zap className="w-6 h-6" />,
+            color: "from-blue-500 to-blue-600",
+            features: [
+                "1,000 messages per month",
+                "Basic support",
+                "Standard templates",
+                "Email notifications",
+                "Basic analytics"
+            ],
+            recommended: false
+        },
+        {
+            name: "Pro",
+            price: "₹999",
+            period: "month",
+            icon: <Star className="w-6 h-6" />,
+            color: "from-purple-500 to-purple-600",
+            features: [
+                "10,000 messages per month",
+                "Priority support",
+                "Advanced analytics",
+                "Custom templates",
+                "API access"
+            ],
+            recommended: true
+        },
+        {
+            name: "Enterprise",
+            price: "₹2,999",
+            period: "month",
+            icon: <Crown className="w-6 h-6" />,
+            color: "from-yellow-500 to-yellow-600",
+            features: [
+                "Unlimited messages",
+                "24/7 dedicated support",
+                "Advanced analytics",
+                "Custom templates",
+                "API access",
+                "Custom integrations",
+                "Dedicated account manager"
+            ],
+            recommended: false
+        }
+    ];
+
+    return (
+        <div className="relative min-h-screen bg-[#18181a] p-6">
+            <FloatingParticles />
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* Back Button */}
+                <Link
+                    to="/"
+                    className="inline-flex items-center text-gray-400 hover:text-gray-200 mb-8 transition-colors"
+                >
+                    <ArrowLeft className="w-5 h-5 mr-2" />
+                    Back to Home
+                </Link>
+
+                {/* Current Plan Section - Only shown when user is logged in */}
+                {user && (
+                    <div className="mb-12">
+                        <h2 className="text-2xl font-bold text-gray-200 mb-4">Current Plan</h2>
+                        <div className="bg-[#282729] rounded-lg p-6 border border-[#7170709a]">
+                            <div className="flex items-center justify-between mb-4">
+                                <div>
+                                    <h3 className="text-xl font-semibold text-indigo-300">{currentPlan.name}</h3>
+                                    <p className="text-gray-400">Renews on {new Date(currentPlan.renewalDate).toLocaleDateString()}</p>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-2xl font-bold text-gray-200">{currentPlan.price}</p>
+                                    <p className="text-gray-400">per {currentPlan.period}</p>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                {currentPlan.features.map((feature, index) => (
+                                    <div key={index} className="flex items-center text-gray-300">
+                                        <Check className="w-5 h-5 mr-2 text-indigo-400" />
+                                        {feature}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="mt-4">
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-500/20 text-green-400">
+                                    Active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Available Plans Section */}
+                <div>
+                    <h2 className="text-2xl font-bold text-gray-200 mb-6">
+                        {user ? 'Available Plans' : 'Choose Your Plan'}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {plans.map((plan, index) => (
+                            <motion.div
+                                key={index}
+                                className={`relative bg-[#282729] rounded-lg p-6 border border-[#7170709a] ${
+                                    plan.recommended ? 'ring-2 ring-indigo-500' : ''
+                                }`}
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                {plan.recommended && (
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                                        <span className="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Recommended
+                                        </span>
+                                    </div>
+                                )}
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center">
+                                        <div className={`p-2 rounded-lg bg-gradient-to-r ${plan.color} mr-3`}>
+                                            {plan.icon}
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-gray-200">{plan.name}</h3>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-2xl font-bold text-gray-200">{plan.price}</p>
+                                        <p className="text-gray-400">per {plan.period}</p>
+                                    </div>
+                                </div>
+                                <div className="space-y-2 mb-6">
+                                    {plan.features.map((feature, featureIndex) => (
+                                        <div key={featureIndex} className="flex items-center text-gray-300">
+                                            <Check className="w-5 h-5 mr-2 text-indigo-400" />
+                                            {feature}
+                                        </div>
+                                    ))}
+                                </div>
+                                <button
+                                    className={`w-full py-2 px-4 rounded-lg font-medium transition-colors ${
+                                        plan.recommended && user
+                                            ? 'bg-indigo-600 text-white hover:bg-indigo-500'
+                                            : 'bg-[#323232] text-gray-300 hover:bg-[#404040]'
+                                    }`}
+                                >
+                                    {plan.recommended && user ? 'Current Plan' : user ? 'Upgrade' : 'Get Started'}
+                                </button>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Plans; 

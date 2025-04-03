@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff, Github, Mail, Check } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, Github, Mail, Check, ArrowLeft } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import FloatingParticles from '../components/Background/FloatingParticles';
 import { useAuth } from '../hooks/useAuth';
-// import { Particles } from '../components/magicui/Particles';
-// Separate component for particles
 
 const Login = () => {
     const navigate = useNavigate();
@@ -30,9 +28,43 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden border bg-black ">
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden border bg-black">
       <FloatingParticles/>
-        {/* Animated floating particles using Framer Motion */}
+      {/* Back to Home Button with animated background */}
+      <motion.div
+        className="absolute top-6 left-6 z-10"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Link
+          to="/"
+          className="relative inline-flex items-center px-4 py-2 rounded-lg overflow-hidden group"
+        >
+          {/* Animated gradient background */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20"
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            style={{ backgroundSize: '200% 200%' }}
+          />
+          {/* Hover effect overlay */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-purple-500/0"
+            whileHover={{
+              background: 'linear-gradient(to right, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2))'
+            }}
+          />
+          {/* Button content */}
+          <div className="relative flex items-center text-gray-300 group-hover:text-white transition-colors">
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Back to Home
+          </div>
+        </Link>
+      </motion.div>
+
+      {/* Animated floating particles using Framer Motion */}
       <div className="w-full max-w-md p-8 space-y-8 bg-[#3232329a] border-[1px] border-[#7170709a] backdrop-blur rounded-2xl shadow-2xl  overflow-hidden">
         {/* Login form with animated header */}
         <motion.div 

@@ -16,6 +16,7 @@ import CookiePolicy from "./pages/Policy/CookiePolicy";
 import Contact from "./pages/Policy/Contact";
 import About from "./pages/Policy/About";
 import NotFound from "./pages/NotFound";
+import Plans from "./pages/Plans";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <Route path="/cookie-policy" element={<CookiePolicy/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/about" element={<About/>} />
-
+          <Route path="/plans" element={<Plans/>} />
 
         </Route>
 

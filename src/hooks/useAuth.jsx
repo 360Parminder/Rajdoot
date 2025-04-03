@@ -53,10 +53,10 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password,passwordConfirm) => {
     try {
-      const { data } = await axios.post("/users/signup", { name, email, password,passwordConfirm });
+      const { data } = await axios.post("/users/signup", { name, email, password,passwordConfirm,role:"user" });
       localStorage.setItem("token", data.token);
       setUser(data.user);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       throw new Error(error.response?.data?.message || "Registration failed");
     }
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
   return (

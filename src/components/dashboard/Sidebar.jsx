@@ -3,10 +3,87 @@ import { useNavigate } from 'react-router-dom';
 import { House, ChevronsLeftRight, BadgePlus, SquareTerminal, LayoutDashboard, User, Settings, ChevronRight } from 'lucide-react';
 import icon from '../../assets/image/logo.png';
 import { useAuth } from '../../hooks/useAuth';
+import { AnimatePresence } from 'motion/react';
+import { motion } from 'framer-motion';
+import { X, User as UserIcon, CreditCard, LogOut } from 'lucide-react';
+
+
+const ProfileCard = ({ user,setShowProfileCard }) => {
+  const { logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+  };
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{ duration: 0.2 }}
+        className="absolute z-10 left-72 bottom-4 w-70 bg-[#000000] rounded-xl shadow-xl border border-[#7170709a] overflow-hidden"
+      >
+        {/* Close button */}
+        <button
+          onClick={() => setShowProfileCard(false)}
+          className="absolute top-4 right-4 p-1 rounded-lg hover:bg-[#18181a] transition-colors"
+        >
+          <X className="w-4 h-4 text-gray-400" />
+        </button>
+
+        {/* Profile Header */}
+        <div className="p-6 border-b border-[#7170709a]">
+          <div className="flex items-center">
+            <div className="w-10 h-10 rounded-xl bg-gray-600 flex items-center justify-center overflow-hidden">
+              <img src={user?.image} alt="" className="w-full h-full object-cover" />
+            </div>
+            <div className="ml-4">
+              <h3 className="text-md font-semibold text-gray-200 capitalize">{user?.name}</h3>
+              <p className="text-sm text-gray-400">{user?.email}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Current Plan */}
+        <div className="p-4 border-b border-[#7170709a]">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-400">Current Plan</p>
+              <p className="text-sm font-medium text-gray-200">Pro Plan</p>
+            </div>
+            <span className="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-full">
+              Active
+            </span>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="p-2">
+          <button className="w-full flex items-center p-2 rounded-lg hover:bg-[#18181a] transition-colors text-gray-300">
+            <User className="w-5 h-5 mr-3" />
+            <span>Account Settings</span>
+          </button>
+          <button className="w-full flex items-center p-2 rounded-lg hover:bg-[#18181a] transition-colors text-gray-300">
+            <CreditCard className="w-5 h-5 mr-3" />
+            <span>Billing & Plans</span>
+          </button>
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center p-2 rounded-lg hover:bg-[#18181a] transition-colors text-red-400"
+          >
+            <LogOut className="w-5 h-5 mr-3" />
+            <span>Logout</span>
+          </button>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 
 const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [showProfileCard, setShowProfileCard] = useState(false);
 
   const menuItems = [
     {
@@ -121,7 +198,10 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
 
       <div className="px-4 py-2">
         {sidebarOpen ? (
-          <div className="flex items-center hover:bg-[#282729] p-2 rounded-lg transition-all duration-200 cursor-pointer">
+          <button
+            onClick={() => setShowProfileCard(true)}
+
+            className="flex items-center hover:bg-[#282729] p-2 rounded-lg transition-all duration-200 cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-gray-600 flex items-center justify-center mr-2 overflow-hidden">
               <img src={user?.image} alt="" />
             </div>
@@ -129,13 +209,16 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
               <p className="font-medium capitalize">{user?.name}</p>
               <p className="text-xs">{user?.email}</p>
             </div>
-          </div>
+          </button>
         ) : (
           <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center mx-auto overflow-hidden">
             <img src={user?.image} alt="" />
           </div>
         )}
       </div>
+      {
+        showProfileCard && <ProfileCard user={user} setShowProfileCard={setShowProfileCard} />
+      }
     </div>
   );
 };

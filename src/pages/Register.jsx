@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import FloatingCapsule from '../components/Background/Floatingcapsule';
 import {User} from "lucide-react"
+import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -13,20 +14,22 @@ const Register = () => {
         password: '',
         confirmPassword: '',
     });
+    const {register,loading}=useAuth();
     const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
             return;
         }
-        console.log(formData);
+       await register(formData.name, formData.email, formData.password,formData.confirmPassword);
     };
+    
 
     return (
         <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
@@ -89,14 +92,23 @@ const Register = () => {
                         </motion.p>
                     )}
 
-                    <motion.button
+                  {
+                        loading ? <motion.button
+                        
+                        type="submit"
+                        disabled
+                        className="w-full p-4 rounded-lg bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold"
+                    >
+                        Registering...
+                    </motion.button> :
+                  <motion.button
                         type="submit"
                         whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.9)' }}
                         whileTap={{ scale: 0.98 }}
                         className="w-full p-4 rounded-lg bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold hover:from-blue-800 hover:to-blue-900 transition-all duration-300 shadow-lg"
                     >
                         Register
-                    </motion.button>
+                    </motion.button>}
                 </form>
 
                 <motion.p

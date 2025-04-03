@@ -56,7 +56,7 @@ const Footer = () => {
               {
                 title: "Product",
                 links: ["Features", "Pricing", "Documentation", "API Reference"],
-                path: ["/features", "/pricing", "/docs", "/api-reference"]
+                path: ["/features", "/plans", "/docs", "/api-reference"]
               },
               {
                 title: "Company",
