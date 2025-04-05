@@ -4,61 +4,62 @@ import { Check, Star } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import PaymentComponent from '../components/PaymentComponent';
+import { useFetchPlans } from '../hooks/fetchPlans'; // Adjust the import path as necessary
 
 const Plans = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
-
-  const plans = [
-    {
-      name: "Basic",
-      price: "₹0",
-      period: "First Month",
-      description: "Perfect for getting started",
-      features: [
-        "Up to 1,000 messages/month",
-        "Basic analytics",
-        "Email support",
-        "API access",
-        "Webhook integration"
-      ],
-      color: "blue",
-      recommended: false
-    },
-    {
-      name: "Pro",
-      price: "₹999",
-      period: "per month",
-      description: "Best for growing businesses",
-      features: [
-        "Up to 10,000 messages/month",
-        "Advanced analytics",
-        "Priority support",
-        "Custom webhooks",
-        "Team collaboration",
-        "Advanced security features"
-      ],
-      color: "purple",
-      recommended: true
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "contact us",
-      description: "For large scale operations",
-      features: [
-        "Unlimited messages",
-        "Custom analytics",
-        "24/7 dedicated support",
-        "Custom integrations",
-        "SLA guarantee",
-        "Advanced security features",
-        "Custom deployment options"
-      ],
-      color: "indigo",
-      recommended: false
-    }
-  ];
+  const {plans}= useFetchPlans();
+  // const plans = [
+  //   {
+  //     name: "Basic",
+  //     price: "₹0",
+  //     period: "First Month",
+  //     description: "Perfect for getting started",
+  //     features: [
+  //       "Up to 1,000 messages/month",
+  //       "Basic analytics",
+  //       "Email support",
+  //       "API access",
+  //       "Webhook integration"
+  //     ],
+  //     color: "blue",
+  //     recommended: false
+  //   },
+  //   {
+  //     name: "Pro",
+  //     price: "₹999",
+  //     period: "per month",
+  //     description: "Best for growing businesses",
+  //     features: [
+  //       "Up to 10,000 messages/month",
+  //       "Advanced analytics",
+  //       "Priority support",
+  //       "Custom webhooks",
+  //       "Team collaboration",
+  //       "Advanced security features"
+  //     ],
+  //     color: "purple",
+  //     recommended: true
+  //   },
+  //   {
+  //     name: "Enterprise",
+  //     price: "Custom",
+  //     period: "contact us",
+  //     description: "For large scale operations",
+  //     features: [
+  //       "Unlimited messages",
+  //       "Custom analytics",
+  //       "24/7 dedicated support",
+  //       "Custom integrations",
+  //       "SLA guarantee",
+  //       "Advanced security features",
+  //       "Custom deployment options"
+  //     ],
+  //     color: "indigo",
+  //     recommended: false
+  //   }
+  // ];
 
   const handlePlanSelect = (plan) => {
     setSelectedPlan(plan);
@@ -105,7 +106,7 @@ const Plans = () => {
                 className={`relative ${plan.recommended ? 'md:-mt-4 md:mb-4' : ''}`}
               >
                 {plan.recommended && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="absolute z-10 -top-4 left-1/2 transform -translate-x-1/2">
                     <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
                       Recommended
                     </div>
@@ -130,7 +131,7 @@ const Plans = () => {
                         {plan.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-start">
                             <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
-                            <span className="text-gray-300">{feature}</span>
+                            <span className="text-gray-300">{feature.text}</span>
                           </li>
                         ))}
                       </ul>

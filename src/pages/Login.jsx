@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const Login = () => {
   const navigate = useNavigate();
+  const {login} = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -24,8 +26,7 @@ const Login = () => {
     setError('');
 
     try {
-      // Add your login logic here
-      navigate('/dashboard');
+      await login(formData.email, formData.password);
     } catch (err) {
       setError('Invalid email or password');
     }

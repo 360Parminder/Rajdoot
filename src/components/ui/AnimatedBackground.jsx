@@ -2,55 +2,71 @@ import React, { useEffect, useRef } from 'react';
 
 const AnimatedBackground = ({ children, className = "" }) => {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const animationRef = useRef(null);
   const dots = useRef([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    const container = containerRef.current;
 
-    // Set canvas size
+    // Set canvas size based on container
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      
+      // Reinitialize dots when resized
+      initDots();
     };
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Initialize dots to match original effect exactly
+    // Initialize dots with proper container dimensions
     const initDots = () => {
-      dots.current = Array.from({ length: 20 }, (_, i) => ({
+      dots.current = Array.from({ length: 40 }, (_, i) => ({
         id: i,
         positions: [
           {
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            scale: Math.random() * 2 + 1
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            scale: Math.random() * 6 + 4
           },
           {
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            scale: Math.random() * 2 + 1
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            scale: Math.random() * 6 + 4
           },
           {
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            scale: Math.random() * 2 + 1
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            scale: Math.random() * 6 + 4
           }
         ],
         currentPosition: 0,
         duration: Math.random() * 10 + 20,
         startTime: null,
-        currentScale: Math.random() * 2 + 1
+        currentScale: Math.random() * 70 + 30
       }));
     };
 
-    initDots();
+    // Start with initial resize
+    resizeCanvas();
+    
+    // Use ResizeObserver for better performance than window resize
+    const resizeObserver = new ResizeObserver(resizeCanvas);
+    resizeObserver.observe(container);
 
     // Animation loop
     const animate = (timestamp) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Use scaling to maintain dot shape
+      ctx.save();
+      const scale = Math.min(
+        canvas.width / window.innerWidth,
+        canvas.height / window.innerHeight
+      );
+      ctx.scale(scale, scale);
 
       dots.current.forEach(dot => {
         if (!dot.startTime) dot.startTime = timestamp;
@@ -59,11 +75,9 @@ const AnimatedBackground = ({ children, className = "" }) => {
         const progress = elapsed / dot.duration;
 
         if (progress >= 1) {
-          // Move to next position in the sequence
           dot.startTime = timestamp;
           dot.currentPosition = (dot.currentPosition + 1) % 3;
         } else {
-          // Draw dot at current position
           const fromPos = dot.positions[dot.currentPosition];
           const toPos = dot.positions[(dot.currentPosition + 1) % 3];
 
@@ -78,6 +92,7 @@ const AnimatedBackground = ({ children, className = "" }) => {
         }
       });
 
+      ctx.restore();
       animationRef.current = requestAnimationFrame(animate);
     };
 
@@ -85,12 +100,16 @@ const AnimatedBackground = ({ children, className = "" }) => {
 
     return () => {
       cancelAnimationFrame(animationRef.current);
-      window.removeEventListener('resize', resizeCanvas);
+      resizeObserver.disconnect();
     };
   }, []);
 
   return (
-    <div className={`min-h-screen bg-black text-white relative overflow-hidden ${className}`}>
+    <div 
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{ background: 'black', color: 'white' }}
+    >
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full"
