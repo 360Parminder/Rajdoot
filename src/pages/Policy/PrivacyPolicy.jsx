@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import AnimatedBackground from '../components/ui/AnimatedBackground';
+import AnimatedBackground from '../../components/ui/AnimatedBackground';
 
 const PrivacyPolicy = () => {
   return (
@@ -131,8 +131,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-bold text-white mb-4">10. Contact Us</h2>
               <p className="text-gray-300">
                 If you have any questions about this Privacy Policy, please contact us at{' '}
-                <a href="mailto:privacy@rajdoot.com" className="text-blue-400 hover:text-blue-300">
-                  privacy@rajdoot.com
+                <a href="mailto:360.parminder@gmail.com" className="text-blue-400 hover:text-blue-300">
+                360.parminder@gmail.com
                 </a>
               </p>
             </div>

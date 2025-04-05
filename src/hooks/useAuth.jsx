@@ -14,15 +14,17 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
+      console.log(token);
+      
       if (token) {
 
         try {
-          const { data } = await axios.get("/users/:id", {
+          const { data } = await axios.get("/users/profile", {
             headers: {
               Authorization: `Bearer ${token}`
             },
           });
-          // console.log(data.data.user);
+          console.log(data.data.user);
           
           setUser(data.data.user);
           setLogedIn(true);
@@ -54,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password,passwordConfirm) => {
     try {
       const { data } = await axios.post("/users/signup", { name, email, password,passwordConfirm,role:"user" });
-      localStorage.setItem("token", data.token);
+      // localStorage.setItem("token", data.token);
       setUser(data.user);
       navigate("/");
     } catch (error) {

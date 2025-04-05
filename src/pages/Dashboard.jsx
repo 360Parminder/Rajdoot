@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import Documentation from './Documentation';
 import useMessageCard from '../hooks/useMessageCard';
 import MessageCard from '../components/Card/MessageCard';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 // Import components
 import Sidebar from '../components/dashboard/Sidebar';
@@ -53,26 +55,57 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#000]">
-      <Sidebar 
-        sidebarOpen={sidebarOpen} 
-        activeTab={activeTab} 
-        handleTabClick={handleTabClick} 
-      />
+    <AnimatedBackground>
+      <div className="flex h-screen bg-gray-900/50 backdrop-blur-sm">
+        <AnimatePresence>
+          {sidebarOpen && (
+            <motion.div
+              initial={{ x: -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -300, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="h-full"
+            >
+              <Sidebar 
+                sidebarOpen={sidebarOpen} 
+                activeTab={activeTab} 
+                handleTabClick={handleTabClick} 
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      <div className="flex-grow overflow-auto">
-        <TopBar 
-          toggleSidebar={toggleSidebar} 
-          activeTab={activeTab} 
-          handleTabClick={handleTabClick}
-          sidebarOpen={sidebarOpen}
-        />
-        <div className='flex-1 max-w-[80vw] min-h-max bg-[#18181a] m-2 rounded-2xl mt-16'>
-          {renderContent()}
+        <div className="flex-grow overflow-auto">
+          <TopBar 
+            toggleSidebar={toggleSidebar} 
+            activeTab={activeTab} 
+            handleTabClick={handleTabClick}
+            sidebarOpen={sidebarOpen}
+          />
+          
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className='flex-1 max-w-[80vw] min-h-max bg-gray-900/70 backdrop-blur-sm m-4 rounded-2xl mt-20 border border-gray-800 shadow-xl'
+          >
+            {renderContent()}
+          </motion.div>
         </div>
+
+        <AnimatePresence>
+          {message && (
+            <MessageCard 
+              title={message.title} 
+              message={message.message} 
+              type={message.type} 
+              onClose={() => setMessage(null)} 
+            />
+          )}
+        </AnimatePresence>
       </div>
-      {message && <MessageCard title={message.title} message={message.message} type={message.type} onClose={() => setMessage(null)} />}
-    </div>
+    </AnimatedBackground>
   );
 };
 

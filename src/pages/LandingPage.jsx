@@ -15,9 +15,11 @@ import {
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useFetchPlans } from '../hooks/fetchPlans';
+import { useAuth } from '../hooks/useAuth';
 
 const LandingPage = () => {
   const {plans}= useFetchPlans();
+  const {user}=  useAuth();
   
   const features = [
     {
@@ -244,7 +246,7 @@ const LandingPage = () => {
                           </li>
                         ))}
                       </ul>
-                      <Link to="/plans">
+                      <Link to={user?'/plans':'/login'}>
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}

@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
+import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
   const navigate = useNavigate();
+  const {register,loading}=useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,8 +33,7 @@ const Register = () => {
     }
 
     try {
-      // Add your registration logic here
-      navigate('/dashboard');
+     await register(formData.name, formData.email, formData.password, formData.confirmPassword);
     } catch (err) {
       setError('Registration failed. Please try again.');
     }
@@ -140,11 +141,11 @@ const Register = () => {
                 />
                 <label className="ml-2 text-gray-300">
                   I agree to the{' '}
-                  <Link to="/terms" className="text-blue-400 hover:text-blue-300">
+                  <Link to="/terms-of-service" className="text-blue-400 hover:text-blue-300">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link to="/privacy" className="text-blue-400 hover:text-blue-300">
+                  <Link to="/privacy-policy" className="text-blue-400 hover:text-blue-300">
                     Privacy Policy
                   </Link>
                 </label>
