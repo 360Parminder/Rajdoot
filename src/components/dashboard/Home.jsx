@@ -5,6 +5,8 @@ import { useContext } from 'react';
 
 const Home = () => {
   const { value } = useContext(ApiContext);
+  console.log(value.apis);
+  
 
   const handleCopy = (text, label) => {
     if (!text) return;
@@ -19,6 +21,7 @@ const Home = () => {
       <div className="flex gap-5 flex-wrap">
         {value?.apis.map((item, index) => (
           <div key={index} className='bg-[#282729] p-4 rounded shadow w-full flex flex-col gap-4'>
+            <p className=' text-sky-50 capitalize text-xl font-semibold'>{item.name}</p>
             <div className='relative'>
               <label className='text-white' htmlFor="">API ID</label>
               <div className='relative'>

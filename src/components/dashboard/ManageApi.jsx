@@ -6,6 +6,9 @@ import { useContext } from 'react';
 const ManageApi = () => {
   const [showApiKey, setShowApiKey] = useState(false);
   const { value } = useContext(ApiContext);
+  const deleteAPi = async(id) => {
+      await value.deleteApi(id);
+  }
 
   return (
     <div className="p-6">
@@ -23,7 +26,21 @@ const ManageApi = () => {
             </tr>
           </thead>
           <tbody>
-            {value?.apis.map((item, index) => (
+
+            {
+              // If value is not null and has apis, map through them
+              // Otherwise, display a message
+              !value?.apis?.length ? (
+                <tr>
+                  <td colSpan="4" className="text-center py-3 text-gray-400">
+                    No API keys found.
+                  </td>
+                </tr>
+              ) : null
+            }
+            {
+              // Map through the APIs and display them in the table
+            value?.apis?.map((item, index) => (
               <tr key={index} className="border-b border-[#7170709a]">
                 <td className="py-3 px-2">{item?.keyId}</td>
                 <td className="py-3 px-2 relative">
@@ -49,7 +66,9 @@ const ManageApi = () => {
                   <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-3 py-1 rounded mr-2">
                     Update
                   </button>
-                  <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+                  <button
+                    onClick={() => deleteAPi(item?.keyId)}
+                   className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
                     Delete
                   </button>
                 </td>

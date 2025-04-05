@@ -83,6 +83,8 @@ const ProfileCard = ({ user,setShowProfileCard }) => {
 const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  console.log(user);
+  
   const [showProfileCard, setShowProfileCard] = useState(false);
 
   const menuItems = [

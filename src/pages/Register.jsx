@@ -1,143 +1,181 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import FloatingCapsule from '../components/Background/Floatingcapsule';
-import {User} from "lucide-react"
-import { useAuth } from '../hooks/useAuth';
+import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const Register = () => {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        password: '',
-        confirmPassword: '',
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
-    const {register,loading}=useAuth();
-    const [error, setError] = useState('');
+  };
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        if (formData.password !== formData.confirmPassword) {
-            setError('Passwords do not match');
-            return;
-        }
-       await register(formData.name, formData.email, formData.password,formData.confirmPassword);
-    };
-    
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
 
-    return (
-        <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
-            <FloatingCapsule />
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
+    try {
+      // Add your registration logic here
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Registration failed. Please try again.');
+    }
+  };
+
+  return (
+    <AnimatedBackground>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-md w-full"
+        >
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 shadow-xl">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text mb-2">
+                Create Account
+              </h1>
+              <p className="text-gray-400">
+                Join Rajdoot and start building amazing applications
+              </p>
+            </div>
+
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="backdrop-blur-sm bg-[#32323272] p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700"
-            >
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-4xl font-bold text-gray-200 mb-6 text-center"
+                className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-6"
+              >
+                {error}
+              </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-gray-300 mb-2">Full Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-300 mb-2">Email</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-300 mb-2">Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Create a password"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-300 mb-2">Confirm Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-700 rounded bg-gray-800/50"
+                  required
+                />
+                <label className="ml-2 text-gray-300">
+                  I agree to the{' '}
+                  <Link to="/terms" className="text-blue-400 hover:text-blue-300">
+                    Terms of Service
+                  </Link>{' '}
+                  and{' '}
+                  <Link to="/privacy" className="text-blue-400 hover:text-blue-300">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+              >
+                Create Account
+              </motion.button>
+            </form>
+
+            <div className="mt-8 text-center">
+              <p className="text-gray-400">
+                Already have an account?{' '}
+                <Link
+                  to="/login"
+                  className="text-blue-400 hover:text-blue-300 transition-colors"
                 >
-                    Create Account
-                </motion.h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    {[
-                        { name: 'name', icon: <User size={18} /> },
-                        { name: 'email', icon: <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> },
-                        { name: 'phone', icon: <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> },
-                        { name: 'password', icon: <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> },
-                        { name: 'confirmPassword', icon: <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg> }
-                    ].map((field, index) => (
-                        <motion.div
-                            key={field.name}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3 + index * 0.1 }}
-                            className="group relative"
-                        >
-                            <input
-                                type={field.name.includes('password') ? 'password' : field.name === 'email' ? 'email' : 'text'}
-                                name={field.name}
-                                placeholder={
-                                    field.name === 'confirmPassword' ? 'Confirm Password' : field.name.charAt(0).toUpperCase() + field.name.slice(1)
-                                }
-                                value={formData[field.name]}
-                                onChange={handleChange}
-                                className="relative w-full p-4 pl-13 rounded-lg text-gray-300 border border-gray-600 focus:border-blue-400 focus:outline-none transition-all duration-300 placeholder-gray-500"
-                                required
-                            />
-
-                            <div className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-400 transition-colors">
-                                {field.icon}
-                            </div>
-                        </motion.div>
-                    ))}
-
-                    {error && (
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="text-red-400 text-sm"
-                        >
-                            {error}
-                        </motion.p>
-                    )}
-
-                  {
-                        loading ? <motion.button
-                        
-                        type="submit"
-                        disabled
-                        className="w-full p-4 rounded-lg bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold"
-                    >
-                        Registering...
-                    </motion.button> :
-                  <motion.button
-                        type="submit"
-                        whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.9)' }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full p-4 rounded-lg bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold hover:from-blue-800 hover:to-blue-900 transition-all duration-300 shadow-lg"
-                    >
-                        Register
-                    </motion.button>}
-                </form>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="mt-6 text-gray-400 text-center"
-                >
-                    Already have an account?{' '}
-                    <span
-                        onClick={() => navigate('/login')}
-                        className="text-blue-400 cursor-pointer hover:text-blue-300 transition-colors"
-                    >
-                        Login
-                    </span>
-                </motion.p>
-            </motion.div>
-
-            <style>
-                {`
-                    @keyframes float {
-                        0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-                        50% { transform: translateY(-50px) rotate(180deg); opacity: 0.1; }
-                        100% { transform: translateY(0) rotate(360deg); opacity: 0.3; }
-                    }
-                `}
-            </style>
-        </div>
-    );
+                  Sign in
+                </Link>
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatedBackground>
+  );
 };
 
 export default Register;

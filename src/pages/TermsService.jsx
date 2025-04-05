@@ -1,128 +1,128 @@
 import React from 'react';
-// import ScrollToTop from '../components/Common/ScrollToTop';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const TermsService = () => {
-    return (
-        <div className="min-h-screen bg-[#18181a] p-6">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold text-gray-200 mb-6 text-center">Terms of Service</h1>
-                
-                <p className="text-gray-400 mb-8 text-center">Last Updated: {new Date().toLocaleDateString()}</p>
-                
-                <div className="space-y-8">
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">1. Introduction</h2>
-                        <p className="text-gray-300">
-                            Welcome to Rajdoot ("Company", "we", "our", "us"). By accessing or using our website, 
-                            services, applications, or any other content provided by Rajdoot (collectively, the "Services"), 
-                            you agree to be bound by these Terms of Service.
-                        </p>
-                    </section>
+  return (
+    <AnimatedBackground>
+      <div className="container mx-auto px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto"
+        >
+          {/* Header */}
+          <div className="mb-12">
+            <Link to="/">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6"
+              >
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                Back to Home
+              </motion.button>
+            </Link>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text mb-4"
+            >
+              Terms of Service
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-gray-400"
+            >
+              Last updated: April 5, 2024
+            </motion.p>
+          </div>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">2. Acceptance of Terms</h2>
-                        <p className="text-gray-300">
-                            By accessing or using our Services, you agree to these Terms of Service and our Privacy Policy. 
-                            If you do not agree to these Terms, you may not access or use our Services.
-                        </p>
-                    </section>
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="prose prose-invert max-w-none"
+          >
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-800">
+              <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+              <p className="text-gray-300 mb-6">
+                By accessing and using Rajdoot's services, you agree to be bound by these Terms of Service
+                and all applicable laws and regulations. If you do not agree with any of these terms, you
+                are prohibited from using or accessing our services.
+              </p>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">3. Changes to Terms</h2>
-                        <p className="text-gray-300">
-                            We reserve the right to modify these Terms at any time. Changes will be effective immediately 
-                            upon posting on our website. Your continued use of our Services after any changes indicates 
-                            your acceptance of the modified Terms.
-                        </p>
-                    </section>
+              <h2 className="text-2xl font-bold text-white mb-4">2. Use License</h2>
+              <p className="text-gray-300 mb-6">
+                Permission is granted to temporarily access and use Rajdoot's services for personal or
+                commercial purposes, subject to the following restrictions:
+              </p>
+              <ul className="list-disc pl-6 text-gray-300 mb-6">
+                <li>You must not modify or copy the materials</li>
+                <li>You must not use the materials for any unlawful purpose</li>
+                <li>You must not attempt to reverse engineer any software</li>
+                <li>You must not remove any copyright or proprietary notations</li>
+              </ul>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">4. User Accounts</h2>
-                        <p className="text-gray-300">
-                            Some features of our Services may require registration. You agree to provide accurate 
-                            information and to keep it updated. You are responsible for maintaining the confidentiality 
-                            of your account credentials and for all activities under your account.
-                        </p>
-                    </section>
+              <h2 className="text-2xl font-bold text-white mb-4">3. Service Description</h2>
+              <p className="text-gray-300 mb-6">
+                Rajdoot provides a messaging API platform that enables developers to integrate messaging
+                capabilities into their applications. Our services include but are not limited to:
+              </p>
+              <ul className="list-disc pl-6 text-gray-300 mb-6">
+                <li>Message sending and receiving</li>
+                <li>API access and integration</li>
+                <li>Analytics and reporting</li>
+                <li>Developer tools and documentation</li>
+              </ul>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">5. Intellectual Property</h2>
-                        <p className="text-gray-300">
-                            Our Services and all content, including but not limited to text, graphics, logos, icons, 
-                            images, audio clips, software, and other materials are owned by Rajdoot and protected by 
-                            copyright, trademark, and other intellectual property laws.
-                        </p>
-                    </section>
+              <h2 className="text-2xl font-bold text-white mb-4">4. User Obligations</h2>
+              <p className="text-gray-300 mb-6">
+                As a user of Rajdoot's services, you agree to:
+              </p>
+              <ul className="list-disc pl-6 text-gray-300 mb-6">
+                <li>Provide accurate and complete information</li>
+                <li>Maintain the security of your account</li>
+                <li>Comply with all applicable laws and regulations</li>
+                <li>Use the services in accordance with these terms</li>
+              </ul>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">6. User Content</h2>
-                        <p className="text-gray-300">
-                            By submitting content to our Services, you grant us a worldwide, non-exclusive, 
-                            royalty-free license to use, reproduce, modify, adapt, publish, translate, and distribute 
-                            your content in any media. You represent that you have all rights necessary to grant these permissions.
-                        </p>
-                    </section>
+              <h2 className="text-2xl font-bold text-white mb-4">5. Privacy Policy</h2>
+              <p className="text-gray-300 mb-6">
+                Your use of Rajdoot's services is also governed by our Privacy Policy. Please review our
+                Privacy Policy, which also governs the Site and informs users of our data collection
+                practices.
+              </p>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">7. Prohibited Conduct</h2>
-                        <p className="text-gray-300">
-                            You agree not to: (a) violate any laws; (b) post unauthorized content; (c) use our Services 
-                            for illegal purposes; (d) interfere with or disrupt our Services; (e) attempt to access 
-                            unauthorized areas; (f) impersonate others; or (g) use our Services for unauthorized advertising.
-                        </p>
-                    </section>
+              <h2 className="text-2xl font-bold text-white mb-4">6. Disclaimer</h2>
+              <p className="text-gray-300 mb-6">
+                The materials on Rajdoot's website and services are provided on an 'as is' basis. Rajdoot
+                makes no warranties, expressed or implied, and hereby disclaims and negates all other
+                warranties including, without limitation, implied warranties or conditions of
+                merchantability, fitness for a particular purpose, or non-infringement of intellectual
+                property or other violation of rights.
+              </p>
 
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">8. Termination</h2>
-                        <p className="text-gray-300">
-                            We may terminate or suspend your access to our Services immediately, without prior notice, 
-                            for conduct that we believe violates these Terms or is harmful to other users, us, or 
-                            third parties, or for any other reason at our discretion.
-                        </p>
-                    </section>
-
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">9. Disclaimer of Warranties</h2>
-                        <p className="text-gray-300">
-                            Our Services are provided "as is" without warranties of any kind, either express or implied. 
-                            We do not warrant that our Services will be uninterrupted or error-free.
-                        </p>
-                    </section>
-
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">10. Limitation of Liability</h2>
-                        <p className="text-gray-300">
-                            To the maximum extent permitted by law, Rajdoot shall not be liable for any indirect, 
-                            incidental, special, consequential, or punitive damages resulting from your use of or 
-                            inability to use our Services.
-                        </p>
-                    </section>
-
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">11. Governing Law</h2>
-                        <p className="text-gray-300">
-                            These Terms shall be governed by the laws of India, without regard to its conflict of law 
-                            principles. Any disputes arising under these Terms shall be resolved in the courts located 
-                            in Alwar, Rajasthan, India.
-                        </p>
-                    </section>
-
-                    <section className="bg-[#282729] rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-200 mb-4">12. Contact Information</h2>
-                        <p className="text-gray-300 mb-4">
-                            If you have any questions about these Terms of Service, please contact us at:
-                        </p>
-                        <div className="text-gray-300 space-y-2">
-                            <p>Rajdoot</p>
-                            <p>Attn: Parminder Singh</p>
-                            <p>Alwar, Rajasthan, India</p>
-                            <p>Email: <a href="mailto:360.parminder@gmail.com" className="text-blue-400 hover:text-blue-300">360.parminder@gmail.com</a></p>
-                        </div>
-                    </section>
-                </div>
+              <h2 className="text-2xl font-bold text-white mb-4">7. Contact Information</h2>
+              <p className="text-gray-300">
+                If you have any questions about these Terms of Service, please contact us at{' '}
+                <a href="mailto:support@rajdoot.com" className="text-blue-400 hover:text-blue-300">
+                  support@rajdoot.com
+                </a>
+              </p>
             </div>
-        </div>
-    );
+          </motion.div>
+        </motion.div>
+      </div>
+    </AnimatedBackground>
+  );
 };
 
 export default TermsService;

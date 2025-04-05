@@ -68,20 +68,23 @@ const Footer = () => {
                 links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
                 path: ["/privacy-policy", "/terms-of-service", "/cookie-policy"]
               }
-            ].map((column, index) => (
+            ].map((section, index) => (
               <motion.div key={index} variants={fadeIn}>
-                <h4 className="font-semibold mb-6 text-white">{column.title}</h4>
-                <ul className="space-y-3">
-                  {column.links.map((link, linkIndex) => (
-                    <motion.li key={linkIndex}>
-                      <motion.button 
-                        onClick={() => navigate(column.path[linkIndex])}
-                        className="text-gray-500 hover:text-white transition"
-                        whileHover={{ x: 5 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                <h3 className="text-lg font-semibold text-white mb-4">{section.title}</h3>
+                <ul className="space-y-2">
+                  {section.links.map((link, linkIndex) => (
+                    <motion.li 
+                      key={linkIndex}
+                      variants={slideIn}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <button 
+                        onClick={() => navigate(section.path[linkIndex])}
+                        className="text-gray-400 hover:text-white transition-colors"
                       >
                         {link}
-                      </motion.button>
+                      </button>
                     </motion.li>
                   ))}
                 </ul>
@@ -90,16 +93,17 @@ const Footer = () => {
           </motion.div>
           
           <motion.div 
-            className="border-t border-gray-900 mt-16 pt-10 text-center text-gray-600"
+            className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-500"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            transition={{ delay: 0.5 }}
           >
-            <p>&copy; 2025 Rajdoot. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Rajdoot. All rights reserved.</p>
           </motion.div>
         </div>
       </footer>
     )
-} 
+}
+
 export default Footer;

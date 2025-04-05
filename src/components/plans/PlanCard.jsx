@@ -55,7 +55,7 @@ const PlanCard = ({ plan, isCurrentPlan, onSelect }) => {
                 </div>
                 <div className="text-right">
                     <p className="text-2xl font-bold text-gray-200">{plan.price}</p>
-                    <p className="text-gray-400">per {plan.period}</p>
+                    <p className="text-gray-400"> {plan.period==""?null:"per "+plan.period}</p>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@ const PlanCard = ({ plan, isCurrentPlan, onSelect }) => {
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
                         <Check className="w-5 h-5 mr-2 text-indigo-400" />
-                        <span className="group-hover:text-dark-200 transition-colors">{feature}</span>
+                        <span className="group-hover:text-dark-200 transition-colors">{feature.text}</span>
                     </motion.div>
                 ))}
             </div>

@@ -1,363 +1,292 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { joinWaitlist } from '../api/waitlist';
-import { useAuth } from '../hooks/useAuth';
-import { useFetchPlans } from '../hooks/fetchPlans';
-
-// Animation variants
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const slideIn = {
-  hidden: { x: -60, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
+import { Link } from 'react-router-dom';
+import { 
+  MessageSquare, 
+  Zap, 
+  Shield, 
+  BarChart, 
+  Globe, 
+  Code,
+  ArrowRight,
+  Check,
+  Star
+} from 'lucide-react';
+import FeatureCard from '../components/ui/FeatureCard';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { user } = useAuth();
-  const { plans, loading, error } = useFetchPlans();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await joinWaitlist(email);
-      if (data.success) {
-        setIsSubmitted(true);
-        setEmail('');
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error joining waitlist:", error);
-      alert("Failed to join waitlist. Please try again later.");
+  const features = [
+    {
+      icon: <MessageSquare className="w-6 h-6" />,
+      title: "Advanced Messaging",
+      description: "Send and receive messages with support for text, media, and rich content formats.",
+      color: "blue"
+    },
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "Real-time Delivery",
+      description: "Lightning-fast message delivery with real-time status updates and receipts.",
+      color: "yellow"
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: "End-to-End Encryption",
+      description: "Enterprise-grade security with end-to-end encryption for all communications.",
+      color: "green"
+    },
+    {
+      icon: <Code className="w-6 h-6" />,
+      title: "RESTful APIs",
+      description: "Comprehensive REST APIs with detailed documentation and SDK support.",
+      color: "purple"
+    },
+    {
+      icon: <BarChart className="w-6 h-6" />,
+      title: "Message Analytics",
+      description: "Detailed insights into message delivery, engagement, and performance.",
+      color: "red"
+    },
+    {
+      icon: <Globe className="w-6 h-6" />,
+      title: "Global Infrastructure",
+      description: "Distributed infrastructure ensuring high availability and low latency.",
+      color: "cyan"
     }
-  };
+  ];
+
+  const plans = [
+    {
+      name: "Basic",
+      price: "₹0",
+      period: "First Month",
+      description: "Perfect for getting started",
+      features: [
+        "Up to 1,000 messages/month",
+        "Basic analytics",
+        "Email support",
+        "API access",
+        "Webhook integration"
+      ],
+      color: "blue",
+      recommended: false
+    },
+    {
+      name: "Pro",
+      price: "₹999",
+      period: "per month",
+      description: "Best for growing businesses",
+      features: [
+        "Up to 10,000 messages/month",
+        "Advanced analytics",
+        "Priority support",
+        "Custom webhooks",
+        "Team collaboration",
+        "Advanced security features"
+      ],
+      color: "purple",
+      recommended: true
+    },
+    {
+      name: "Enterprise",
+      price: "Custom",
+      period: "contact us",
+      description: "For large scale operations",
+      features: [
+        "Unlimited messages",
+        "Custom analytics",
+        "24/7 dedicated support",
+        "Custom integrations",
+        "SLA guarantee",
+        "Advanced security features",
+        "Custom deployment options"
+      ],
+      color: "indigo",
+      recommended: false
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-gray-300">
-      {/* Hero Section with Animated Background */}
-      <header className="py-24 border-b border-gray-900 bg-gradient-to-b from-gray-900    to-black relative overflow-hidden">
+    <AnimatedBackground>
+      <div className="container mx-auto px-4 py-12">
+        {/* Hero Section */}
         <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)',
-              'linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)',
-              'linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)'
-            ]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-
-        <div className="container mx-auto px-6 flex flex-col items-center text-center relative">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-6 text-white"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto text-center mb-20"
+        >
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Elevate Your Applications with Powerful Messaging APIs
+            Sophisticated Messaging APIs for Developers
           </motion.h1>
-          <motion.p
-            className="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
+          <motion.p 
+            className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Rajdoot combines enterprise-grade reliability with developer-friendly design.
-            Build secure, scalable messaging solutions with just a few lines of code.
+            Build powerful messaging applications with our elegant, reliable, and affordable API platform.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            {/* {
-            !user ? (
+            <Link to="/register">
               <motion.button
-            onClick={() => navigate('/register')}
-            className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-sm text-lg font-medium transition"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
               >
-            Get Started
+                Get Started Free
               </motion.button>
-            ) : null
-          } */}
-
-            <motion.button
-              onClick={() => navigate('/docs')}
-              className="bg-transparent hover:bg-gray-900 text-white px-8 py-3 rounded-sm text-lg font-medium transition border border-gray-700"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Documentation
-            </motion.button>
+            </Link>
+            <Link to="/docs">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-gray-800 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+              >
+                View Documentation
+              </motion.button>
+            </Link>
           </motion.div>
-        </div>
-      </header>
+        </motion.div>
 
-      {/* Features */}
-      <section id="features" className="py-24 border-b border-gray-900">
-        <div className="container mx-auto px-6">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-20 text-white"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeIn}
-          >
-            Why Choose Rajdoot
-          </motion.h2>
+        {/* Features Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto mb-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Powerful Features</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Discover the comprehensive suite of features that make Rajdoot the perfect choice for your messaging needs.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                color={feature.color}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+        </motion.div>
 
-          <motion.div
-            className="grid md:grid-cols-3 gap-16"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {[
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>,
-                title: "Reliable SMS Delivery",
-                description: "Send SMS messages globally with high deliverability rates and real-time delivery status updates."
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>,
-                title: "OTP Authentication",
-                description: "Secure one-time password generation and verification coming soon. Join our waitlist for early access."
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>,
-                title: "Developer-Friendly",
-                description: "Simple REST APIs, comprehensive documentation, and client libraries for all major programming languages."
-              }
-            ].map((feature, index) => (
+        {/* Pricing Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto mb-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Choose the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {plans.map((plan, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-900 p-10 rounded-sm"
-                variants={fadeIn}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              >
-                <motion.div
-                  className="w-16 h-16 rounded-sm flex items-center justify-center mb-8 border border-gray-800"
-                  whileHover={{ rotate: 5, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    {feature.icon}
-                  </svg>
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-4 text-white">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-4 text-white">Simple, Transparent Pricing</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Choose the perfect plan for your needs. All plans include our core features with different usage limits.
-            </p>
-          </motion.div>
-
-          {loading ? (
-            <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-            </div>
-          ) : error ? (
-            <div className="text-center py-12 text-red-500">
-              {error}
-            </div>
-          ) : (
-            <motion.div
-              className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {plans.map((plan, index) => (
-                <motion.div
-                  key={plan._id}
-                  className={`bg-black rounded-sm overflow-hidden border ${plan.recommended ? 'border-white transform scale-105 shadow-2xl' : 'border-gray-900'
-                    }`}
-                  variants={fadeIn}
-                  whileHover={!plan.recommended ? { y: -10, transition: { duration: 0.3 } } : {}}
-                >
-                  {plan.recommended && (
-                    <motion.div
-                      className="bg-white py-2 text-center"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <span className="font-medium text-black">Most Popular</span>
-                    </motion.div>
-                  )}
-                  <div className="p-10">
-                    <h3 className="text-xl font-semibold mb-4 text-white">{plan.name}</h3>
-                    <p className="text-4xl font-bold mb-2 text-white">{plan.price}</p>
-                    <p className="text-lg text-gray-500 mb-8">{plan.period === "" ? null : "per " + plan.period}</p>
-
-                    {plan.name === "Basic" && (
-                      <div className="mb-6 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
-                        <p className="text-green-400 text-sm font-medium">Free for the first month after registration!</p>
-                      </div>
-                    )}
-
-                    <motion.ul
-                      className="space-y-4 mb-10"
-                      variants={staggerContainer}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                    >
-                      {plan.features.map((feature) => (
-                        <motion.li key={feature._id} className="flex items-center" variants={slideIn}>
-                          <svg className="w-5 h-5 mr-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span className="text-gray-300">{feature.text}</span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  </div>
-                  <div className="p-8 bg-gray-900 border-t border-gray-800">
-                    <motion.button
-                      onClick={() => navigate('/plans')}
-                      className={`w-full ${plan.recommended
-                          ? 'bg-white hover:bg-gray-200 text-black'
-                          : 'bg-black hover:bg-gray-800 text-white border border-gray-800'
-                        } px-6 py-3 rounded-sm font-medium transition`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {plan.name === "Basic" ? "Start Free" : "Subscribe Now"}
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </div>
-      </section>
-
-      {/* Waitlist Section */}
-      {
-        user ? null : (
-          <section id="waitlist" className="py-24">
-            <div className="container mx-auto px-6 max-w-3xl">
-              <motion.div
-                className="bg-gray-900 p-12 rounded-sm border border-gray-800"
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`relative ${plan.recommended ? 'md:-mt-4 md:mb-4' : ''}`}
               >
-                <motion.h2
-                  className="text-3xl font-bold text-center mb-8 text-white"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                >
-                  Join Our OTP API Waitlist
-                </motion.h2>
-                <motion.p
-                  className="text-gray-400 text-center mb-10"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                  Be the first to access our upcoming OTP authentication APIs.
-                  Early access members will receive exclusive benefits and discounted pricing.
-                </motion.p>
-
-                {isSubmitted ? (
-                  <motion.div
-                    className="bg-black text-white p-6 rounded-sm text-center border border-gray-800"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <p>Thank you for joining our waitlist. We'll notify you when our OTP APIs are ready.</p>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col md:flex-row gap-4"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                  >
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      className="flex-grow bg-black text-white px-6 py-4 rounded-sm focus:outline-none focus:border-white border border-gray-800"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                    <motion.button
-                      type="submit"
-                      className="bg-white hover:bg-gray-200 text-black px-8 py-4 rounded-sm font-medium transition"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Join Waitlist
-                    </motion.button>
-                  </motion.form>
+                {plan.recommended && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                      Recommended
+                    </div>
+                  </div>
                 )}
+                <FeatureCard
+                  className={`h-full ${plan.recommended ? 'border-purple-500/50 shadow-lg shadow-purple-500/20' : ''}`}
+                  title={
+                    <div className="flex items-center justify-between">
+                      <span>{plan.name}</span>
+                      {plan.recommended && <Star className="w-5 h-5 text-yellow-500" />}
+                    </div>
+                  }
+                  description={
+                    <div className="space-y-4">
+                      <div className="flex items-baseline">
+                        <span className="text-3xl font-bold text-white">{plan.price}</span>
+                        <span className="text-gray-400 ml-2">{plan.period}</span>
+                      </div>
+                      <p className="text-gray-400">{plan.description}</p>
+                      <ul className="space-y-3">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start">
+                            <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-300">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link to="/plans">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`w-full py-3 rounded-lg font-semibold transition-colors ${
+                            plan.recommended
+                              ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/20'
+                              : 'bg-gray-800 text-white hover:bg-gray-700'
+                          }`}
+                        >
+                          {plan.name === "Basic" ? "Start Free" : plan.name === "Enterprise" ? "Contact Sales" : "Subscribe Now"}
+                        </motion.button>
+                      </Link>
+                    </div>
+                  }
+                />
               </motion.div>
-            </div>
-          </section>
-        )
-      }
-    </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <h2 className="text-3xl font-bold text-white mb-6">Ready to Get Started?</h2>
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
+          </p>
+          <Link to="/register">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
+            >
+              Start Building Now
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </motion.button>
+          </Link>
+        </motion.div>
+      </div>
+    </AnimatedBackground>
   );
 };
 

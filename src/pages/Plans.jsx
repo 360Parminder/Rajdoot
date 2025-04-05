@@ -1,113 +1,190 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import PlanCard from '../components/plans/PlanCard';
-import { CURRENT_PLAN, AVAILABLE_PLANS } from '../constants/plans';
-import { useAuth } from '../hooks/useAuth';
-import FloatingParticles from '../components/Background/FloatingParticles';
-import { useFetchPlans } from '../hooks/fetchPlans';
+import { Check, Star } from 'lucide-react';
+import FeatureCard from '../components/ui/FeatureCard';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
+import PaymentComponent from '../components/PaymentComponent';
 
 const Plans = () => {
-    const { user } = useAuth();
-    const { plans, loading, error } = useFetchPlans();
-    const handlePlanSelect = (plan) => {
-        // TODO: Implement plan selection logic
-        console.log('Selected plan:', plan);
-    };
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [showPayment, setShowPayment] = useState(false);
 
-    return (
-        <div className="min-h-screen bg-dark-900 relative overflow-hidden">
-            <FloatingParticles />
-            
-            {/* Animated background elements */}
-            <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-dark-900 to-dark-800 opacity-50"
-                animate={{ opacity: [0.5, 0.7, 0.5] }}
-                transition={{ duration: 5, repeat: Infinity }}
-            />
-            <motion.div
-                className="absolute top-0 left-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-                transition={{ duration: 8, repeat: Infinity }}
-            />
-            <motion.div
-                className="absolute bottom-0 right-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl"
-                animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.2, 0.3] }}
-                transition={{ duration: 8, repeat: Infinity }}
-            />
+  const plans = [
+    {
+      name: "Basic",
+      price: "₹0",
+      period: "First Month",
+      description: "Perfect for getting started",
+      features: [
+        "Up to 1,000 messages/month",
+        "Basic analytics",
+        "Email support",
+        "API access",
+        "Webhook integration"
+      ],
+      color: "blue",
+      recommended: false
+    },
+    {
+      name: "Pro",
+      price: "₹999",
+      period: "per month",
+      description: "Best for growing businesses",
+      features: [
+        "Up to 10,000 messages/month",
+        "Advanced analytics",
+        "Priority support",
+        "Custom webhooks",
+        "Team collaboration",
+        "Advanced security features"
+      ],
+      color: "purple",
+      recommended: true
+    },
+    {
+      name: "Enterprise",
+      price: "Custom",
+      period: "contact us",
+      description: "For large scale operations",
+      features: [
+        "Unlimited messages",
+        "Custom analytics",
+        "24/7 dedicated support",
+        "Custom integrations",
+        "SLA guarantee",
+        "Advanced security features",
+        "Custom deployment options"
+      ],
+      color: "indigo",
+      recommended: false
+    }
+  ];
 
-            <div className="container mx-auto px-4 py-8 relative z-10">
-                {/* Back Button */}
-                <Link
-                    to="/"
-                    className="inline-flex items-center text-gray-400 hover:text-gray-200 mb-8 transition-colors"
-                >
-                    <ArrowLeft className="w-5 h-5 mr-2" />
-                    Back to Home
-                </Link>
+  const handlePlanSelect = (plan) => {
+    setSelectedPlan(plan);
+    setShowPayment(true);
+  };
 
-                {/* Current Plan Section */}
-                {user && (
-                    <div className="mb-12">
-                        <h2 className="text-2xl font-bold text-gray-200 mb-4">Current Plan</h2>
-                        <div className="bg-[#282729] rounded-lg p-6 border border-[#7170709a]">
-                            <div className="flex items-center justify-between mb-4">
-                                <div>
-                                    <h3 className="text-xl font-semibold text-indigo-300">{CURRENT_PLAN.name}</h3>
-                                    <p className="text-gray-400">Renews on {new Date(CURRENT_PLAN.renewalDate).toLocaleDateString()}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-2xl font-bold text-gray-200">{CURRENT_PLAN.price}</p>
-                                    <p className="text-gray-400">per {CURRENT_PLAN.period}</p>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                {CURRENT_PLAN.features.map((feature, index) => (
-                                    <div key={index} className="flex items-center text-gray-300">
-                                        <Check className="w-5 h-5 mr-2 text-indigo-400" />
-                                        {feature}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="mt-4">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-500/20 text-green-400">
-                                    Active
-                                </span>
-                            </div>
-                        </div>
+  return (
+    <AnimatedBackground>
+      <div className="container mx-auto px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto"
+        >
+          {/* Header Section */}
+          <div className="text-center mb-16">
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Choose Your Plan
+            </motion.h1>
+            <motion.p 
+              className="text-gray-400 text-lg max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Select the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
+            </motion.p>
+          </div>
+
+          {/* Plans Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`relative ${plan.recommended ? 'md:-mt-4 md:mb-4' : ''}`}
+              >
+                {plan.recommended && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                      Recommended
                     </div>
+                  </div>
                 )}
-
-                {/* Available Plans Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    <h2 className="text-2xl font-bold text-gray-200 mb-6">
-                        {user ? 'Available Plans' : 'Choose Your Plan'}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {AVAILABLE_PLANS.map((plan, index) => (
-                            <motion.div
-                                key={plan.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                            >
-                                <PlanCard
-                                    plan={plan}
-                                    isCurrentPlan={user && plan.name === CURRENT_PLAN.name}
-                                    onSelect={handlePlanSelect}
-                                />
-                            </motion.div>
-                        ))}
+                <FeatureCard
+                  className={`h-full ${plan.recommended ? 'border-purple-500/50 shadow-lg shadow-purple-500/20' : ''}`}
+                  title={
+                    <div className="flex items-center justify-between">
+                      <span>{plan.name}</span>
+                      {plan.recommended && <Star className="w-5 h-5 text-yellow-500" />}
                     </div>
-                </motion.div>
-            </div>
-        </div>
-    );
+                  }
+                  description={
+                    <div className="space-y-4">
+                      <div className="flex items-baseline">
+                        <span className="text-3xl font-bold text-white">{plan.price}</span>
+                        <span className="text-gray-400 ml-2">{plan.period}</span>
+                      </div>
+                      <p className="text-gray-400">{plan.description}</p>
+                      <ul className="space-y-3">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start">
+                            <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-300">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => handlePlanSelect(plan)}
+                        className={`w-full py-3 rounded-lg font-semibold transition-colors ${
+                          plan.recommended
+                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/20'
+                            : 'bg-gray-800 text-white hover:bg-gray-700'
+                        }`}
+                      >
+                        {plan.name === "Basic" ? "Start Free" : plan.name === "Enterprise" ? "Contact Sales" : "Subscribe Now"}
+                      </motion.button>
+                    </div>
+                  }
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* FAQ Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-20 text-center"
+          >
+            <h2 className="text-3xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+              Have questions about our plans? Check out our FAQ section or contact our support team.
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+            >
+              View FAQ
+            </motion.button>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Payment Modal */}
+      {showPayment && selectedPlan && (
+        <PaymentComponent
+          plan={selectedPlan}
+          onClose={() => setShowPayment(false)}
+        />
+      )}
+    </AnimatedBackground>
+  );
 };
 
 export default Plans; 

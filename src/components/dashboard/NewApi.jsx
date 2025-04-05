@@ -19,7 +19,9 @@ const NewApi = () => {
   };
 
   return (
+
     <div className="p-6">
+      
       <h1 className="text-2xl font-bold mb-4 text-gray-200">Create New API</h1>
       <p className="mb-4 text-gray-300">Set up a new API endpoint for your application.</p>
       <div className="bg-[#282729] shadow rounded p-4">

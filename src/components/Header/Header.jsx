@@ -25,7 +25,7 @@ const Header = () => {
           {[
             {
               name:"Features",
-              path:"/feature"
+              path:"/features"
             },
             {
               name:"Pricing",
@@ -38,6 +38,10 @@ const Header = () => {
             {
               name:"Documentation",
               path:"/docs"
+            },
+            {
+              name:"API Reference",
+              path:"/api-reference"
             },
             // {
             //   name:"Wishlist",

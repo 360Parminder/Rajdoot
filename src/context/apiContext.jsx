@@ -33,7 +33,7 @@ export const ApiProvider = ({ children }) => {
         setError(null);
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/apis`, apiData);
+            const response = await axios.post(`/api-keys/create-api-key`, apiData);
             setApis(prevApis => [...prevApis, response.data]);
             return response.data;
         } catch (err) {
@@ -45,13 +45,14 @@ export const ApiProvider = ({ children }) => {
     };
 
     // Delete an API
-    const deleteApi = useCallback(async (apiId) => {
+    const deleteApi = async (apiId) => {
         setLoading(true);
         setError(null);
-
         try {
-            await axios.delete(`${API_BASE_URL}/apis/${apiId}`);
-            setApis(prevApis => prevApis.filter(api => api.id !== apiId));
+           const {data}= await axios.delete(`/api-keys/api-keys/:key?keyId=${apiId}`);
+            console.log(data);
+            
+            setApis(data.newApis);
             return true;
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to delete API');
@@ -59,7 +60,7 @@ export const ApiProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, [user]);
+    }
     
     useEffect(() => {
         if (logedIn) {
