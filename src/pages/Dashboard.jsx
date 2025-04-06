@@ -34,7 +34,7 @@ const Dashboard = () => {
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
-        return <Home />;
+        return <Home handleTabClick={handleTabClick} />;
       case 'new-api':
         return <NewApi />;
       case 'documentation':

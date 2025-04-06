@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const Home = () => {
+const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
   const { value } = useContext(ApiContext);
   const navigate = useNavigate();
   const [showApiKeys, setShowApiKeys] = useState({});
@@ -42,9 +42,9 @@ const Home = () => {
         </div>
         
         <motion.button
+        onClick={() => handleTabClick('new-api')}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/dashboard/new-api')}
           className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 rounded-lg hover:shadow-lg transition-all"
         >
           <Plus size={18} />
@@ -128,14 +128,14 @@ const Home = () => {
 
               <div className="mt-6 flex gap-3">
                 <button 
-                  onClick={() => navigate(`/dashboard/try?api=${api.keyId}`)}
+                  onClick={() => handleTabClick('try')}
                   className="flex-1 flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
                   <Terminal size={16} />
                   <span>Try API</span>
                 </button>
                 <button 
-                  onClick={() => navigate(`/dashboard/manage-api/${api.keyId}`)}
+                  onClick={() => handleTabClick('manage-api')}
                   className="flex-1 flex items-center justify-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
                   <Key size={16} />
@@ -160,7 +160,7 @@ const Home = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => navigate('/dashboard/new-api')}
+              onClick={() => handleTabClick('new-api')}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
               <Plus size={18} />

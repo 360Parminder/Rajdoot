@@ -3,14 +3,17 @@ import { useRazorpay } from 'react-razorpay';
 import useApi from './useApi';
 import { useAuth } from './useAuth';
 import useMessageCard from './useMessageCard';
+import { useNavigate } from 'react-router-dom';
 
 export const usePayment = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { Razorpay } = useRazorpay();
   const { post, loading: apiLoading, error: apiError } = useApi();
   const {user}=useAuth();
   const { showMessage } = useMessageCard();
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const initiatePayment = async (plan) => {
     try {
@@ -19,7 +22,7 @@ export const usePayment = () => {
 
       // Create order on backend
       const orderResponse = await post('/payments', {
-        amount: plan.numericPrice * 100, // Convert to paise
+        amount: plan.numericPrice, // Convert to paise
         currency: "INR",
         planId: plan._id
       });
@@ -32,7 +35,7 @@ export const usePayment = () => {
       // Initialize Razorpay
       const options = {
         key:"rzp_test_qHVcRz55QfXZMI",
-        amount: orderData.amount, // Amount in INR
+        amount: orderData.amount/100, // Amount in INR
         currency: "INR",
         name: "Rajdoot",
         description: `Subscription for ${plan.name} Plan`,
@@ -41,11 +44,9 @@ export const usePayment = () => {
         prefill: {
           name: user.name,
           email: user.email,
-          // contact: user.phoneNumber,
+          contact: '',
         },
         handler: async (response) => {
-          console.log(response);
-          
           try {
             // Verify payment
             const verifyResponse = await post('/payments/verify', {
@@ -59,9 +60,14 @@ export const usePayment = () => {
               await post('/subscriptions/renew', {
                plan
               });
-
+              setPaymentSuccess(true);
+              showMessage('Payment successful', 'success');
+              navigate('/dashboard');
               return { success: true, response };
             } else {
+              setError('Payment verification failed');
+              showMessage('Payment verification failed', 'error');
+              navigate('/dashboard');
               throw new Error('Payment verification failed');
             }
           } catch (error) {

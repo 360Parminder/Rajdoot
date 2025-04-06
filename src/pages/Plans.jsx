@@ -5,63 +5,21 @@ import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import PaymentComponent from '../components/PaymentComponent';
 import { useFetchPlans } from '../hooks/fetchPlans'; // Adjust the import path as necessary
+import { useNavigate } from 'react-router-dom';
 
 const Plans = () => {
+  const navigate = useNavigate();
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
   const {plans}= useFetchPlans();
-  // const plans = [
-  //   {
-  //     name: "Basic",
-  //     price: "₹0",
-  //     period: "First Month",
-  //     description: "Perfect for getting started",
-  //     features: [
-  //       "Up to 1,000 messages/month",
-  //       "Basic analytics",
-  //       "Email support",
-  //       "API access",
-  //       "Webhook integration"
-  //     ],
-  //     color: "blue",
-  //     recommended: false
-  //   },
-  //   {
-  //     name: "Pro",
-  //     price: "₹999",
-  //     period: "per month",
-  //     description: "Best for growing businesses",
-  //     features: [
-  //       "Up to 10,000 messages/month",
-  //       "Advanced analytics",
-  //       "Priority support",
-  //       "Custom webhooks",
-  //       "Team collaboration",
-  //       "Advanced security features"
-  //     ],
-  //     color: "purple",
-  //     recommended: true
-  //   },
-  //   {
-  //     name: "Enterprise",
-  //     price: "Custom",
-  //     period: "contact us",
-  //     description: "For large scale operations",
-  //     features: [
-  //       "Unlimited messages",
-  //       "Custom analytics",
-  //       "24/7 dedicated support",
-  //       "Custom integrations",
-  //       "SLA guarantee",
-  //       "Advanced security features",
-  //       "Custom deployment options"
-  //     ],
-  //     color: "indigo",
-  //     recommended: false
-  //   }
-  // ];
-
+ 
   const handlePlanSelect = (plan) => {
+    if (plan.name === "Enterprise") {
+      // Redirect to sales page for Enterprise plan
+      navigate('/contact');
+      return;
+    }
+    navigate('/payment', { state: { plan } });
     setSelectedPlan(plan);
     setShowPayment(true);
   };
@@ -123,8 +81,8 @@ const Plans = () => {
                   description={
                     <div className="space-y-4">
                       <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">{plan.price}</span>
-                        <span className="text-gray-400 ml-2">{plan.period}</span>
+                        <span className="text-3xl font-bold text-white">{plan.price==0?"Contact Team":plan.price}</span>
+                        <span className="text-gray-400 ml-2">{plan.price==0?"":plan.period}</span>
                       </div>
                       <p className="text-gray-400">{plan.description}</p>
                       <ul className="space-y-3">

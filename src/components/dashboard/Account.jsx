@@ -5,12 +5,14 @@ import { motion } from 'framer-motion';
 
 const Account = () => {
   const { user } = useAuth();
+  console.log('user', user);
+  
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [profilePic, setProfilePic] = useState(user?.image || '');
   const [messageLimit, setMessageLimit] = useState({
-    used: 1250,
-    total: 3000
+    used: user?.messageCount ,
+    total: user?.monthlyMessageLimit,
   });
 
   const handleSaveChanges = () => {
