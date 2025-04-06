@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Twitter, Instagram, Linkedin, ArrowRight, ExternalLink, CreditCard } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../../components/Card/MessageCard';
@@ -98,7 +98,7 @@ const Contact = () => {
               </div>
 
               {/* Location */}
-              <div className="flex items-start">
+              <div className="flex items-start mb-8">
                 <div className="bg-gray-800/50 p-3 rounded-lg mr-4 border border-gray-700">
                   <MapPin className="w-6 h-6 text-purple-400" />
                 </div>
@@ -108,6 +108,24 @@ const Contact = () => {
                     Alwar, Rajasthan<br />
                     India
                   </p>
+                </div>
+              </div>
+
+              {/* Payment Support */}
+              <div className="flex items-start">
+                <div className="bg-gray-800/50 p-3 rounded-lg mr-4 border border-gray-700">
+                  <CreditCard className="w-6 h-6 text-green-400" />
+                </div>
+                <div>
+                  <h3 className="text-gray-300 font-medium mb-2">Payment Support</h3>
+                  <a 
+                    href="https://merchant.razorpay.com/policy/Pb5NdiUQ3s3IUU/contact_us" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+                  >
+                    Contact Razorpay Support <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             </motion.div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, CheckCircle, XCircle, CreditCard, AlertTriangle, Info } from 'lucide-react';
+import { Clock, CheckCircle, XCircle, CreditCard, AlertTriangle, Info, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../../components/Card/MessageCard';
@@ -117,6 +117,14 @@ const CancellationsRefunds = () => {
                       Refunds are only available for payments where the service wasn't provided. 
                       Already consumed services or partially used plans are not eligible for refunds.
                     </p>
+                    <a 
+                      href="https://merchant.razorpay.com/policy/Pb5NdiUQ3s3IUU/refund" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 transition-colors"
+                    >
+                      View complete refund policy <ExternalLink className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>
