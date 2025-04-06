@@ -65,8 +65,8 @@ const Footer = () => {
               },
               {
                 title: "Legal",
-                links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
-                path: ["/privacy-policy", "/terms-of-service", "/cookie-policy"]
+                links: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Cancellations & Refunds"],
+                path: ["/privacy-policy", "/terms-of-service", "/cookie-policy", "/CancellationsRefunds"]
               }
             ].map((section, index) => (
               <motion.div key={index} variants={fadeIn}>

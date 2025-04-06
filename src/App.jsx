@@ -18,6 +18,7 @@ import Plans from "./pages/Plans";
 import PaymentComponent from "./components/PaymentComponent";
 import APIReference from "./pages/APIReference";
 import DocumentationNew from "./pages/DocumentationNew";
+import CancellationsRefunds from "./pages/Policy/CancellationsRefunds";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/plans" element={<Plans/>} />
           <Route path="/payment" element={<PaymentComponent/>} />
           <Route path="/documentation" element={<DocumentationNew />} />
+          <Route path="/CancellationsRefunds" element={<CancellationsRefunds/>} />
 
         </Route>
 
