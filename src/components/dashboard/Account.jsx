@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const Account = () => {
   const { user } = useAuth();
-  console.log('user', user);
+  console.log('user', user.plan.plans[0]);
   
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
@@ -156,7 +156,7 @@ const Account = () => {
               <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
                 <h3 className="text-sm text-gray-400 mb-1">Reset Date</h3>
                 <p className="text-xl font-semibold text-gray-200">
-                  {new Date(new Date().setMonth(new Date().getMonth() + 1)).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  {new Date(new Date().setMonth(new Date(user.plan.plans[0].expiryDate).getMonth() + 1)).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </p>
               </div>
             </div>
@@ -168,10 +168,10 @@ const Account = () => {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h3 className="text-lg font-medium text-gray-200 capitalize">
-                  {user?.plan?.type || 'Free'} Plan
+                  {user.plan.plans[0].planId.name || 'Free'} Plan
                 </h3>
                 <p className="text-gray-400 text-sm">
-                  {user?.plan?.type === 'pro' ? 'All features included' : 'Limited features'}
+                  {user.plan.plans[0].planId.name == 'Pro' ? 'All features included' : 'Limited features'}
                 </p>
               </div>
               <div className="flex gap-3">

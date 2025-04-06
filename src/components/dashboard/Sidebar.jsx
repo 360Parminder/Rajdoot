@@ -10,12 +10,12 @@ const ProfileCard = ({ user, setShowProfileCard }) => {
   const { logout } = useAuth();
   
   return (
-    <AnimatePresence>
+    <AnimatePresence className="absolute z-50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
-        className="absolute z-50 left-72 bottom-4 w-72 bg-gray-900/80 backdrop-blur-sm rounded-xl shadow-xl border border-gray-700 overflow-hidden"
+        className="absolute z-[100] left-72 bottom-4 w-72 bg-gray-900/80 backdrop-blur-sm rounded-xl shadow-xl border border-gray-700 overflow-hidden"
       >
         <div className="p-6 border-b border-gray-700">
           <div className="flex justify-between items-start">
@@ -45,7 +45,7 @@ const ProfileCard = ({ user, setShowProfileCard }) => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-400">Current Plan</p>
-              <p className="text-sm font-medium text-gray-200">{user?.plan?.type || 'Free'} Plan</p>
+              <p className="text-sm font-medium text-gray-200">{user.plan.plans[0].planId.name || 'Free'} Plan</p>
             </div>
             <span className="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-full">
               Active
@@ -132,7 +132,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
           {sidebarOpen && (
             <div className='mx-2 my-2'>
               <h2 className="font-medium leading-4 text-gray-200">Project</h2>
-              <p className='text-sm text-gray-400 capitalize'>{user?.plan?.type || 'Free'}</p>
+              <p className='text-sm text-gray-400 capitalize'>{user.plan.plans[0].planId.name || 'Free'}</p>
             </div>
           )}
         </button>
