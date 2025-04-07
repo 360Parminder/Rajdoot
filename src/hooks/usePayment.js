@@ -34,7 +34,7 @@ export const usePayment = () => {
 
       // Initialize Razorpay
       const options = {
-        key:"rzp_test_qHVcRz55QfXZMI",
+        key:import.meta.env.VITE_RAZORPAY_KEY_ID, // Your Razorpay key id
         amount: orderData.amount/100, // Amount in INR
         currency: "INR",
         name: "Rajdoot",
