@@ -46,7 +46,7 @@ const Register = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-md w-full"
+          className="max-w-lg w-full"
         >
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 shadow-xl">
             <div className="text-center mb-8">
@@ -68,7 +68,7 @@ const Register = () => {
               </motion.div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-gray-300 mb-2">Full Name</label>
                 <div className="relative">
@@ -133,7 +133,7 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center col-span-2">
                 <input
                   type="checkbox"
                   className="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-700 rounded bg-gray-800/50"
@@ -155,7 +155,7 @@ const Register = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+                className="w-full col-span-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
               >
                 Create Account
               </motion.button>
