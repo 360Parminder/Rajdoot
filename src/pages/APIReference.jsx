@@ -7,18 +7,16 @@ import {
   Copy, 
   Check, 
   Search,
-  Terminal,
-  Database,
-  Key,
-  Lock,
-  Server,
-  Globe,
-  Zap
+  Mail,
+  MessageSquare,
+  Smartphone,
+  Hash,
+  Server
 } from 'lucide-react';
-import FloatingParticles from '../components/Background/FloatingParticles';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const APIReference = () => {
-  const [activeSection, setActiveSection] = useState('authentication');
+  const [activeSection, setActiveSection] = useState('sending-messages');
   const [copiedCode, setCopiedCode] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -30,140 +28,41 @@ const APIReference = () => {
 
   const apiSections = [
     {
-      id: 'authentication',
-      title: 'Authentication',
-      icon: <Key className="w-5 h-5" />,
-      description: 'Learn how to authenticate your requests to the Rajdoot API',
+      id: 'sending-messages',
+      title: 'Sending Messages',
+      icon: <MessageSquare className="w-5 h-5" />,
+      description: 'Send SMS messages to recipients',
       endpoints: [
         {
           method: 'POST',
-          path: '/api/auth/register',
-          description: 'Register a new user',
+          path: '/message',
+          description: 'Send a message to a recipient',
           requestBody: {
-            name: 'string',
-            email: 'string',
-            password: 'string',
-            phoneNumber: 'string (optional)'
+            content: 'string (message content)',
+            recipient: 'string (phone number with country code)',
+            sender_id: 'string (optional sender ID)'
+          },
+          headers: {
+            'x-api-id': 'string (your API ID from dashboard)',
+            'x-api-key': 'string (your API key from dashboard)'
           },
           response: {
             success: 'boolean',
-            user: {
-              id: 'string',
-              name: 'string',
-              email: 'string',
-              createdAt: 'date'
-            },
-            token: 'string'
+            message_id: 'string',
+            balance: 'number (remaining messages)',
+            cost: 'number (message cost)'
           },
-          code: `fetch('https://api.rajdoot.com/api/auth/register', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'John Doe',
-    email: 'john@example.com',
-    password: 'securepassword',
-    phoneNumber: '+91 9876543210'
-  })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`
-        },
-        {
-          method: 'POST',
-          path: '/api/auth/login',
-          description: 'Login with email and password',
-          requestBody: {
-            email: 'string',
-            password: 'string'
-          },
-          response: {
-            success: 'boolean',
-            user: {
-              id: 'string',
-              name: 'string',
-              email: 'string'
-            },
-            token: 'string'
-          },
-          code: `fetch('https://api.rajdoot.com/api/auth/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    email: 'john@example.com',
-    password: 'securepassword'
-  })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`
-        }
-      ]
-    },
-    {
-      id: 'plans',
-      title: 'Subscription Plans',
-      icon: <Zap className="w-5 h-5" />,
-      description: 'Manage subscription plans and user subscriptions',
-      endpoints: [
-        {
-          method: 'GET',
-          path: '/api/plans',
-          description: 'Get all available subscription plans',
-          response: {
-            success: 'boolean',
-            plans: [
-              {
-                id: 'string',
-                name: 'string',
-                price: 'number',
-                period: 'string',
-                features: ['string']
-              }
-            ]
-          },
-          code: `fetch('https://api.rajdoot.com/api/plans', {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer YOUR_TOKEN'
-  }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`
-        },
-        {
-          method: 'POST',
-          path: '/api/orders/create',
-          description: 'Create a new order for subscription',
-          requestBody: {
-            amount: 'number',
-            currency: 'string',
-            planId: 'string'
-          },
-          response: {
-            success: 'boolean',
-            order: {
-              id: 'string',
-              amount: 'number',
-              currency: 'string',
-              status: 'string'
-            }
-          },
-          code: `fetch('https://api.rajdoot.com/api/orders/create', {
+          code: `fetch('https://api.rajdoot.parminder.info/message', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_TOKEN'
+    'x-api-id': 'YOUR_API_ID',
+    'x-api-key': 'YOUR_API_KEY'
   },
   body: JSON.stringify({
-    amount: 1000,
-    currency: 'INR',
-    planId: 'plan_123456'
+    content: 'Hello from Rajdoot!',
+    recipient: '+919876543xxx',
+    sender_id: 'RAJDOOT'
   })
 })
 .then(response => response.json())
@@ -173,34 +72,87 @@ const APIReference = () => {
       ]
     },
     {
-      id: 'payments',
-      title: 'Payments',
-      icon: <Lock className="w-5 h-5" />,
-      description: 'Process and verify payments',
+      id: 'sending-otps',
+      title: 'Sending OTPs',
+      icon: <Smartphone className="w-5 h-5" />,
+      description: 'Generate and send OTPs to phone numbers',
       endpoints: [
         {
           method: 'POST',
-          path: '/api/payments/verify',
-          description: 'Verify a payment with Razorpay',
+          path: '/otp/send',
+          description: 'Send an OTP to a phone number',
           requestBody: {
-            razorpay_payment_id: 'string',
-            razorpay_order_id: 'string',
-            razorpay_signature: 'string'
+            phone_number: 'string (phone number with country code)',
+            otp_length: 'number (4-6 digits, default: 6)',
+            expiry: 'number (minutes, default: 5)',
+            template: 'string (optional custom message template)'
+          },
+          headers: {
+            'x-api-id': 'string (your API ID from dashboard)',
+            'x-api-key': 'string (your API key from dashboard)'
           },
           response: {
             success: 'boolean',
+            otp_id: 'string',
+            phone_number: 'string',
+            expiry: 'number (minutes)',
+            balance: 'number (remaining messages)'
+          },
+          code: `fetch('https://api.rajdoot.parminder.info/otp/send', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-id': 'YOUR_API_ID',
+    'x-api-key': 'YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    phone_number: '+919876543xxx',
+    otp_length: 6,
+    expiry: 5,
+    template: 'Your OTP is {otp} for Rajdoot verification'
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));`
+        }
+      ]
+    },
+    {
+      id: 'verifying-otps',
+      title: 'Verifying OTPs',
+      icon: <Hash className="w-5 h-5" />,
+      description: 'Verify OTPs sent to users',
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/otp/verify',
+          description: 'Verify an OTP',
+          requestBody: {
+            otp_id: 'string (from send OTP response)',
+            otp_code: 'string (OTP entered by user)',
+            phone_number: 'string (same as in send OTP)'
+          },
+          headers: {
+            'x-api-id': 'string (your API ID from dashboard)',
+            'x-api-key': 'string (your API key from dashboard)'
+          },
+          response: {
+            success: 'boolean',
+            verified: 'boolean',
             message: 'string'
           },
-          code: `fetch('https://api.rajdoot.com/api/payments/verify', {
+          code: `fetch('https://api.rajdoot.parminder.info/otp/verify', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_TOKEN'
+    'x-api-id': 'YOUR_API_ID',
+    'x-api-key': 'YOUR_API_KEY'
   },
   body: JSON.stringify({
-    razorpay_payment_id: 'pay_123456',
-    razorpay_order_id: 'order_123456',
-    razorpay_signature: 'signature_123456'
+    otp_id: '1234567890abcdef',
+    otp_code: '123456',
+    phone_number: '+919876543xxx'
   })
 })
 .then(response => response.json())
@@ -210,73 +162,31 @@ const APIReference = () => {
       ]
     },
     {
-      id: 'subscriptions',
-      title: 'Subscriptions',
-      icon: <Database className="w-5 h-5" />,
-      description: 'Manage user subscriptions',
+      id: 'message-balance',
+      title: 'Checking Message Balance',
+      icon: <Mail className="w-5 h-5" />,
+      description: 'Check your remaining message balance',
       endpoints: [
         {
           method: 'GET',
-          path: '/api/subscriptions',
-          description: 'Get current user subscription',
+          path: '/balance',
+          description: 'Check your remaining message balance',
+          headers: {
+            'x-api-id': 'string (your API ID from dashboard)',
+            'x-api-key': 'string (your API key from dashboard)'
+          },
           response: {
             success: 'boolean',
-            subscription: {
-              id: 'string',
-              planId: 'string',
-              status: 'string',
-              startDate: 'date',
-              endDate: 'date'
-            }
+            balance: 'number',
+            valid_until: 'string (date)',
+            plan: 'string (your current plan)'
           },
-          code: `fetch('https://api.rajdoot.com/api/subscriptions', {
+          code: `fetch('https://api.rajdoot.parminder.info/balance', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer YOUR_TOKEN'
+    'x-api-id': 'YOUR_API_ID',
+    'x-api-key': 'YOUR_API_KEY'
   }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`
-        },
-        {
-          method: 'POST',
-          path: '/api/subscriptions',
-          description: 'Update user subscription',
-          requestBody: {
-            planId: 'string',
-            paymentDetails: {
-              paymentId: 'string',
-              orderId: 'string',
-              amount: 'number',
-              currency: 'string'
-            }
-          },
-          response: {
-            success: 'boolean',
-            subscription: {
-              id: 'string',
-              planId: 'string',
-              status: 'string',
-              startDate: 'date',
-              endDate: 'date'
-            }
-          },
-          code: `fetch('https://api.rajdoot.com/api/subscriptions', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_TOKEN'
-  },
-  body: JSON.stringify({
-    planId: 'plan_123456',
-    paymentDetails: {
-      paymentId: 'pay_123456',
-      orderId: 'order_123456',
-      amount: 1000,
-      currency: 'INR'
-    }
-  })
 })
 .then(response => response.json())
 .then(data => console.log(data))
@@ -297,7 +207,7 @@ const APIReference = () => {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <FloatingParticles />
+     <AnimatedBackground >
       
       <div className="container mx-auto px-4 py-12 relative z-10">
         <motion.div
@@ -316,7 +226,7 @@ const APIReference = () => {
             >
               <h2 className="text-2xl font-bold mb-6 flex items-center">
                 <Code className="w-6 h-6 mr-2 text-purple-500" />
-                API Reference
+                Messaging API
               </h2>
               
               <div className="relative mb-6">
@@ -358,7 +268,7 @@ const APIReference = () => {
                 <h3 className="text-sm font-medium text-gray-400 mb-3">API Base URL</h3>
                 <div className="bg-gray-800 p-3 rounded-lg flex items-center">
                   <Server className="w-4 h-4 text-gray-500 mr-2" />
-                  <code className="text-sm text-gray-300">https://api.rajdoot.com</code>
+                  <code className="text-sm text-gray-300">https://api.rajdoot.parminder.info</code>
                 </div>
               </div>
             </motion.div>
@@ -417,6 +327,17 @@ const APIReference = () => {
                         <div className="p-6">
                           <h3 className="text-lg font-medium mb-4">{endpoint.description}</h3>
                           
+                          {endpoint.headers && (
+                            <div className="mb-6">
+                              <h4 className="text-sm font-medium text-gray-400 mb-2">Required Headers</h4>
+                              <div className="bg-gray-800 p-4 rounded-lg">
+                                <pre className="text-sm text-gray-300 overflow-x-auto">
+                                  {JSON.stringify(endpoint.headers, null, 2)}
+                                </pre>
+                              </div>
+                            </div>
+                          )}
+                          
                           {endpoint.requestBody && (
                             <div className="mb-6">
                               <h4 className="text-sm font-medium text-gray-400 mb-2">Request Body</h4>
@@ -471,8 +392,9 @@ const APIReference = () => {
           </div>
         </motion.div>
       </div>
+      </AnimatedBackground>
     </div>
   );
 };
 
-export default APIReference; 
+export default APIReference;
