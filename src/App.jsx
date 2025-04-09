@@ -17,12 +17,15 @@ import NotFound from "./pages/NotFound";
 import Plans from "./pages/Plans";
 import PaymentComponent from "./components/PaymentComponent";
 import APIReference from "./pages/APIReference";
-import DocumentationNew from "./pages/DocumentationNew";
 import CancellationsRefunds from "./pages/Policy/CancellationsRefunds";
+import Documentation from "./pages/Documentation";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
   return (
+   <>
+       <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoutes />}>
@@ -38,7 +41,7 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/plans" element={<Plans/>} />
           <Route path="/payment" element={<PaymentComponent/>} />
-          <Route path="/documentation" element={<DocumentationNew />} />
+          <Route path="/documentation" element={<Documentation/>} />
           <Route path="/CancellationsRefunds" element={<CancellationsRefunds/>} />
 
         </Route>
@@ -58,6 +61,8 @@ function App() {
         {/* 404 Page */}
         <Route path="*" element={<NotFound/>} />
       </Routes>
+  
+   </>
     
   );
 }

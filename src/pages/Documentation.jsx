@@ -119,7 +119,7 @@ const Documentation = () => {
               className="md:col-span-3"
             >
               {/* Quick Start Section */}
-              <div className="mb-12">
+              {/* <div className="mb-12">
                 <h2 className="text-2xl font-bold text-white mb-6">Quick Start Guide</h2>
                 <motion.div 
                   className="grid md:grid-cols-3 gap-6"
@@ -141,10 +141,10 @@ const Documentation = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-              </div>
+              </div> */}
 
               {/* Resources Section */}
-              <div className="mb-12">
+              {/* <div className="mb-12">
                 <h2 className="text-2xl font-bold text-white mb-6">Resources</h2>
                 <motion.div 
                   className="grid md:grid-cols-3 gap-6"
@@ -165,7 +165,7 @@ const Documentation = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-              </div>
+              </div> */}
 
               {/* Content Sections */}
               <div className="space-y-12">

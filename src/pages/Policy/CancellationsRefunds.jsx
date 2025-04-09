@@ -179,7 +179,7 @@ const CancellationsRefunds = () => {
               </p>
 
               <div className="space-y-4">
-                {user.plan.plans.map((plan) => (
+                {user?.plan.plans.map((plan) => (
                   <div key={plan.id} className="bg-gray-800/30 border border-gray-700 rounded-lg p-4">
                     <div className="flex justify-between items-start">
                       <div>

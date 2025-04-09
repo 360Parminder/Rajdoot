@@ -268,7 +268,7 @@ const APIReference = () => {
                 <h3 className="text-sm font-medium text-gray-400 mb-3">API Base URL</h3>
                 <div className="bg-gray-800 p-3 rounded-lg flex items-center">
                   <Server className="w-4 h-4 text-gray-500 mr-2" />
-                  <code className="text-sm text-gray-300">https://api.rajdoot.parminder.info</code>
+                  <code className="text-sm text-gray-300 overflow-x-scroll ">https://api.rajdoot.parminder.info</code>
                 </div>
               </div>
             </motion.div>
@@ -302,7 +302,7 @@ const APIReference = () => {
                     </div>
                   </div>
                   
-                  <div className="space-y-8">
+                  <div className="space-y-8 ">
                     {section.endpoints.map((endpoint, index) => (
                       <motion.div
                         key={index}
