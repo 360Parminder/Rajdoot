@@ -4,6 +4,7 @@ import ApiContext from '../../context/apiContext';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
 import { motion, AnimatePresence } from 'framer-motion';
+import useApi from '../../hooks/useApi';
 
 const countryCodes = [
   { code: '+91', country: 'India', flag: '🇮🇳' },
@@ -25,6 +26,7 @@ const countryCodes = [
 
 const TryApi = () => {
   const { value } = useContext(ApiContext);
+  const {post } = useApi();
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
   const [activeLanguage, setActiveLanguage] = useState('javascript');
   const [activeTab, setActiveTab] = useState('code');
@@ -60,7 +62,9 @@ const TryApi = () => {
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
+    console.log(messageText, phoneNumber);
+    
     if (!messageText.trim()) {
       showMessage("Error", "Please enter a message", "error");
       return;
@@ -69,6 +73,21 @@ const TryApi = () => {
       showMessage("Error", "Please enter a phone number", "error");
       return;
     }
+    
+   const {data}= await post('/messages/send', {
+      message: messageText,
+      recipient: `${phoneNumber}`
+    });
+    console.log(data);
+    
+    if (data.error) {
+      showMessage("Error", data.error, "error");
+      return;
+    }
+    if (data.status !== 200) {
+      showMessage("Error", "Failed to send message", "error");
+      return;
+    } 
     showMessage("Success", "Message sent successfully!", "success");
     setMessageText('');
     setPhoneNumber('');
@@ -311,7 +330,7 @@ public class MessageSender {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={handleSendMessage}
+              onClick={()=>handleSendMessage()}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all"
             >
               <Send className="w-5 h-5" />

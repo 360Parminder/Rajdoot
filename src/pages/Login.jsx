@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Github, MailIcon } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const {login} = useAuth();
+  const { login, googleLogin, githubLogin } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -29,6 +28,22 @@ const Login = () => {
       await login(formData.email, formData.password);
     } catch (err) {
       setError('Invalid email or password');
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+    } catch (err) {
+      setError('Google login failed');
+    }
+  };
+
+  const handleGithubLogin = async () => {
+    try {
+      await githubLogin();
+    } catch (err) {
+      setError('GitHub login failed');
     }
   };
 
@@ -60,6 +75,36 @@ const Login = () => {
                 {error}
               </motion.div>
             )}
+
+            <div className="flex gap-4 mb-6">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                type="button"
+                onClick={handleGoogleLogin}
+                className="flex-1 flex items-center justify-center gap-2 bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700 rounded-lg py-3 px-4 text-white transition-colors"
+              >
+                <MailIcon className="w-5 h-5" />
+                <span>Google</span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                type="button"
+                onClick={handleGithubLogin}
+                className="flex-1 flex items-center justify-center gap-2 bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700 rounded-lg py-3 px-4 text-white transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                <span>GitHub</span>
+              </motion.button>
+            </div>
+
+            <div className="flex items-center mb-6">
+              <div className="flex-1 border-t border-gray-700"></div>
+              <span className="px-4 text-gray-400">or</span>
+              <div className="flex-1 border-t border-gray-700"></div>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -103,7 +148,7 @@ const Login = () => {
                   <label className="ml-2 text-gray-300">Remember me</label>
                 </div>
                 <Link
-                  to="/forgot-password"
+                  to="/forget-password"
                   className="text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   Forgot password?

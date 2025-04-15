@@ -132,7 +132,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick }) => {
           {sidebarOpen && (
             <div className='mx-2 my-2'>
               <h2 className="font-medium leading-4 text-gray-200">Project</h2>
-              <p className='text-sm text-gray-400 capitalize'>{user.plan.plans[0].planId.name || 'Free'}</p>
+              <p className='text-sm text-gray-400 capitalize'>{user?.plan?.plans[0]?.planId?.name || 'Free' } Plan</p>
             </div>
           )}
         </button>

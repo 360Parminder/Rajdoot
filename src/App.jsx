@@ -20,6 +20,8 @@ import APIReference from "./pages/APIReference";
 import CancellationsRefunds from "./pages/Policy/CancellationsRefunds";
 import Documentation from "./pages/Documentation";
 import ScrollToTop from "./components/ScrollToTop";
+import ForgetPassword from "./pages/ForgetPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
           <Route path="/payment" element={<PaymentComponent/>} />
           <Route path="/documentation" element={<Documentation/>} />
           <Route path="/CancellationsRefunds" element={<CancellationsRefunds/>} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         </Route>
 

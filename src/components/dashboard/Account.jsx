@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 
 const Account = () => {
   const { user } = useAuth();
-  console.log('user', user.plan.plans[0]);
-  
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [profilePic, setProfilePic] = useState(user?.image || '');

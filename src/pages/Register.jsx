@@ -6,7 +6,6 @@ import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
-  const navigate = useNavigate();
   const {register,loading}=useAuth();
   const [formData, setFormData] = useState({
     name: '',
@@ -155,9 +154,14 @@ const Register = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full col-span-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+                className="w-full col-span-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow flex items-center justify-center"
+                disabled={loading}
               >
-                Create Account
+                {loading ? (
+                  <div className="loader"></div>
+                ) : (
+                  'Create Account'
+                )}
               </motion.button>
             </form>
 
