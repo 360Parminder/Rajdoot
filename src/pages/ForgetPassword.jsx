@@ -9,13 +9,13 @@ const ForgetPassword = () => {
   const [message, setMessage] = useState('');
   const { sendResetLink } = useAuth(); // Assuming you have a function to send the reset link
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-
     try {
-      await sendResetLink(email);
-      setMessage('Reset link sent to your email!');
+    const data=  await sendResetLink(email);
+      setMessage(data.message || 'Reset link sent to your email!');
     } catch (err) {
       setMessage('Failed to send reset link. Please try again.');
     }

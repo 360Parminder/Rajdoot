@@ -29,7 +29,7 @@ api.interceptors.response.use((response) => {
 }, (error) => {
   if (error.response?.status === 401) {
     localStorage.removeItem("token");
-    window.location.href = "/login"; // Redirect to login on unauthorized access
+    // window.location.href = "/login"; // Redirect to login on unauthorized access
   }
   return Promise.reject(error);
 });
