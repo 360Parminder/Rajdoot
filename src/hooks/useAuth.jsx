@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [logedIn, setLogedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
 const userProfile = async (token) => {
@@ -146,6 +148,26 @@ const sendResetLink = async (email) => {
       throw new Error(error.response?.data?.message || "Failed to send reset link");
     }
   };
+  const resetPassword = async (token, password, passwordConfirm) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.patch(`/users/resetPassword/${token}`, { password, passwordConfirm });
+       setLoading(false);
+      if (data.status === "success") {
+        setLoading(false);
+        setMessage(data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+      
+    } catch (error) {
+      setLoading(false);
+      setError(error.response?.data?.message || "Failed to reset password");
+      throw new Error(error.response?.data?.message || "Failed to reset password");
+    }
+
+  };
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
@@ -164,6 +186,7 @@ const sendResetLink = async (email) => {
       googleLogin,
       githubLogin,
       sendResetLink,
+      resetPassword,
     }}>
       {children}
     </AuthContext.Provider>

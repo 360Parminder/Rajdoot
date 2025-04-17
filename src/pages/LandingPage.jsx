@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { 
   MessageSquare, 
@@ -145,8 +145,8 @@ const LandingPage = () => {
           >
             <Link to="/register">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whilehover={{ scale: 1.05 }}
+                whiletap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
               >
                 Get Started Free
@@ -154,8 +154,8 @@ const LandingPage = () => {
             </Link>
             <Link to="/docs">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whilehover={{ scale: 1.05 }}
+                whiletap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gray-800 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors"
               >
                 View Documentation
@@ -248,8 +248,8 @@ const LandingPage = () => {
                       </ul>
                       <Link to={user?'/plans':'/login'}>
                         <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whilehover={{ scale: 1.02 }}
+                          whiletap={{ scale: 0.98 }}
                           className={`w-full  py-3 rounded-lg font-semibold transition-colors ${
                             plan.recommended
                               ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/20'
@@ -281,8 +281,8 @@ const LandingPage = () => {
           </p>
           <Link to="/register">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whilehover={{ scale: 1.05 }}
+              whiletap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
             >
               Start Building Now

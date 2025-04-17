@@ -15,8 +15,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <motion.button
           onClick={() => navigate('/')}
-          className="flex items-center"
-          whileHover={{ scale: 1.05 }}
+          className="flex items-center cursor-pointer"
+          whilehover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           <span className="text-2xl font-bold text-white">RAJDOOT</span>
@@ -52,10 +52,10 @@ const Header = () => {
           ].map((item, index) => (
             <motion.button
               onClick={() => navigate(item.path)}
-              key={item}
+              key={index}
               
-              className="text-blue-50 hover:text-white transition"
-              whileHover={{ y: -2 }}
+              className="text-blue-50 hover:text-white transition cursor-pointer"
+              whilehover={{ y: -2 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index, duration: 0.5 }}
@@ -73,14 +73,14 @@ const Header = () => {
                 <motion.button
                   onClick={() => navigate('/dashboard')}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md"
-                  whileHover={{ backgroundColor: "#2563eb", scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whilehover={{ backgroundColor: "#2563eb", scale: 1.05 }}
+                  whiletap={{ scale: 0.95 }}
                 >
                   Dashboard
                 </motion.button>
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whilehover={{ scale: 1.05 }}
+                  whiletap={{ scale: 0.95 }}
                   className="flex items-center gap-4">
                   <img className='w-10 h-10 rounded-full' src={user?.image} alt="profile" />
                 </motion.div>
@@ -89,8 +89,8 @@ const Header = () => {
               <button
                 onClick={() => navigate('/login')}
                 className="text-white px-6 py-2 rounded-md border border-blue-500 bg-gradient-to-r from-blue-600 to-indigo-600"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
-                whileTap={{ scale: 0.95 }}
+                whilehover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
+                whiletap={{ scale: 0.95 }}
               >
                 Login
               </button>
@@ -99,8 +99,8 @@ const Header = () => {
 
           {/* <motion.span
             className="text-white px-4 py-2 rounded-md border border-blue-500 bg-gradient-to-r from-blue-600 to-indigo-600"
-            whileHover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
-            whileTap={{ scale: 0.95 }}
+            whilehover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
+            whiletap={{ scale: 0.95 }}
           >
             Coming Soon
           </motion.span> */}
