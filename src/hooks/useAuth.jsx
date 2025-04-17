@@ -141,9 +141,17 @@ const userProfile = async (token) => {
     }
   };
 const sendResetLink = async (email) => {
+    setLoading(true);
     try {
       const { data } = await axios.post("/users/forgotPassword", { email });
-      return data;
+      setLoading(false);
+      if (data.status === "success") {
+        setMessage(data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+      setLoading(false);
     } catch (error) {
       throw new Error(error.response?.data?.message || "Failed to send reset link");
     }
@@ -187,6 +195,8 @@ const sendResetLink = async (email) => {
       githubLogin,
       sendResetLink,
       resetPassword,
+      error,
+      message,
     }}>
       {children}
     </AuthContext.Provider>
