@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
+  // fetch user profile from backend
 const userProfile = async (token) => {
   try {
     const { data } = await axios.get("/users/profile", {
@@ -26,7 +27,7 @@ const userProfile = async (token) => {
     logout();
   }
 }
-
+// checking if user is logged in or not & fetching user profile
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
@@ -38,6 +39,8 @@ const userProfile = async (token) => {
     };
     fetchUser();
   }, []);
+
+  // login function
 
   const login = async (email, password) => {
     try {
@@ -53,6 +56,8 @@ const userProfile = async (token) => {
     }
   };
 
+  // Google and GitHub login functions
+  // Google login
   const googleLogin = async () => {
     try {
       // Open Google OAuth window
@@ -91,7 +96,7 @@ const userProfile = async (token) => {
       throw new Error(error.message || "Google login failed");
     }
   };
-
+  // GitHub login
   const githubLogin = async () => {
     try {
       // Open GitHub OAuth window
@@ -130,14 +135,22 @@ const userProfile = async (token) => {
       throw new Error(error.message || "GitHub login failed");
     }
   };
-
-  const register = async (name, email, password, passwordConfirm) => {
+    // register function
+    const register = async (name, email, password, passwordConfirm) => {
     try {
+      setLoading(true);
+      setError(null);
+      setMessage(null);
       const { data } = await axios.post("/users/signup", { name, email, password, passwordConfirm, role: "user" });
       setUser(data.user);
       navigate("/");
+      setMessage(data.message|| "Registration successful");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
-      throw new Error(error.response?.data?.message || "Registration failed");
+      setLoading(false);
+      setError(error.response?.data?.message || "Registration failed");
     }
   };
 const sendResetLink = async (email) => {
@@ -196,6 +209,7 @@ const sendResetLink = async (email) => {
       sendResetLink,
       resetPassword,
       error,
+      setError,
       message,
     }}>
       {children}

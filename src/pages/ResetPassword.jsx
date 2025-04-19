@@ -53,6 +53,7 @@ const ResetPassword = () => {
                                 className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-4 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="Enter new password"
                                 required
+                                autoComplete='new-password'
                             />
                         </div>
 
@@ -65,6 +66,7 @@ const ResetPassword = () => {
                                 className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-4 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="Confirm new password"
                                 required
+                                autoComplete='new-password'
                             />
                         </div>
 

@@ -4,16 +4,16 @@ import { motion } from 'framer-motion';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useAuth } from '../hooks/useAuth';
+import MessageCard from '../components/Card/MessageCard';
 
 const Register = () => {
-  const {register,loading}=useAuth();
+  const {register,loading,message,error,setError}=useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -40,6 +40,18 @@ const Register = () => {
 
   return (
     <AnimatedBackground>
+      {message|| error&&(
+        <MessageCard
+          title={"Success"}
+          message={message|| error}
+          type={message?"success":"error"}
+          onClose={()=>{
+            setTimeout(() => {
+              
+            }, 2000);
+          }}
+        />
+      )}
       <div className="min-h-screen flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,17 +68,6 @@ const Register = () => {
                 Join Rajdoot and start building amazing applications
               </p>
             </div>
-
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-6"
-              >
-                {error}
-              </motion.div>
-            )}
-
             <form onSubmit={handleSubmit} className="space-y-6 grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-gray-300 mb-2">Full Name</label>
@@ -158,7 +159,29 @@ const Register = () => {
                 disabled={loading}
               >
                 {loading ? (
-                  <div className="loader"></div>
+                  <div className="flex items-center">
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        strokeWidth="4"
+                        stroke="currentColor"
+                        fill="none"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
+                      />
+                    </svg>
+                    <span className="ml-2">Creating...</span>
+                  </div>
                 ) : (
                   'Create Account'
                 )}
