@@ -150,7 +150,10 @@ const userProfile = async (token) => {
       }, 2000);
     } catch (error) {
       setLoading(false);
+      
       setError(error.response?.data?.message || "Registration failed");
+      setMessage(null);
+      throw new Error(error.response?.data?.message || "Registration failed");
     }
   };
 const sendResetLink = async (email) => {

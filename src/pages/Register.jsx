@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useAuth } from '../hooks/useAuth';
 import MessageCard from '../components/Card/MessageCard';
 
 const Register = () => {
-  const {register,loading,message,error,setError}=useAuth();
+  const { register, loading } = useAuth();
+  const [message, setMessage] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,32 +25,46 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setMessage({
+        title: "Error",
+        message: "Passwords do not match",
+        type: "error"
+      });
       return;
     }
 
     try {
-     await register(formData.name, formData.email, formData.password, formData.confirmPassword);
-    } catch (err) {
-      setError('Registration failed. Please try again.');
+      await register(formData.name, formData.email, formData.password);
+      setMessage({
+        title: "Success",
+        message: "Account created successfully",
+        type: "success"
+      });
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (error) {
+      setMessage({
+        title: "Error",
+        message: error.message || "Registration failed",
+        type: "error"
+      });
     }
   };
 
   return (
     <AnimatedBackground>
-      {message|| error&&(
+      {message && (
         <MessageCard
-          title={"Success"}
-          message={message|| error}
-          type={message?"success":"error"}
-          onClose={()=>{
-            setTimeout(() => {
-              
-            }, 2000);
-          }}
+          title={message.title}
+          message={message.message}
+          type={message.type}
+          onClose={() => setMessage(null)}
         />
       )}
       <div className="min-h-screen flex items-center justify-center px-4">
@@ -68,7 +83,7 @@ const Register = () => {
                 Join Rajdoot and start building amazing applications
               </p>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-6 grid grid-cols-2 gap-2">
+            <form onSubmit={handleSubmit} className="space-y-6 grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-gray-300 mb-2">Full Name</label>
                 <div className="relative">
@@ -113,6 +128,7 @@ const Register = () => {
                     className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Create a password"
                     required
+                    minLength="6"
                   />
                 </div>
               </div>
@@ -129,6 +145,7 @@ const Register = () => {
                     className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Confirm your password"
                     required
+                    minLength="6"
                   />
                 </div>
               </div>
@@ -155,7 +172,7 @@ const Register = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full col-span-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow flex items-center justify-center"
+                className="w-full bg-gradient-to-r col-span-2 from-blue-600 to-purple-600 text-white rounded-lg py-3 font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow flex items-center justify-center"
                 disabled={loading}
               >
                 {loading ? (
@@ -170,14 +187,14 @@ const Register = () => {
                         cx="12"
                         cy="12"
                         r="10"
-                        strokeWidth="4"
                         stroke="currentColor"
+                        strokeWidth="4"
                         fill="none"
                       />
                       <path
                         className="opacity-75"
                         fill="currentColor"
-                        d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       />
                     </svg>
                     <span className="ml-2">Creating...</span>
