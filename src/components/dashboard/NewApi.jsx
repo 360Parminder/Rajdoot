@@ -14,7 +14,6 @@ const NewApi = () => {
     e.preventDefault();
     try {
       const response = await post("/api-keys/create-api-key", { name, description });
-      console.log(response);
       showMessage("Success", "API Key created successfully", "success");
       setName('');
       setDescription('');

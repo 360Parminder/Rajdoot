@@ -4,13 +4,16 @@ import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight, Github, MailIcon } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
+import MessageCard from '../components/Card/MessageCard';
 
 const Login = () => {
   const { login, googleLogin, githubLogin } = useAuth();
   const [formData, setFormData] = useState({
+  
     email: '',
     password: '',
   });
+  const [message, setMessage] = useState(null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -26,8 +29,17 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
-    } catch (err) {
-      setError('Invalid email or password');
+      setMessage({
+        title: 'Login Successful',
+        message: 'You have successfully logged in.',
+        type: 'success',
+      });
+    } catch (error) {
+      setMessage({
+        title: "Error",
+        message: error.message || "Login failed",
+        type: "error"
+      });
     }
   };
 
@@ -49,6 +61,14 @@ const Login = () => {
 
   return (
     <AnimatedBackground>
+       {message && (
+        <MessageCard
+          title={message.title}
+          message={message.message}
+          type={message.type}
+          onClose={() => setMessage(null)}
+        />
+      )}
       <div className="min-h-screen flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -4,15 +4,19 @@ import ApiContext from '../../context/apiContext';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import useMessageCard from '../../hooks/useMessageCard';
 
 const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
   const { value } = useContext(ApiContext);
-  const navigate = useNavigate();
   const [showApiKeys, setShowApiKeys] = useState({});
   const [copied, setCopied] = useState(null);
+  const {showMessage}=useMessageCard();
 
   const handleCopy = (text, field) => {
     if (!text) return;
+    console.log("sf");
+    showMessage("Success", "API Key created successfully", "success");
+    
     navigator.clipboard.writeText(text);
     setCopied(field);
     setTimeout(() => setCopied(null), 2000);

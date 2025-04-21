@@ -34,12 +34,14 @@ const messageStyles = {
 };
 
 const MessageCard = ({ title, message, type = "success", onClose }) => {
+    console.log("sdc");
+    
     const style = messageStyles[type] || messageStyles.success;
 
     return (
         <AnimatePresence>
             <motion.div 
-                className={`border ${style.border} rounded-xl p-4 ${style.bg} shadow-lg fixed top-6 right-6 z-50 w-96 max-w-[90vw]`}
+                className={`border ${style.border} rounded-xl p-4 ${style.bg} shadow-lg fixed top-6 right-6 z-[100] w-96 max-w-[90vw]`}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 100 }}

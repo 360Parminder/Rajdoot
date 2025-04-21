@@ -28,9 +28,9 @@ const Register = () => {
 
     if (formData.password !== formData.confirmPassword) {
       setMessage({
-        title: "Error",
+        title: "Info",
         message: "Passwords do not match",
-        type: "error"
+        type: "info"
       });
       return;
     }
