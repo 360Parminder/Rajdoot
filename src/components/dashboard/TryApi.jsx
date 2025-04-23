@@ -26,7 +26,7 @@ const countryCodes = [
 
 const TryApi = () => {
   const { value } = useContext(ApiContext);
-  const {post } = useApi();
+  const {post,loading } = useApi();
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
   const [activeLanguage, setActiveLanguage] = useState('javascript');
   const [activeTab, setActiveTab] = useState('code');
@@ -81,6 +81,8 @@ const TryApi = () => {
     console.log(data);
     
     if (data.error) {
+      console.log(data.error);
+      
       showMessage("Error", data.error, "error");
       return;
     }

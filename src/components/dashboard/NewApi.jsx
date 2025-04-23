@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Plus, Loader2 } from 'lucide-react';
 import useApi from '../../hooks/useApi';
 import useMessageCard from '../../hooks/useMessageCard';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import MessageCard from '../Card/MessageCard';
 
 const NewApi = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const { post, loading } = useApi();
-  const { showMessage } = useMessageCard();
-
+  const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
   const createApi = async (e) => {
     e.preventDefault();
     try {
@@ -24,6 +24,16 @@ const NewApi = () => {
 
   return (
     <div className="p-6">
+       <AnimatePresence>
+        {messageCard && (
+          <MessageCard
+            title={messageCard.title}
+            message={messageCard.message}
+            type={messageCard.type}
+            onClose={() => setMessageState(null)}
+          />
+        )}
+      </AnimatePresence>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

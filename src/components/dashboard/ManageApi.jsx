@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Eye, EyeOff, Trash2, RefreshCw, Key, Copy, Loader2 } from 'lucide-react';
 import ApiContext from '../../context/apiContext';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
+import MessageCard from '../Card/MessageCard';
 
 const ManageApi = () => {
   const [showApiKey, setShowApiKey] = useState({});
   const [deletingId, setDeletingId] = useState(null);
   const [copied, setCopied] = useState(null);
   const { value } = useContext(ApiContext);
-  const { showMessage } = useMessageCard();
+  const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
 
   const toggleShowKey = (id) => {
     setShowApiKey(prev => ({
@@ -39,6 +40,16 @@ const ManageApi = () => {
 
   return (
     <div className="p-6">
+       <AnimatePresence>
+        {messageCard && (
+          <MessageCard
+            title={messageCard.title}
+            message={messageCard.message}
+            type={messageCard.type}
+            onClose={() => setMessageState(null)}
+          />
+        )}
+      </AnimatePresence>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

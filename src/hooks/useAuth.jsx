@@ -60,39 +60,14 @@ const userProfile = async (token) => {
   // Google login
   const googleLogin = async () => {
     try {
+   
+    const rsp=  window.open('http://localhost:8005/api/v1/users/google', '_self');
+    console.log(rsp);
+    
       // Open Google OAuth window
-      const googleAuthUrl = `${axios.defaults.baseURL}/users/google`;
-      const width = 600;
-      const height = 600;
-      const left = window.screen.width / 2 - width / 2;
-      const top = window.screen.height / 2 - height / 2;
-      
-      const popup = window.open(
-        googleAuthUrl,
-        'Google OAuth',
-        `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`
-      );
 
-      // Listen for message from the popup
-      const messageListener = (event) => {
-        if (event.origin !== window.location.origin) return;
-        
-        if (event.data.token) {
-          localStorage.setItem("token", event.data.token);
-          setUser(event.data.user);
-          setLogedIn(true);
-          navigate("/dashboard");
-          window.removeEventListener("message", messageListener);
-          popup.close();
-        }
-        
-        if (event.data.error) {
-          throw new Error(event.data.error);
-        }
-      };
-
-      window.addEventListener("message", messageListener);
-    } catch (error) {
+    }
+    catch (error) {
       throw new Error(error.message || "Google login failed");
     }
   };
