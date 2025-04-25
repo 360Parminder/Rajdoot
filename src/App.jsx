@@ -22,6 +22,7 @@ import Documentation from "./pages/Documentation";
 import ScrollToTop from "./components/ScrollToTop";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import AuthCallback from "./hooks/AuthCallback";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/CancellationsRefunds" element={<CancellationsRefunds/>} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
 
         </Route>
 

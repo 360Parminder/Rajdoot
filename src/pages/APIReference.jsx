@@ -40,19 +40,25 @@ const APIReference = () => {
           requestBody: {
             content: 'string (message content)',
             recipient: 'string (phone number with country code)',
-            sender_id: 'string (optional sender ID)'
           },
           headers: {
             'x-api-id': 'string (your API ID from dashboard)',
             'x-api-key': 'string (your API key from dashboard)'
           },
           response: {
-            success: 'boolean',
-            message_id: 'string',
-            balance: 'number (remaining messages)',
-            cost: 'number (message cost)'
+            status: 'string',
+            message: 'string',
+            data:{
+              user: 'string (user ID)',
+              content: 'string (message content)',
+              recipient: 'string (recipient phone number)',
+              apiId: 'string (API ID)',
+              status: 'string (message status)',
+              content:'string',
+              serverNumber:'string (server number)',
+            }
           },
-          code: `fetch('https://api.rajdoot.parminder.info/message', {
+          code: `fetch('https://api.rajdoot.parminder.info/message/send', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

@@ -44,16 +44,16 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-      setMessage({
-        title: 'Info',
-        message: 'Feature under development',
-        type: 'info',
-      })
-    // try {
-    //   await googleLogin();
-    // } catch (err) {
-    //   setError('Google login failed');
-    // }
+      // setMessage({
+      //   title: 'Info',
+      //   message: 'Feature under development',
+      //   type: 'info',
+      // })
+    try {
+      await googleLogin();
+    } catch (err) {
+      setError('Google login failed');
+    }
   };
 
   const handleGithubLogin = async () => {
