@@ -79,26 +79,29 @@ const APIReference = () => {
       endpoints: [
         {
           method: 'POST',
-          path: '/otp/send',
+          path: '/message/sendOtp',
           description: 'Send an OTP to a phone number',
           requestBody: {
-            phone_number: 'string (phone number with country code)',
+            recipient: 'string (phone number with country code)',
             otp_length: 'number (4-6 digits, default: 6)',
-            expiry: 'number (minutes, default: 5)',
-            template: 'string (optional custom message template)'
           },
           headers: {
             'x-api-id': 'string (your API ID from dashboard)',
             'x-api-key': 'string (your API key from dashboard)'
           },
           response: {
-            success: 'boolean',
-            otp_id: 'string',
-            phone_number: 'string',
-            expiry: 'number (minutes)',
-            balance: 'number (remaining messages)'
+            status: 'string',
+            message: 'string',
+            otpRecord: {
+              otp:'string (generated OTP)',
+              serverNumber: 'string (server number)',
+              isVerified:'boolean (verification status)',
+              expiresAt:'string (expiry time)',
+              _id: 'string (OTP ID)',
+              createdAt: 'string (creation time)',
+            },
           },
-          code: `fetch('https://api.rajdoot.parminder.info/otp/send', {
+          code: `fetch('https://api.rajdoot.parminder.info/message/sendOtp', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -106,10 +109,8 @@ const APIReference = () => {
     'x-api-key': 'YOUR_API_KEY'
   },
   body: JSON.stringify({
-    phone_number: '+919876543xxx',
+    recipient: '9876543xxx',
     otp_length: 6,
-    expiry: 5,
-    template: 'Your OTP is {otp} for Rajdoot verification'
   })
 })
 .then(response => response.json())
@@ -126,7 +127,7 @@ const APIReference = () => {
       endpoints: [
         {
           method: 'POST',
-          path: '/otp/verify',
+          path: '/message/verifyOtp',
           description: 'Verify an OTP',
           requestBody: {
             otp_id: 'string (from send OTP response)',
