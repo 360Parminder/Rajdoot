@@ -44,19 +44,29 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-    try {
-      await googleLogin();
-    } catch (err) {
-      setError('Google login failed');
-    }
+      setMessage({
+        title: 'Info',
+        message: 'Feature under development',
+        type: 'info',
+      })
+    // try {
+    //   await googleLogin();
+    // } catch (err) {
+    //   setError('Google login failed');
+    // }
   };
 
   const handleGithubLogin = async () => {
-    try {
-      await githubLogin();
-    } catch (err) {
-      setError('GitHub login failed');
-    }
+    setMessage({
+      title: 'Info',
+      message: 'Feature under development',
+      type: 'info',
+    })
+    // try {
+    //   await githubLogin();
+    // } catch (err) {
+    //   setError('GitHub login failed');
+    // }
   };
 
   return (
