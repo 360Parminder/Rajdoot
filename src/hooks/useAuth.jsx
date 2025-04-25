@@ -62,7 +62,8 @@ const userProfile = async (token) => {
     try {
    
     // const rsp=  window.open('http://localhost:8005/api/v1/users/google', '_self');
-    window.location.href = `http://${import.meta.env.VITE_API_URL}/users/google`;
+    window.location.href = `${import.meta.env.VITE_API_URL}/users/google`;
+    // window.location.href = `http://localhost:8005/api/v1/users/google`;
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
       // Open Google OAuth window
