@@ -60,57 +60,6 @@ const LandingPage = () => {
     }
   ];
 
-  // const plans = [
-  //   {
-  //     name: "Basic",
-  //     price: "₹0",
-  //     period: "First Month",
-  //     description: "Perfect for getting started",
-  //     features: [
-  //       "Up to 1,000 messages/month",
-  //       "Basic analytics",
-  //       "Email support",
-  //       "API access",
-  //       "Webhook integration"
-  //     ],
-  //     color: "blue",
-  //     recommended: false
-  //   },
-  //   {
-  //     name: "Pro",
-  //     price: "₹999",
-  //     period: "per month",
-  //     description: "Best for growing businesses",
-  //     features: [
-  //       "Up to 10,000 messages/month",
-  //       "Advanced analytics",
-  //       "Priority support",
-  //       "Custom webhooks",
-  //       "Team collaboration",
-  //       "Advanced security features"
-  //     ],
-  //     color: "purple",
-  //     recommended: true
-  //   },
-  //   {
-  //     name: "Enterprise",
-  //     price: "Custom",
-  //     period: "contact us",
-  //     description: "For large scale operations",
-  //     features: [
-  //       "Unlimited messages",
-  //       "Custom analytics",
-  //       "24/7 dedicated support",
-  //       "Custom integrations",
-  //       "SLA guarantee",
-  //       "Advanced security features",
-  //       "Custom deployment options"
-  //     ],
-  //     color: "indigo",
-  //     recommended: false
-  //   }
-  // ];
-
   return (
     <AnimatedBackground>
       <div className="container mx-auto px-4 py-12">
@@ -234,8 +183,8 @@ const LandingPage = () => {
                   description={
                     <div className="space-y-4">
                       <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">{plan.price}</span>
-                        <span className="text-gray-400 ml-2">{plan.period}</span>
+                        <span className="text-3xl font-bold text-white">{plan.price!=0?plan.price:null}</span>
+                        <span className="text-gray-400 ml-2">{plan.price!=0?plan.period:"Contact with Team"}</span>
                       </div>
                       <p className="text-gray-400">{plan.description}</p>
                       <ul className="space-y-3">
@@ -279,10 +228,10 @@ const LandingPage = () => {
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
           </p>
-          <Link to="/register">
+          <Link to={user ? '/dashboard' : '/register'}>
             <motion.button
-              whilehover={{ scale: 1.05 }}
-              whiletap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
             >
               Start Building Now
