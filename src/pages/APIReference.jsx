@@ -35,7 +35,7 @@ const APIReference = () => {
       endpoints: [
         {
           method: 'POST',
-          path: '/message',
+          path: '/message/send',
           description: 'Send a message to a recipient',
           requestBody: {
             content: 'string (message content)',
