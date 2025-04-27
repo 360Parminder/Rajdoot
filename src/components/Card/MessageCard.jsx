@@ -34,8 +34,6 @@ const messageStyles = {
 };
 
 const MessageCard = ({ title, message, type = "success", onClose }) => {
-    console.log("sdc");
-    
     const style = messageStyles[type] || messageStyles.success;
 
     return (

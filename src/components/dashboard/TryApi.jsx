@@ -26,7 +26,7 @@ const countryCodes = [
 
 const TryApi = () => {
   const { value } = useContext(ApiContext);
-  const {post,loading } = useApi();
+  const { post, loading } = useApi();
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
   const [activeLanguage, setActiveLanguage] = useState('javascript');
   const [activeTab, setActiveTab] = useState('code');
@@ -52,8 +52,8 @@ const TryApi = () => {
     setIsCountryDropdownOpen(false);
     if (country.code !== '+91') {
       showMessage(
-        "Service Limited", 
-        "Currently, our service is only available in India. Please select India (+91) to continue.", 
+        "Service Limited",
+        "Currently, our service is only available in India. Please select India (+91) to continue.",
         "warning"
       );
       setTimeout(() => {
@@ -64,32 +64,38 @@ const TryApi = () => {
 
   const handleSendMessage = async () => {
     console.log(messageText, phoneNumber);
-    
+
     if (!messageText.trim()) {
-      showMessage("Error", "Please enter a message", "error");
+      showMessage("Info", "Please enter a message", "info");
       return;
     }
     if (!phoneNumber.trim()) {
-      showMessage("Error", "Please enter a phone number", "error");
+      showMessage("Info", "Please enter a phone number", "info");
       return;
     }
-    
-   const {data}= await post('/messages/send', {
+
+    const { data } = await post('/messages/send', {
       message: messageText,
-      recipient: `${phoneNumber}`
-    });
+      recipient: `${phoneNumber}`,
+    },
+      {
+        headers: {
+          'x-api-id': value?.apis[0]?.keyId,
+          'x-api-key': value?.apis[0]?.secretKey,
+        }
+      }
+    );
     console.log(data);
-    
+
     if (data.error) {
       console.log(data.error);
-      
       showMessage("Error", data.error, "error");
       return;
     }
-    if (data.status !== 200) {
+    if (data.status !== 'success') {
       showMessage("Error", "Failed to send message", "error");
       return;
-    } 
+    }
     showMessage("Success", "Message sent successfully!", "success");
     setMessageText('');
     setPhoneNumber('');
@@ -106,11 +112,12 @@ async function sendMessage() {
       'https://api.example.com/messages',
       {
         message: "${messageText}",
-        phoneNumber: "${selectedCountry.code}${phoneNumber}"
+        recipient: "${selectedCountry.code}${phoneNumber}"
       },
       {
         headers: {
-          'Authorization': \`Bearer \${apiKey}\`,
+          'x-api-id': '${value?.apis[0]?.keyId}',
+          'x-api-key': '${value?.apis[0]?.secretKey}',
           'Content-Type': 'application/json'
         }
       }
@@ -145,7 +152,7 @@ def send_message():
         print('Error:', str(e))
 
 send_message()`,
-    
+
     curl: `curl -X POST \\
   'https://api.example.com/messages' \\
   -H 'Authorization: Bearer ${value?.apis[0]?.secretKey || 'YOUR_API_KEY'}' \\
@@ -154,7 +161,7 @@ send_message()`,
     "message": "${messageText}",
     "phoneNumber": "${selectedCountry.code}${phoneNumber}"
   }'`,
-    
+
     java: `import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -200,7 +207,7 @@ public class MessageSender {
           />
         )}
       </AnimatePresence>
-      
+
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -220,7 +227,7 @@ public class MessageSender {
           <Key className="w-5 h-5 text-blue-400" />
           Select API Key
         </h2>
-        <select 
+        <select
           className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
         >
           {value?.apis?.length > 0 ? (
@@ -263,7 +270,7 @@ public class MessageSender {
               </div>
             </motion.button>
           </div>
-          
+
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -291,9 +298,8 @@ public class MessageSender {
                           <button
                             key={country.code}
                             onClick={() => handleCountryChange(country)}
-                            className={`w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors flex items-center gap-2 ${
-                              selectedCountry.code === country.code ? 'bg-blue-500/10 text-blue-400' : 'text-gray-300'
-                            }`}
+                            className={`w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors flex items-center gap-2 ${selectedCountry.code === country.code ? 'bg-blue-500/10 text-blue-400' : 'text-gray-300'
+                              }`}
                           >
                             <span>{country.flag}</span>
                             <span className="flex-1">{country.country}</span>
@@ -328,11 +334,11 @@ public class MessageSender {
                 onChange={(e) => setMessageText(e.target.value)}
               />
             </div>
-            
+
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={()=>handleSendMessage()}
+              onClick={() => handleSendMessage()}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all"
             >
               <Send className="w-5 h-5" />
@@ -340,7 +346,7 @@ public class MessageSender {
             </motion.button>
           </div>
         </div>
-        
+
         {/* Right Side - Code Samples */}
         <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
@@ -355,18 +361,17 @@ public class MessageSender {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveLanguage(lang)}
-                  className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                    activeLanguage === lang
-                      ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
-                      : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
-                  }`}
+                  className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${activeLanguage === lang
+                    ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                    }`}
                 >
                   {lang.charAt(0).toUpperCase() + lang.slice(1)}
                 </motion.button>
               ))}
             </div>
           </div>
-          
+
           {/* Code Display */}
           <div className="bg-gray-800/50 border border-gray-700 rounded-lg overflow-hidden">
             <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
@@ -392,7 +397,7 @@ public class MessageSender {
               {codeSamples[activeLanguage]}
             </pre>
           </div>
-          
+
           {/* Response Section */}
           <div className="mt-6">
             <h3 className="text-lg font-semibold text-gray-200 mb-3">Expected Response</h3>
@@ -402,14 +407,18 @@ public class MessageSender {
               </div>
               <pre className="p-4 overflow-auto max-h-40 text-gray-200 font-mono text-sm">
                 {`{
-  "status": 200,
-  "message": "Message sent successfully",
-  "data": {
-    "id": "msg_${Math.random().toString(36).substring(2, 10)}",
-    "content": "${messageText || 'Your message here'}",
-    "phoneNumber": "${selectedCountry.code}${phoneNumber || 'XXXXXXXXXX'}",
-    "timestamp": "${new Date().toISOString()}"
-  }
+    "status": "success",
+    "message": "Message sent successfully",
+    "data": {
+        "user": "67f24dee1a02d058c655ac88",
+        "serverNumber": "+9194614868xx",
+        "recipient": "8779112xxx",
+        "apiId": "d8b570ed27f87a4208ae1bbf58cc7906",
+        "status": "delivered",
+        "content": "Hello, this is a test message!",
+        "_id": "680e262a1ae3c6385d3ca3ae",
+        "createdAt": "2025-04-27T12:42:18.749Z"
+    }
 }`}
               </pre>
             </div>

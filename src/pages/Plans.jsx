@@ -55,7 +55,7 @@ const Plans = () => {
 
           {/* Plans Grid */}
           <div className="grid md:grid-cols-3 gap-8">
-            {plans.map((plan, index) => (
+            {plans.filter(plan => plan.isActive).map((plan, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
