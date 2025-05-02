@@ -74,31 +74,45 @@ const TryApi = () => {
       return;
     }
 
-    const { data } = await post('/messages/send', {
-      message: messageText,
-      recipient: `${phoneNumber}`,
-    },
-      {
-        headers: {
-          'x-api-id': value?.apis[0]?.keyId,
-          'x-api-key': value?.apis[0]?.secretKey,
+    try {
+      const { data } = await post('/messages/send', {
+        message: messageText,
+        recipient: `${phoneNumber}`,
+      },
+        {
+          headers: {
+            'x-api-id': value?.apis[0]?.keyId,
+            'x-api-key': value?.apis[0]?.secretKey,
+          }
         }
+      );
+      console.log("from data",data);
+  
+      if (data.error) {
+        console.log("from error",data.error);
+        showMessage("Error", data.error.message, "error");
+        return;
       }
-    );
-    console.log(data);
-
-    if (data.error) {
-      console.log(data.error);
-      showMessage("Error", data.error, "error");
-      return;
-    }
-    if (data.status !== 'success') {
+      if (data.status !== 'success') {
+        showMessage("Error", "Failed to send message", "error");
+        return;
+      }
+      showMessage("Success", "Message sent successfully!", "success");
+      setMessageText('');
+      setPhoneNumber('');
+    } catch (error) {
+      console.error("Error sending message:", error);
       showMessage("Error", "Failed to send message", "error");
-      return;
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        showMessage("Error", error.response.data.message, "error");
+      } else {
+        showMessage("Error", "Network error", "error");
+      }
+      setMessageText('');
+      setPhoneNumber('');
+      
     }
-    showMessage("Success", "Message sent successfully!", "success");
-    setMessageText('');
-    setPhoneNumber('');
   };
 
   const codeSamples = {
