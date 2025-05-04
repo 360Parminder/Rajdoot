@@ -17,10 +17,12 @@ import {
   AuthenticationSection, 
   DefaultSection 
 } from '../components/documentation/DocumentationSections';
+import { useAuth } from '../hooks/useAuth';
 
 const Documentation = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeSection, setActiveSection] = useState('getting-started');
+  const {user} = useAuth();
 
   // Filter sections based on search query
   const filteredSections = DOCUMENTATION_SECTIONS.filter(section => 
@@ -187,7 +189,7 @@ const Documentation = () => {
               Start integrating Rajdoot into your applications today and unlock the power of modern messaging.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
+              <Link to={user ? "/dashboard" : "/signup"}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

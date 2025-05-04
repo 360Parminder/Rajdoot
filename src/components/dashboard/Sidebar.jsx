@@ -8,7 +8,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 
 
-const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,openSubmenus,showProfileCard,setOpenSubmenus }) => {
+const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, openSubmenus, showProfileCard, setOpenSubmenus }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -53,8 +53,9 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
     <motion.div
       initial={{ width: sidebarOpen ? 256 : 56 }}
       animate={{ width: sidebarOpen ? 256 : 56 }}
-     className="h-full bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 flex flex-col py-3 relative items-center"
-     style={{ width: sidebarOpen ? 256 : 56 }}
+      className={`h-full bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 flex flex-col py-3 relative ${sidebarOpen ? '' : 'item-center'} transition-all duration-300`}
+
+      style={{ width: sidebarOpen ? 256 : 56 }}
     >
       <div className={`flex items-center justify-between mx-2 p-2 rounded-lg hover:bg-gray-800 transition-colors`}>
         <button onClick={() => navigate('/')} className='flex items-center'>
@@ -64,7 +65,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
           {sidebarOpen && (
             <div className='mx-2 my-2'>
               <h2 className="font-medium leading-4 text-gray-200">Project</h2>
-              <p className='text-sm text-gray-400 capitalize'>{user?.plan?.plans[0]?.planId?.name || 'Free' } Plan</p>
+              <p className='text-sm text-gray-400 capitalize'>{user?.plan?.plans[0]?.planId?.name || 'Free'} Plan</p>
             </div>
           )}
         </button>
@@ -74,7 +75,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
         <ul className="space-y-1">
           {menuItems.map((item) => (
             <li key={item.id} className='flex flex-col'>
-              
+
               {item.subItems ? (
                 <>
                   <button
@@ -133,7 +134,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
       <div className="px-3 py-4">
         <button
           onClick={() => setShowProfileCard(true)}
-          className={`flex items-center ${sidebarOpen ? 'w-full p-2' : 'justify-center p-2'} rounded-lg hover:bg-gray-800 transition-colors`}
+          className={`flex items-center ${sidebarOpen ? 'w-full p-2' : ' p-2'} rounded-lg hover:bg-gray-800 transition-colors`}
         >
           <div className={`rounded-lg bg-gray-800 flex items-center justify-center overflow-hidden border border-gray-700
             ${sidebarOpen ? 'w-8 h-8 mr-2' : 'w-8 h-8'}`}>

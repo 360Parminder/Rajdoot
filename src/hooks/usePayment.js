@@ -48,6 +48,7 @@ export const usePayment = () => {
           contact: '',
         },
         handler: async (response) => {
+          console.log('Payment response:', response);
           try {
             // Verify payment
             const verifyResponse = await post('/payments/verify', {
@@ -96,11 +97,12 @@ export const usePayment = () => {
 
       return { success: true };
     } catch (error) {
-      console.error('Payment initialization error:', error);
+      console.log('Payment initialization error:', error);
       setError(error.message || 'Payment initialization failed');
       return { success: false, error: error.message };
     } finally {
       setLoading(false);
+
     }
   };
 
