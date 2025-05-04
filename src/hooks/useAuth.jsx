@@ -122,6 +122,7 @@ const userProfile = async (token) => {
       setUser(data.user);
       navigate("/");
       setMessage(data.message|| "Registration successful");
+      setLoading(false);
       setTimeout(() => {
         navigate("/login");
       }, 2000);

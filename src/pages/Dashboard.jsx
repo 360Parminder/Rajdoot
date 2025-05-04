@@ -130,7 +130,6 @@ const Dashboard = () => {
     <AnimatedBackground>
       <div className="flex h-screen bg-gray-900/50 backdrop-blur-sm">
         <AnimatePresence>
-          {sidebarOpen && (
             <motion.div
               initial={{ x: -300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -149,7 +148,6 @@ const Dashboard = () => {
                 user={user}
               />
             </motion.div>
-          )}
         </AnimatePresence>
 
         <div className="flex-grow overflow-auto">
@@ -165,7 +163,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className='flex-1 max-w-[80vw] min-h-max bg-gray-900/70 backdrop-blur-sm m-4 rounded-2xl mt-20 border border-gray-800 shadow-xl'
+            className='flex-1 max-w-[100vw] min-h-max bg-gray-900/70 backdrop-blur-sm m-4 rounded-2xl mt-20 border border-gray-800 shadow-xl'
           >
             {renderContent()}
           </motion.div>

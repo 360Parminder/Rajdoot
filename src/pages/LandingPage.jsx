@@ -92,7 +92,7 @@ const LandingPage = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link to="/register">
+            <Link to={user ? '/dashboard' : '/register'}>
               <motion.button
                 whilehover={{ scale: 1.05 }}
                 whiletap={{ scale: 0.95 }}

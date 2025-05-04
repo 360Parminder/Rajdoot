@@ -6,6 +6,14 @@ const AnimatedBackground = ({ children, className = "" }) => {
   const animationRef = useRef(null);
   const dots = useRef([]);
 
+  // Color palette for the particles
+  const colors = [
+    'rgba(43, 90, 251, 1)',  // Blue  
+    'rgba(150, 23, 250, 1)', // Purple 
+    'rgba(115, 66, 250, 1)', // Indigo
+       
+  ];
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -23,30 +31,36 @@ const AnimatedBackground = ({ children, className = "" }) => {
 
     // Initialize dots with proper container dimensions
     const initDots = () => {
-      dots.current = Array.from({ length: 40 }, (_, i) => ({
-        id: i,
-        positions: [
-          {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            scale: Math.random() * 6 + 4
-          },
-          {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            scale: Math.random() * 6 + 4
-          },
-          {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            scale: Math.random() * 6 + 4
-          }
-        ],
-        currentPosition: 0,
-        duration: Math.random() * 10 + 20,
-        startTime: null,
-        currentScale: Math.random() * 70 + 30
-      }));
+      const particleCount = Math.max(100, Math.floor((canvas.width * canvas.height) / 1000));
+      
+      dots.current = Array.from({ length: particleCount }, (_, i) => {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        return {
+          id: i,
+          color,
+          positions: [
+            {
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              scale: Math.random() * 2 + 0  // Smaller particles (1-3px)
+            },
+            {
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              scale: Math.random() * 2 + 1
+            },
+            {
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              scale: Math.random() * 2 + 1
+            }
+          ],
+          currentPosition: 0,
+          duration: Math.random() * 15 + 25, // Faster movement
+          startTime: null,
+          currentScale: Math.random() * 2 + 1
+        };
+      });
     };
 
     // Start with initial resize
@@ -87,7 +101,7 @@ const AnimatedBackground = ({ children, className = "" }) => {
 
           ctx.beginPath();
           ctx.arc(x, y, scale, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+          ctx.fillStyle = dot.color;
           ctx.fill();
         }
       });
@@ -107,14 +121,14 @@ const AnimatedBackground = ({ children, className = "" }) => {
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-hidden ${className}`}
+      className={`w-full relative overflow-hidden ${className}`}
       style={{ background: 'black', color: 'white' }}
     >
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full"
       />
-      <div className="relative z-10">
+      <div className=" w-full relative z-10">
         {children}
       </div>
     </div>

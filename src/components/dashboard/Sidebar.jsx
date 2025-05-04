@@ -53,7 +53,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
     <motion.div
       initial={{ width: sidebarOpen ? 256 : 56 }}
       animate={{ width: sidebarOpen ? 256 : 56 }}
-      className="h-full bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 flex flex-col py-3 relative"
+     className="h-full bg-gray-900/80 backdrop-blur-sm border-r border-gray-800 flex flex-col py-3 relative items-center"
+     style={{ width: sidebarOpen ? 256 : 56 }}
     >
       <div className={`flex items-center justify-between mx-2 p-2 rounded-lg hover:bg-gray-800 transition-colors`}>
         <button onClick={() => navigate('/')} className='flex items-center'>
@@ -72,7 +73,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick,setShowProfileCard,ope
       <nav className="flex-grow mt-8">
         <ul className="space-y-1">
           {menuItems.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className='flex flex-col'>
+              
               {item.subItems ? (
                 <>
                   <button

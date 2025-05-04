@@ -15,6 +15,7 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -36,7 +37,7 @@ const Register = () => {
     }
 
     try {
-      await register(formData.name, formData.email, formData.password);
+      await register(formData.name, formData.email, formData.password, formData.confirmPassword);
       setMessage({
         title: "Success",
         message: "Account created successfully",
@@ -56,6 +57,7 @@ const Register = () => {
       });
     }
   };
+  
 
   return (
     <AnimatedBackground>

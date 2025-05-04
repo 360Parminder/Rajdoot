@@ -10,6 +10,7 @@ const PaymentComponent = ({ onSuccess, onError }) => {
 
   const handlePayment = async () => {
     const result = await initiatePayment(plan);
+    
     if (result.success) {
     //   onSuccess(result.response, plan);
     } else {

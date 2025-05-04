@@ -237,7 +237,7 @@ const APIReference = () => {
               </h2>
               
               <div className="relative mb-6">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute z-50 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="w-5 h-5 text-gray-500" />
                 </div>
                 <input

@@ -26,6 +26,7 @@ export const usePayment = () => {
         currency: "INR",
         planId: plan._id
       });
+
       console.log(orderResponse.data.data);
       
 
@@ -95,6 +96,7 @@ export const usePayment = () => {
 
       return { success: true };
     } catch (error) {
+      console.error('Payment initialization error:', error);
       setError(error.message || 'Payment initialization failed');
       return { success: false, error: error.message };
     } finally {
