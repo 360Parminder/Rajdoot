@@ -14,11 +14,11 @@ import {
 } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
-import { useFetchPlans } from '../hooks/fetchPlans';
 import { useAuth } from '../hooks/useAuth';
+import { usePlans } from '../hooks/fetchPlans';
 
 const LandingPage = () => {
-  const {plans}= useFetchPlans();
+  const {plans}= usePlans();
   const {user}=  useAuth();
   
   const features = [
@@ -142,7 +142,7 @@ const LandingPage = () => {
         </motion.div>
 
         {/* Pricing Section */}
-        <motion.div
+       {user ? null: <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -215,6 +215,8 @@ const LandingPage = () => {
             ))}
           </div>
         </motion.div>
+     
+        }
 
         {/* CTA Section */}
         <motion.div

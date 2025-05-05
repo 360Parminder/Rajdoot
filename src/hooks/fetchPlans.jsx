@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import axios from '../api/config';
 
-export const useFetchPlans = () => {
+const PlansContext = createContext(null);
+export const PlansProvider = ({ children }) => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,5 +22,13 @@ export const useFetchPlans = () => {
         fetchPlans();
     }, []);
 
-    return { plans, loading, error };
+    return (
+        <PlansContext.Provider value={{ plans, loading, error }}>
+            {children}
+        </PlansContext.Provider>
+    );
 };
+
+export const usePlans = () => {
+    return useContext(PlansContext);
+}

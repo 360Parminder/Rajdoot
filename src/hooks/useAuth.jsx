@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/config";
-import ErrorCard from "../components/Card/ErrorCard";
 
 const AuthContext = createContext(null);
 

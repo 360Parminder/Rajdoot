@@ -23,6 +23,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import AuthCallback from "./hooks/AuthCallback";
+import PaymentStatus from "./pages/PaymentStatus";
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         {/* Protected Dashboard Routes with DashboardLayout */}
         <Route element={<PrivateRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/payment-status" element={<PaymentStatus />} />
             {/* <Route path="/api-keys" element={<APIKeys />} /> */}
         </Route>
 

@@ -14,7 +14,7 @@ const PaymentComponent = ({ onSuccess, onError }) => {
     if (result.success) {
     //   onSuccess(result.response, plan);
     } else {
-        console.log(result.error);
+        console.log("error from payment",result.error);
         
     }
   };

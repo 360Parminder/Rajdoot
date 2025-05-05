@@ -64,15 +64,46 @@ export const usePayment = () => {
               });
               setPaymentSuccess(true);
               showMessage('Payment successful', 'success');
-              navigate('/dashboard');
+              navigate('/payment-status', {
+                state: {
+                  status: 'success',
+                  plan,
+                  paymentDetails: {
+                    transactionId: response.razorpay_payment_id,
+                    amount: orderData.amount / 100,
+                    currency: 'INR'
+                  }
+                }
+              });
               return { success: true, response };
             } else {
               setError('Payment verification failed');
               showMessage('Payment verification failed', 'error');
-              navigate('/dashboard');
+              navigate('/payment-status', {
+                state: {
+                  status: 'failed',
+                  plan,
+                  paymentDetails: {
+                    transactionId: response.razorpay_payment_id,
+                    amount: orderData.amount / 100,
+                    currency: 'INR'
+                  }
+                }
+              });
               throw new Error('Payment verification failed');
             }
           } catch (error) {
+            navigate('/payment-status', {
+              state: {
+                status: 'failed',
+                plan,
+                paymentDetails: {
+                  transactionId: response.razorpay_payment_id,
+                  amount: orderData.amount / 100,
+                  currency: 'INR'
+                }
+              }
+            });
             setError(error.message || 'Payment verification failed');
             return { success: false, error: error.message };
           }
