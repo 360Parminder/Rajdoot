@@ -16,8 +16,12 @@ import {
 } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Features = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const features = [
     {
       category: "Core Features",
@@ -176,6 +180,7 @@ const Features = () => {
               Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
             </p>
             <motion.button
+              onClick={()=>{user ? navigate('/dashboard') : navigate('/register')}}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
