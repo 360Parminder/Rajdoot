@@ -193,5 +193,4 @@ const Features = () => {
     </AnimatedBackground>
   );
 };
-
 export default Features; 
