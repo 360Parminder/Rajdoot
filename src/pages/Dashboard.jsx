@@ -105,7 +105,7 @@ const Dashboard = () => {
           </div>
   
           <div className="p-2">
-            <button className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
+            <button onClick={()=>setActiveTab('account')} className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
               <User className="w-5 h-5 mr-3 text-blue-400" />
               <span>Account Settings</span>
             </button>

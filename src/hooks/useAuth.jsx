@@ -26,6 +26,24 @@ const userProfile = async (token) => {
     logout();
   }
 }
+const updateProfile = async(userid,name, email) => {
+  // setLoading(true);
+
+ try {
+   const {data} = await axios.patch(`/users/updateUser?id=${userid}`, {name, email});
+   setUser(data.data.doc);
+    setLoading(false);
+    setMessage(data.message);
+ } catch (error) {
+   setLoading(false);
+   setError(error.response?.data?.message || "Failed to update profile");
+   setMessage(null);
+   throw new Error(error.response?.data?.message || "Failed to update profile");
+  
+ }
+    
+
+}
 // checking if user is logged in or not & fetching user profile
   useEffect(() => {
     const fetchUser = async () => {
@@ -179,6 +197,7 @@ const sendResetLink = async (email) => {
   return (
     <AuthContext.Provider value={{ 
       user, 
+      updateProfile,
       login, 
       register, 
       logout, 

@@ -4,7 +4,7 @@ import { Camera, Save, User, Mail, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Account = () => {
-  const { user } = useAuth();
+  const { user,updateProfile } = useAuth();
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [profilePic, setProfilePic] = useState(user?.image || '');
@@ -13,9 +13,8 @@ const Account = () => {
     total: user?.monthlyMessageLimit,
   });
 
-  const handleSaveChanges = () => {
-    // Add your save logic here
-    console.log('Changes saved:', { name, email, profilePic });
+  const handleSaveChanges = async() => {
+   const updatedUser = await updateProfile(user._id, name, email);
   };
 
   const handleImageUpload = (e) => {
