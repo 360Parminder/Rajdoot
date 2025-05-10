@@ -25,7 +25,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
       subItems: [
         { id: 'new-api', label: 'Create New API', icon: <BadgePlus size={20} className="text-gray-300" /> },
         // { id: 'api', label: 'API Explorer', icon: <ChevronsLeftRight size={20} className="text-gray-300" /> },
-        { id: 'try', label: 'Try API', icon: <SquareTerminal size={20} className="text-gray-300" /> },
+        { id: 'message', label: 'Message', icon: <SquareTerminal size={20} className="text-gray-300" /> },
+        { id: 'OTPVerification', label: 'OTP Verification', icon: <SquareTerminal size={20} className="text-gray-300" /> },
         { id: 'manage-api', label: 'Manage API', icon: <LayoutDashboard size={20} className="text-gray-300" /> },
       ]
     },

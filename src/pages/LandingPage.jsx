@@ -21,6 +21,7 @@ const LandingPage = () => {
   const {plans}= usePlans();
   const {user}=  useAuth();
   
+  
   const features = [
     {
       icon: <MessageSquare className="w-6 h-6" />,

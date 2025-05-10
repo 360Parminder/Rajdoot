@@ -16,6 +16,7 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
       case 'account': return 'Account';
       case 'settings': return 'Settings';
       case 'manage-api': return 'Manage API';
+      case 'plan-details': return 'Plan Details';
       default: return 'Dashboard';
     }
   };

@@ -3,20 +3,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import Documentation from './Documentation';
 import useMessageCard from '../hooks/useMessageCard';
-import MessageCard from '../components/Card/MessageCard';
-import AnimatedBackground from '../components/ui/AnimatedBackground';
+import { CreditCard, LogOut, User, X } from 'lucide-react';
 
 // Import components
+import MessageCard from '../components/Card/MessageCard';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 import Sidebar from '../components/dashboard/Sidebar';
 import TopBar from '../components/dashboard/TopBar';
 import Home from '../components/dashboard/Home';
 import NewApi from '../components/dashboard/NewApi';
 import ApiExplorer from '../components/dashboard/ApiExplorer';
-import TryApi from '../components/dashboard/TryApi';
 import ManageApi from '../components/dashboard/ManageApi';
 import Account from '../components/dashboard/Account';
 import Settings from '../components/dashboard/Settings';
-import { CreditCard, LogOut, User, X } from 'lucide-react';
+import PlanDetails from '../components/dashboard/PlanDetails';
+import BillingHistory from '../components/dashboard/BillingHistory';
+import Message from '../components/dashboard/Message';
+import OTPVerification from '../components/dashboard/OTPVerification';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -45,14 +48,20 @@ const Dashboard = () => {
         return <Documentation />;
       case 'api':
         return <ApiExplorer />;
-      case 'try':
-        return <TryApi />;
+      case 'message':
+        return <Message/> ;
       case 'account':
-        return <Account />;
+        return <Account handleTabClick={handleTabClick} />;
       case 'settings':
         return <Settings />;
       case 'manage-api':
         return <ManageApi />;
+      case 'plan-details':
+        return <PlanDetails handleTabClick={handleTabClick} />;  
+      case 'billing-history':
+        return <BillingHistory />;
+      case 'OTPVerification':
+        return <OTPVerification />;
       default:
         return <div className="text-gray-300">Select a tab</div>;
     }
@@ -105,11 +114,13 @@ const Dashboard = () => {
           </div>
   
           <div className="p-2">
-            <button onClick={()=>setActiveTab('account')} className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
+            <button onClick={()=>[setActiveTab('account'),setShowProfileCard(false)]} className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
               <User className="w-5 h-5 mr-3 text-blue-400" />
               <span>Account Settings</span>
             </button>
-            <button className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
+            <button
+              onClick={()=>[setActiveTab('billing-history'),setShowProfileCard(false)]}
+             className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
               <CreditCard className="w-5 h-5 mr-3 text-purple-400" />
               <span>Billing & Plans</span>
             </button>

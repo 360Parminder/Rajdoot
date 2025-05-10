@@ -3,7 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Camera, Save, User, Mail, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const Account = () => {
+const Account = ({handleTabClick}) => {
   const { user,updateProfile } = useAuth();
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
@@ -173,6 +173,7 @@ const Account = () => {
               </div>
               <div className="flex gap-3">
                 <motion.button
+                  onClick={() =>handleTabClick('plan-details') }
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors"
@@ -180,6 +181,7 @@ const Account = () => {
                   View Plan Details
                 </motion.button>
                 <motion.button
+                
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"

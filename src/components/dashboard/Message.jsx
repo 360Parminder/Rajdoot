@@ -24,7 +24,7 @@ const countryCodes = [
   { code: '+971', country: 'UAE', flag: '🇦🇪' }
 ];
 
-const TryApi = () => {
+const Message = () => {
   const { value } = useContext(ApiContext);
   const { post, loading } = useApi();
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
@@ -443,4 +443,4 @@ public class MessageSender {
   );
 };
 
-export default TryApi;
+export default Message;

@@ -63,6 +63,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/payment-status" element={<PaymentStatus />} />
+            {/* <Route path="/" */}
             {/* <Route path="/api-keys" element={<APIKeys />} /> */}
         </Route>
 
