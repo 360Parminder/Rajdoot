@@ -63,7 +63,6 @@ const Message = () => {
   };
 
   const handleSendMessage = async () => {
-    console.log(messageText, phoneNumber);
 
     if (!messageText.trim()) {
       showMessage("Info", "Please enter a message", "info");
