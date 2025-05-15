@@ -12,11 +12,13 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
       case 'new-api': return 'Create New API';
       case 'documentation': return 'Documentation';
       case 'api': return 'API Explorer';
-      case 'try': return 'Try API';
+      case 'message': return 'Message';
       case 'account': return 'Account';
       case 'settings': return 'Settings';
       case 'manage-api': return 'Manage API';
       case 'plan-details': return 'Plan Details';
+      case 'billing-history': return 'Billing History';
+      case 'OTPVerification': return 'OTP Verification';
       default: return 'Dashboard';
     }
   };

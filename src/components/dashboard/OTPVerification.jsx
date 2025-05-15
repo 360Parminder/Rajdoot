@@ -151,7 +151,7 @@ const apiKey = "${value?.apis[0]?.secretKey || 'YOUR_API_KEY'}";
 async function sendOTP() {
   try {
     const response = await axios.post(
-      'https://api.example.com/otp/send',
+      'https://api.rajdoot.parminder.info/api/v1/messages/sendOtp',
       {
         phoneNumber: "${selectedCountry.code}${phoneNumber}"
       },
@@ -172,7 +172,7 @@ async function sendOTP() {
 async function verifyOTP() {
   try {
     const response = await axios.post(
-      'https://api.example.com/otp/verify',
+      'https://api.rajdoot.parminder.info/api/v1/messages/verifyOtp',
       {
         phoneNumber: "${selectedCountry.code}${phoneNumber}",
         otp: "${otp}"
