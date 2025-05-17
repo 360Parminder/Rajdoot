@@ -1,4 +1,5 @@
 # Rajdoot - Phone Messaging API
+<img src="https://github.com/user-attachments/assets/0190f2f1-a092-45d4-983e-b990e5fecd60" />
 
 ## Overview
 Rajdoot is a powerful SaaS platform that provides developers with a reliable phone messaging API. It allows users to send SMS messages, including OTPs for user validation, with ease. Developers can test the service for free and integrate it into their applications seamlessly.
@@ -20,35 +21,39 @@ Rajdoot is a powerful SaaS platform that provides developers with a reliable pho
 ## API Endpoints
 ### Send SMS
 ```http
-POST /api/send-sms
+POST /messages/send-message
 ```
 #### Parameters:
-| Parameter  | Type   | Description                     |
-|-----------|--------|---------------------------------|
-| `api_key` | string | Your unique API key             |
-| `to`      | string | Recipient phone number          |
-| `message` | string | Text message to be sent         |
+| Parameter    | Type   | Description                     |
+|--------------|--------|---------------------------------|
+| `x-api-id`   | string | Your unique API id              |
+| `x-api-key`  | string | Your unique API key             |
+| `recipient`  | string | Recipient phone number          |
+| `message`    | string | Text message to be sent         |
 
 ### Send OTP
 ```http
-POST /api/send-otp
+POST /messages/send-otp
 ```
 #### Parameters:
-| Parameter  | Type   | Description                     |
-|-----------|--------|---------------------------------|
-| `api_key` | string | Your unique API key             |
-| `to`      | string | Recipient phone number          |
+| Parameter    | Type   | Description                    |
+|--------------|--------|---------------------------------|
+| `x-api-id`   | string | Your unique API id              |
+| `x-api-key`  | string | Your unique API key             |
+| `recipient`  | string | Recipient phone number          |
+| `otp_length` | string | OTP length to be sent           |
 
 ### Verify OTP
 ```http
-POST /api/verify-otp
+POST /messages/verify-otp
 ```
 #### Parameters:
-| Parameter  | Type   | Description                     |
-|-----------|--------|---------------------------------|
-| `api_key` | string | Your unique API key             |
-| `to`      | string | Recipient phone number          |
-| `otp`     | string | OTP received by the user        |
+| Parameter    | Type   | Description                     |
+|--------------|--------|---------------------------------|
+| `x-api-id`   | string | Your unique API id              |
+| `x-api-key`  | string | Your unique API key             |
+| `recipient`  | string | Recipient phone number          |
+| `otp`        | string | OTP Recived                     |
 
 ## Pricing
 Rajdoot offers flexible pricing plans, including a free tier for testing. Contact us for custom enterprise solutions.

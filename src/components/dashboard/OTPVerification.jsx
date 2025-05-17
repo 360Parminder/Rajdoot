@@ -70,7 +70,7 @@ const OTPVerification = () => {
         }
 
         try {
-            const { data } = await post('/messages/sendOtp', {
+            const { data } = await post('/messages/send-otp', {
                 recipient: `${phoneNumber}`,
                 otp_length: 6,
             },
@@ -110,7 +110,7 @@ const OTPVerification = () => {
         }
 
         try {
-            const { data } = await post('/messages/verifyOtp', {
+            const { data } = await post('/messages/verify-otp', {
                 recipient: `${phoneNumber}`,
                 otp: otp,
             },

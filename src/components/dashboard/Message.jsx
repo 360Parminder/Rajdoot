@@ -74,7 +74,7 @@ const Message = () => {
     }
 
     try {
-      const { data } = await post('/messages/send', {
+      const { data } = await post('/messages/send-message', {
         message: messageText,
         recipient: `${phoneNumber}`,
       },
