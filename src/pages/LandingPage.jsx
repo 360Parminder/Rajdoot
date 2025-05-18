@@ -71,6 +71,20 @@ const LandingPage = () => {
           transition={{ duration: 0.5 }}
           className="max-w-6xl mx-auto text-center mb-20"
         >
+          <a 
+            href="https://www.producthunt.com/posts/rajdoot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-rajdoot" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mb-6 mt-6 transition-transform transform hover:scale-105"
+          >
+            <img 
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=966687&theme=light&t=1747509833062" 
+              alt="Rajdoot - Your Private, Powerful, and Programmable SMS Gateway | Product Hunt"
+              className="w-[250px] h-[54px]"
+              width={250}
+              height={54}
+            />
+          </a>
           <motion.h1 
             className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
