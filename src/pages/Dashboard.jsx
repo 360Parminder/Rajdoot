@@ -119,7 +119,7 @@ const Dashboard = () => {
               <span>Account Settings</span>
             </button>
             <button
-              onClick={()=>[setActiveTab('billing-history'),setShowProfileCard(false)]}
+              // onClick={()=>[setActiveTab('billing-history'),setShowProfileCard(false)]}
              className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
               <CreditCard className="w-5 h-5 mr-3 text-purple-400" />
               <span>Billing & Plans</span>
