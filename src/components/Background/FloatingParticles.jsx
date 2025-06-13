@@ -1,46 +1,42 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const FloatingParticles = () => {
+const FloatingParticles = ({ children, className = "" }) => {
   const canvasRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const containerRef = useRef(null);
   const particlesRef = useRef([]);
   const animationRef = useRef();
 
   useEffect(() => {
     const handleResize = () => {
-      if (canvasRef.current) {
+      if (canvasRef.current && containerRef.current) {
         const canvas = canvasRef.current;
-        const { width, height } = canvas.getBoundingClientRect();
-        canvas.width = width;
-        canvas.height = height;
-        setDimensions({ width, height });
+        const container = containerRef.current;
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        
+        // Generate new particles when size changes
+        if (canvas.width > 0 && canvas.height > 0) {
+          particlesRef.current = generateParticles(canvas.width, canvas.height);
+        }
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    // Use ResizeObserver for better performance
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+    
+    // Initial sizing
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => resizeObserver.disconnect();
   }, []);
 
   useEffect(() => {
-    const generateParticles = () => {
-      return Array.from({ length: 150 }, () => ({
-        x: Math.random() * dimensions.width,
-        y: Math.random() * dimensions.height,
-        size: 3 + Math.random() * 6,
-        speedX: Math.random() * 2 - 1,
-        speedY: Math.random() * 2 - 1,
-        opacity: 0.3 + Math.random() * 0.5,
-        color: `hsla(${220 + Math.random() * 60}, 70%, 60%, `,
-        scaleDirection: Math.random() > 0.5 ? 1 : -1,
-        scaleSpeed: 0.01 + Math.random() * 0.01,
-        scale: 1,
-      }));
-    };
-
-    if (dimensions.width && dimensions.height) {
-      particlesRef.current = generateParticles();
+    // Start animation if canvas is available
+    if (canvasRef.current && canvasRef.current.width > 0 && canvasRef.current.height > 0) {
       startAnimation();
     }
 
@@ -49,7 +45,22 @@ const FloatingParticles = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [dimensions]);
+  }, []);
+
+  const generateParticles = (width, height) => {
+    return Array.from({ length: 150 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: 3 + Math.random() * 6,
+      speedX: Math.random() * 2 - 1,
+      speedY: Math.random() * 2 - 1,
+      opacity: 0.3 + Math.random() * 0.5,
+      color: `hsla(${220 + Math.random() * 60}, 70%, 60%, `,
+      scaleDirection: Math.random() > 0.5 ? 1 : -1,
+      scaleSpeed: 0.01 + Math.random() * 0.01,
+      scale: 1,
+    }));
+  };
 
   const startAnimation = () => {
     const canvas = canvasRef.current;
@@ -97,10 +108,18 @@ const FloatingParticles = () => {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-    />
+    <div 
+      ref={containerRef}
+      className={`w-full relative overflow-hidden ${className}`}
+    >
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      />
+      <div className="w-full relative z-10">
+        {children}
+      </div>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import Documentation from './Documentation';
@@ -25,10 +25,14 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { message, setMessage } = useMessageCard();
-  const { user } = useAuth();
+  const { user,userProfile } = useAuth();
   const [showProfileCard, setShowProfileCard] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState({});
 
+useCallback(() => {
+  userProfile()
+}, [userProfile]);
+  
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };

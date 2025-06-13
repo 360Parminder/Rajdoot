@@ -16,6 +16,8 @@ import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useAuth } from '../hooks/useAuth';
 import { usePlans } from '../hooks/fetchPlans';
+import FloatingParticles from '../components/Background/FloatingParticles';
+import Lines from '../components/Background/Lines';
 
 const LandingPage = () => {
   const {plans}= usePlans();
@@ -62,7 +64,7 @@ const LandingPage = () => {
   ];
 
   return (
-    <AnimatedBackground>
+    <Lines>
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
         <motion.div
@@ -257,7 +259,7 @@ const LandingPage = () => {
           </Link>
         </motion.div>
       </div>
-    </AnimatedBackground>
+    </Lines>
   );
 };
 

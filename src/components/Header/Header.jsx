@@ -7,7 +7,7 @@ const Header = () => {
   const { user, logout } = useAuth();
   return (
     <motion.nav
-      className="py-4 border-b rounded-xl border-gray-900 sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm"
+      className="py-4 sticky top-0 z-50  bg-opacity-30 backdrop-blur-lg shadow-xl "
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}

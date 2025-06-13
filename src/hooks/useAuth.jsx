@@ -31,7 +31,7 @@ const updateProfile = async(userid,name, email) => {
 
  try {
    const {data} = await axios.patch(`/users/updateUser?id=${userid}`, {name, email});
-   setUser(data.data.doc);
+     setUser(data.data.doc);
     setLoading(false);
     setMessage(data.message);
  } catch (error) {
@@ -210,6 +210,7 @@ const sendResetLink = async (email) => {
       error,
       setError,
       message,
+      userProfile
     }}>
       {children}
     </AuthContext.Provider>
