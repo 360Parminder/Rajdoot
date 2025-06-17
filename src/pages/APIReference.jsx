@@ -54,7 +54,6 @@ const APIReference = () => {
               recipient: 'string (recipient phone number)',
               apiId: 'string (API ID)',
               status: 'string (message status)',
-              content:'string',
               serverNumber:'string (server number)',
             }
           },
