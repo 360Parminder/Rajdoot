@@ -24,7 +24,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import AuthCallback from "./hooks/AuthCallback";
 import PaymentStatus from "./pages/PaymentStatus";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   return (
