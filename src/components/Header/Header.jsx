@@ -7,7 +7,7 @@ const Header = () => {
   const { user, logout } = useAuth();
   return (
     <motion.nav
-      className="py-4 sticky top-0 z-50  bg-opacity-30 backdrop-blur-lg shadow-xl "
+      className="py-4 sticky top-0 z-50  bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -19,7 +19,7 @@ const Header = () => {
           whilehover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <span className="text-2xl font-bold text-white">RAJDOOT</span>
+          <span className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">RAJDOOT</span>
         </motion.button>
         <div className="hidden md:flex space-x-10">
           {[
@@ -53,8 +53,8 @@ const Header = () => {
             <motion.button
               onClick={() => navigate(item.path)}
               key={index}
-              
-              className="text-blue-50 hover:text-white transition cursor-pointer"
+
+              className="text-neutral-800 dark:text-neutral-100 hover:text-white transition cursor-pointer"
               whilehover={{ y: -2 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ const Header = () => {
               <>
                 <motion.button
                   onClick={() => navigate('/dashboard')}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md"
+                  className="px-4 py-2 bg-transparent bg-gradient-to-tl from-blue-600 to-indigo-600 text-white rounded-md hover:from-blue-700 hover:to-indigo-700"
                   whilehover={{ backgroundColor: "#2563eb", scale: 1.05 }}
                   whiletap={{ scale: 0.95 }}
                 >

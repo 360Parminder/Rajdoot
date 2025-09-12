@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { 
@@ -13,10 +12,8 @@ import {
   Star
 } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
-import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useAuth } from '../hooks/useAuth';
 import { usePlans } from '../hooks/fetchPlans';
-import FloatingParticles from '../components/Background/FloatingParticles';
 import Lines from '../components/Background/Lines';
 
 const LandingPage = () => {
@@ -139,7 +136,7 @@ const LandingPage = () => {
           className="max-w-6xl mx-auto mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Powerful Features</h2>
+            <h2 className="text-3xl font-bold mb-4">Powerful Features</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Discover the comprehensive suite of features that make Rajdoot the perfect choice for your messaging needs.
             </p>
@@ -243,7 +240,7 @@ const LandingPage = () => {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl font-bold text-white mb-6">Ready to Get Started?</h2>
+          <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
           </p>

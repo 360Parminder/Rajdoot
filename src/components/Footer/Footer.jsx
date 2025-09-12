@@ -30,8 +30,8 @@ const Footer = () => {
         }
       };
     return(
-        <footer className="bg-black py-6 border-t border-gray-900">
-        <div className="container mx-auto px-6">
+        <footer className="bg-linear-to-b from-neutral-00 to-neutral-400 dark:to-neutral-900">
+        <div className="container mx-auto px-6 pt-10 pb-5">
           <motion.div 
             className="grid md:grid-cols-4 gap-12"
             variants={staggerContainer}
@@ -41,13 +41,13 @@ const Footer = () => {
           >
             <motion.div variants={fadeIn}>
               <motion.h3 
-                className="text-xl font-bold text-white mb-6"
+                className="text-xl font-bold  mb-6"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 RAJDOOT
               </motion.h3>
-              <p className="text-gray-500">
+              <p className="text-gray-600 dark:text-gray-400">
                 Sophisticated messaging APIs for developers. Elegant, reliable, and affordable.
               </p>
             </motion.div>
@@ -70,7 +70,7 @@ const Footer = () => {
               }
             ].map((section, index) => (
               <motion.div key={index} variants={fadeIn}>
-                <h3 className="text-lg font-semibold text-white mb-4">{section.title}</h3>
+                <h3 className="text-lg font-semibold mb-4">{section.title}</h3>
                 <ul className="space-y-2">
                   {section.links.map((link, linkIndex) => (
                     <motion.li 
@@ -81,7 +81,7 @@ const Footer = () => {
                     >
                       <button 
                         onClick={() => navigate(section.path[linkIndex])}
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
                       >
                         {link}
                       </button>

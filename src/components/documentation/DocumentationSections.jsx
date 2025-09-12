@@ -27,7 +27,7 @@ const sendRajdootMessage = async (content, recipient) => {
     const apiId = 'YOUR_API_ID_FROM_DASHBOARD';
     const apiKey = 'YOUR_API_KEY_FROM_DASHBOARD';
     
-    const response = await fetch('https://api.rajdoot.parminder.info/message', {
+    const response = await fetch('https://api.rajdoot.wtf/message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export const GettingStartedSection = () => {
         <p className="text-gray-300 mb-4">
           Use the API to send a message:
         </p>
-        <CodeBlock code={`POST https://api.rajdoot.parminder.info/message
+        <CodeBlock code={`POST https://api.rajdoot.wtf/message
 
 Headers:
 - x-api-id: your_api_id
