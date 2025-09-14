@@ -9,12 +9,12 @@ import {
   Code,
   ArrowRight,
   Check,
-  Star
+  Star,
+  ArrowRightIcon
 } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import { useAuth } from '../hooks/useAuth';
 import { usePlans } from '../hooks/fetchPlans';
-import Lines from '../components/Background/Lines';
 
 const LandingPage = () => {
   const {plans}= usePlans();
@@ -61,31 +61,18 @@ const LandingPage = () => {
   ];
 
   return (
-    <Lines>
+    // <Lines>
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto text-center mb-20"
+          className="max-w-6xl mx-auto text-center mb-20 flex flex-col items-center mt-12"
         >
-          <a 
-            href="https://www.producthunt.com/posts/rajdoot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-rajdoot" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mb-6 mt-6 transition-transform transform hover:scale-105"
-          >
-            <img 
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=966687&theme=light&t=1747509833062" 
-              alt="Rajdoot - Your Private, Powerful, and Programmable SMS Gateway | Product Hunt"
-              className="w-[250px] h-[54px]"
-              width={250}
-              height={54}
-            />
-          </a>
+         
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+            className="text-5xl md:text-6xl font-[400] mb-6 leading-tight text-neutral-900 dark:text-neutral-100 max-w-3xl" 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -93,7 +80,7 @@ const LandingPage = () => {
             Sophisticated Messaging APIs for Developers
           </motion.h1>
           <motion.p 
-            className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto"
+            className="text-xl text-[#7A7A7D] mb-8 max-w-lg mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -104,13 +91,13 @@ const LandingPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row justify-center"
           >
             <Link to={user ? '/dashboard' : '/register'}>
               <motion.button
                 whilehover={{ scale: 1.05 }}
                 whiletap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+                className="px-8 py-3 bg-neutral-900 text-white rounded-lg  hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
               >
                 Get Started Free
               </motion.button>
@@ -119,9 +106,10 @@ const LandingPage = () => {
               <motion.button
                 whilehover={{ scale: 1.05 }}
                 whiletap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gray-800 text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+                className="px-8 py-3 text-neutral-900  dark:text-neutral-100 flex flex-row gap-0.5 "
               >
                 View Documentation
+                <ArrowRightIcon />
               </motion.button>
             </Link>
           </motion.div>
@@ -136,8 +124,8 @@ const LandingPage = () => {
           className="max-w-6xl mx-auto mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Powerful Features</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">Powerful Features</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
               Discover the comprehensive suite of features that make Rajdoot the perfect choice for your messaging needs.
             </p>
           </div>
@@ -164,8 +152,8 @@ const LandingPage = () => {
           className="max-w-6xl mx-auto mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
               Choose the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
             </p>
           </div>
@@ -197,15 +185,15 @@ const LandingPage = () => {
                   description={
                     <div className="space-y-4">
                       <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">{plan.price!=0?plan.price:null}</span>
-                        <span className="text-gray-400 ml-2">{plan.price!=0?plan.period:"Contact with Team"}</span>
+                        <span className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{plan.price!=0?plan.price:null}</span>
+                        <span className="text-gray-500 ml-2">{plan.price!=0?plan.period:"Contact with Team"}</span>
                       </div>
                       <p className="text-gray-400">{plan.description}</p>
                       <ul className="space-y-3">
                         {plan.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-start">
                             <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
-                            <span className="text-gray-300">{feature.text}</span>
+                            <span className="text-neutral-700">{feature.text}</span>
                           </li>
                         ))}
                       </ul>
@@ -216,7 +204,7 @@ const LandingPage = () => {
                           className={`w-full  py-3 rounded-lg font-semibold transition-colors ${
                             plan.recommended
                               ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/20'
-                              : 'bg-gray-800 text-white hover:bg-gray-700'
+                              : 'bg-neutral-800 text-white hover:bg-neutral-900'
                           }`}
                         >
                           {plan.name === "Basic" ? "Start Free" : plan.name === "Enterprise" ? "Contact Sales" : "Subscribe Now"}
@@ -240,8 +228,8 @@ const LandingPage = () => {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6 text-neutral-800 dark:text-neutral-100">Ready to Get Started?</h2>
+          <p className="text-neutral-700 mb-8 max-w-2xl mx-auto">
             Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
           </p>
           <Link to={user ? '/dashboard' : '/register'}>
@@ -256,7 +244,7 @@ const LandingPage = () => {
           </Link>
         </motion.div>
       </div>
-    </Lines>
+    // </Lines>
   );
 };
 

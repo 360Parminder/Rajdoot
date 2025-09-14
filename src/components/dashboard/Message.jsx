@@ -63,7 +63,6 @@ const Message = () => {
   };
 
   const handleSendMessage = async () => {
-
     if (!messageText.trim()) {
       showMessage("Info", "Please enter a message", "info");
       return;
@@ -85,10 +84,8 @@ const Message = () => {
           }
         }
       );
-      console.log("from data",data);
-  
+      
       if (data.error) {
-        console.log("from error",data.error);
         showMessage("Error", data.error.message, "error");
         return;
       }
@@ -101,16 +98,11 @@ const Message = () => {
       setPhoneNumber('');
     } catch (error) {
       console.error("Error sending message:", error);
-      showMessage("Error", "Failed to send message", "error");
       if (error.response) {
-        console.error("Response data:", error.response.data);
         showMessage("Error", error.response.data.message, "error");
       } else {
         showMessage("Error", "Network error", "error");
       }
-      setMessageText('');
-      setPhoneNumber('');
-      
     }
   };
 
@@ -209,7 +201,7 @@ public class MessageSender {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen">
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -229,19 +221,19 @@ public class MessageSender {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
           API Testing Console
         </h1>
-        <p className="text-gray-400 max-w-2xl">
+        <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
           Test our messaging API with real requests and get sample code for your integration.
         </p>
       </motion.div>
 
       {/* API Key Selection */}
-      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
-          <Key className="w-5 h-5 text-blue-400" />
+      <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 mb-6">
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
+          <Key className="w-5 h-5 text-blue-500 dark:text-blue-400" />
           Select API Key
         </h2>
         <select
-          className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+          className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
         >
           {value?.apis?.length > 0 ? (
             value.apis.map((item, index) => (
@@ -258,12 +250,12 @@ public class MessageSender {
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Side - Test Panel */}
-        <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-          <div className="flex border-b border-gray-800 mb-6">
+        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+          <div className="flex border-b border-neutral-200 dark:border-neutral-700 mb-6">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'code' ? 'text-white border-b-2 border-blue-500' : 'text-gray-400 hover:text-gray-200'}`}
+              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'code' ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
               onClick={() => setActiveTab('code')}
             >
               <div className="flex items-center justify-center gap-2">
@@ -274,7 +266,7 @@ public class MessageSender {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'nocode' ? 'text-white border-b-2 border-blue-500' : 'text-gray-400 hover:text-gray-200'}`}
+              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'nocode' ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
               onClick={handleNoCodeTest}
             >
               <div className="flex items-center justify-center gap-2">
@@ -286,14 +278,14 @@ public class MessageSender {
 
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2">
                 Phone Number
               </label>
               <div className="flex gap-2">
                 <div className="relative">
                   <button
                     onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                    className="flex items-center gap-2 bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 w-32"
+                    className="flex items-center gap-2 bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 w-32"
                   >
                     <span>{selectedCountry.flag}</span>
                     <span>{selectedCountry.code}</span>
@@ -305,13 +297,13 @@ public class MessageSender {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute z-10 mt-1 w-full bg-gray-800 border border-gray-700 rounded-lg shadow-lg overflow-hidden"
+                        className="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg shadow-lg overflow-hidden"
                       >
                         {countryCodes.map((country) => (
                           <button
                             key={country.code}
                             onClick={() => handleCountryChange(country)}
-                            className={`w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors flex items-center gap-2 ${selectedCountry.code === country.code ? 'bg-blue-500/10 text-blue-400' : 'text-gray-300'
+                            className={`w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors flex items-center gap-2 ${selectedCountry.code === country.code ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' : 'text-neutral-800 dark:text-neutral-300'
                               }`}
                           >
                             <span>{country.flag}</span>
@@ -328,7 +320,7 @@ public class MessageSender {
                 </div>
                 <input
                   type="tel"
-                  className="flex-1 bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                  className="flex-1 bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
                   placeholder="Enter phone number"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, '').slice(0, 10))}
@@ -337,11 +329,11 @@ public class MessageSender {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2">
                 Message Content
               </label>
               <textarea
-                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all min-h-[150px]"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all min-h-[150px]"
                 placeholder="Enter your message here..."
                 value={messageText}
                 onChange={(e) => setMessageText(e.target.value)}
@@ -361,10 +353,10 @@ public class MessageSender {
         </div>
 
         {/* Right Side - Code Samples */}
-        <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
+        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-200 flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-blue-400" />
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+              <Terminal className="w-5 h-5 text-blue-500 dark:text-blue-400" />
               Code Samples
             </h2>
             <div className="flex gap-1">
@@ -375,8 +367,8 @@ public class MessageSender {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveLanguage(lang)}
                   className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${activeLanguage === lang
-                    ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
-                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                    ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-blue-700'
+                    : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'
                     }`}
                 >
                   {lang.charAt(0).toUpperCase() + lang.slice(1)}
@@ -386,13 +378,13 @@ public class MessageSender {
           </div>
 
           {/* Code Display */}
-          <div className="bg-gray-800/50 border border-gray-700 rounded-lg overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+          <div className="bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2 bg-neutral-200 dark:bg-neutral-700 border-b border-neutral-300 dark:border-neutral-600">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="text-xs text-gray-400 ml-2">
+                <span className="text-xs text-neutral-600 dark:text-neutral-400 ml-2">
                   sample.{activeLanguage === 'javascript' ? 'js' : activeLanguage === 'python' ? 'py' : activeLanguage === 'java' ? 'java' : 'sh'}
                 </span>
               </div>
@@ -400,25 +392,25 @@ public class MessageSender {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleCopy(codeSamples[activeLanguage], 'Code sample')}
-                className="text-gray-400 hover:text-gray-200 p-1 rounded"
+                className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300 p-1 rounded"
                 aria-label="Copy code"
               >
                 <Copy className="w-4 h-4" />
               </motion.button>
             </div>
-            <pre className="p-4 overflow-auto max-h-80 text-gray-200 font-mono text-sm">
+            <pre className="p-4 overflow-auto max-h-80 text-neutral-900 dark:text-neutral-100 font-mono text-sm bg-white dark:bg-neutral-800">
               {codeSamples[activeLanguage]}
             </pre>
           </div>
 
           {/* Response Section */}
           <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-200 mb-3">Expected Response</h3>
-            <div className="bg-gray-800/50 border border-gray-700 rounded-lg overflow-hidden">
-              <div className="px-4 py-2 bg-gray-800 border-b border-gray-700 text-sm text-gray-400">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Expected Response</h3>
+            <div className="bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg overflow-hidden">
+              <div className="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 border-b border-neutral-300 dark:border-neutral-600 text-sm text-neutral-600 dark:text-neutral-400">
                 Response
               </div>
-              <pre className="p-4 overflow-auto max-h-40 text-gray-200 font-mono text-sm">
+              <pre className="p-4 overflow-auto max-h-40 text-neutral-900 dark:text-neutral-100 font-mono text-sm bg-white dark:bg-neutral-800">
                 {`{
     "status": "success",
     "message": "Message sent successfully",

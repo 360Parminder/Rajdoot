@@ -33,7 +33,7 @@ const FeatureCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className={`bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-800 hover:border-gray-700 transition-colors ${className}`}
+      className={`bg-neutral-200/50  dark:bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-neutral-200 dark:border-gray-800  transition-colors ${className} shadow-2xl`}
       whilehover={{ y: -5 }}
       onClick={onClick}
     >
@@ -42,8 +42,8 @@ const FeatureCard = ({
           {icon}
         </div>
       )}
-      <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-      {description && <div className="text-gray-400">{description}</div>}
+      <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{title}</h3>
+      {description && <div className="text-gray-500">{description}</div>}
     </motion.div>
   );
 };

@@ -2,35 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import logoDark from '../../assets/image/logo_dark.png'
+import logoLight from '../../assets/image/logo_light.png'
 const Header = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   return (
     <motion.nav
-      className="py-4 sticky top-0 z-50  bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900"
+      className="py-2 px-3 sticky top-4 z-50 bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900 mx-10 rounded-full border-[0.5px] border-neutral-200 dark:border-neutral-800"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="flex justify-between items-center">
         <motion.button
           onClick={() => navigate('/')}
-          className="flex items-center cursor-pointer"
+          className="flex items-center cursor-pointer gap-0.5 ml-1"
           whilehover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <span className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">RAJDOOT</span>
+          <img className='w-auto h-[1.25rem]' src={logoDark} alt="RAJDOOT" />
+          <span className="text-xl text-neutral-900 dark:text-neutral-100">Rajdoot</span>
         </motion.button>
         <div className="hidden md:flex space-x-10">
           {[
             {
-              name:"Features",
-              path:"/features"
+              name:"Home",
+              path:"/"
             },
-            {
-              name:"Pricing",
-              path:"/plans"
-            },
+            // {
+            //   name:"Pricing",
+            //   path:"/plans"
+            // },
             {
               name:"About",
               path:"/about"
@@ -40,8 +43,8 @@ const Header = () => {
               path:"/docs"
             },
             {
-              name:"API Reference",
-              path:"/api-reference"
+              name:"Contact",
+              path:"/contact"
             },
             // {
             //   name:"Wishlist",
@@ -65,7 +68,7 @@ const Header = () => {
           ))}
         </div>
         <motion.div
-          className="flex items-center gap-4"
+          className=""
         >
           {
             user ? (
@@ -88,7 +91,7 @@ const Header = () => {
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className="text-white px-6 py-2 rounded-md border border-blue-500 bg-gradient-to-r from-blue-600 to-indigo-600"
+                className="text-white px-6 py-1 rounded-3xl bg-neutral-900 cursor-pointer"
                 whilehover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
                 whiletap={{ scale: 0.95 }}
               >
