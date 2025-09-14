@@ -9,8 +9,8 @@ const Account = ({handleTabClick}) => {
   const [email, setEmail] = useState(user?.email || '');
   const [profilePic, setProfilePic] = useState(user?.image || '');
   const [messageLimit, setMessageLimit] = useState({
-    used: user?.messageCount ,
-    total: user?.monthlyMessageLimit,
+    used: user?.messageCount || 0,
+    total: user?.monthlyMessageLimit || 100,
   });
 
   const handleSaveChanges = async() => {
@@ -29,7 +29,7 @@ const Account = ({handleTabClick}) => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,32 +38,32 @@ const Account = ({handleTabClick}) => {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
           Account Settings
         </h1>
-        <p className="text-gray-400 max-w-2xl">
+        <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
           Manage your account information, profile, and usage limits.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Section */}
-        <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-          <h2 className="text-xl font-semibold text-gray-200 mb-6 flex items-center gap-2">
-            <User className="w-5 h-5 text-blue-400" />
+        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 flex items-center gap-2">
+            <User className="w-5 h-5 text-blue-500 dark:text-blue-400" />
             Profile Information
           </h2>
 
           <div className="flex flex-col items-center mb-6">
             <div className="relative mb-4">
-              <div className="w-32 h-32 rounded-full bg-gray-800 border-2 border-gray-700 overflow-hidden">
+              <div className="w-32 h-32 rounded-full bg-neutral-100 dark:bg-neutral-700 border-2 border-neutral-300 dark:border-neutral-600 overflow-hidden">
                 {profilePic ? (
                   <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                    <User className="w-16 h-16 text-gray-500" />
+                  <div className="w-full h-full bg-neutral-200 dark:bg-neutral-600 flex items-center justify-center">
+                    <User className="w-16 h-16 text-neutral-400 dark:text-neutral-500" />
                   </div>
                 )}
               </div>
-              <label className="absolute bottom-0 right-0 bg-gray-800 p-2 rounded-full border border-gray-700 cursor-pointer hover:bg-gray-700 transition-colors">
-                <Camera className="w-5 h-5 text-gray-300" />
+              <label className="absolute bottom-0 right-0 bg-neutral-200 dark:bg-neutral-700 p-2 rounded-full border border-neutral-300 dark:border-neutral-600 cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors">
+                <Camera className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
                 <input
                   type="file"
                   accept="image/*"
@@ -72,34 +72,34 @@ const Account = ({handleTabClick}) => {
                 />
               </label>
             </div>
-            <h3 className="text-xl font-medium text-gray-200 capitalize">{name}</h3>
-            <p className="text-gray-400 text-sm">{email}</p>
+            <h3 className="text-xl font-medium text-neutral-900 dark:text-neutral-100 capitalize">{name}</h3>
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm">{email}</p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className=" text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                <User className="w-4 h-4 text-gray-400" />
+              <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2 flex items-center gap-2">
+                <User className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                 Full Name
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
               />
             </div>
 
             <div>
-              <label className=" text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-gray-400" />
+              <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2 flex items-center gap-2">
+                <Mail className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                 Email Address
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
               />
             </div>
 
@@ -118,18 +118,18 @@ const Account = ({handleTabClick}) => {
         {/* Usage Stats Section */}
         <div className="lg:col-span-2 space-y-6">
           {/* Message Limit */}
-          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-            <h2 className="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-blue-400" />
+          <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
+              <MessageSquare className="w-5 h-5 text-blue-500 dark:text-blue-400" />
               Message Usage
             </h2>
             
             <div className="mb-4">
-              <div className="flex justify-between text-sm text-gray-400 mb-1">
+              <div className="flex justify-between text-sm text-neutral-600 dark:text-neutral-400 mb-1">
                 <span>{messageLimit.used.toLocaleString()} messages used</span>
                 <span>{messageLimit.total.toLocaleString()} total limit</span>
               </div>
-              <div className="w-full bg-gray-800 rounded-full h-2.5">
+              <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2.5">
                 <div
                   className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full"
                   style={{ width: `${(messageLimit.used / messageLimit.total) * 100}%` }}
@@ -138,50 +138,49 @@ const Account = ({handleTabClick}) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-                <h3 className="text-sm text-gray-400 mb-1">Daily Average</h3>
-                <p className="text-xl font-semibold text-gray-200">
+              <div className="bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg p-4">
+                <h3 className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Daily Average</h3>
+                <p className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
                   {Math.round(messageLimit.used / 30)}
                 </p>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-                <h3 className="text-sm text-gray-400 mb-1">Remaining</h3>
-                <p className="text-xl font-semibold text-gray-200">
+              <div className="bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg p-4">
+                <h3 className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Remaining</h3>
+                <p className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
                   {(messageLimit.total - messageLimit.used).toLocaleString()}
                 </p>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-                <h3 className="text-sm text-gray-400 mb-1">Reset Date</h3>
-                <p className="text-xl font-semibold text-gray-200">
-                  {new Date(new Date().setMonth(new Date(user.plan.plans[0].expiryDate).getMonth() + 1)).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              <div className="bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg p-4">
+                <h3 className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Reset Date</h3>
+                <p className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+                  {new Date(new Date().setMonth(new Date().getMonth() + 1)).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </p>
               </div>
             </div>
           </div>
 
           {/* Plan Information */}
-          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-            <h2 className="text-xl font-semibold text-gray-200 mb-4">Current Plan</h2>
+          <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Current Plan</h2>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
-                <h3 className="text-lg font-medium text-gray-200 capitalize">
-                  {user.plan.plans[0].planId.name || 'Free'} Plan
+                <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-100 capitalize">
+                  {user?.plan?.plans[0]?.planId?.name || 'Free'} Plan
                 </h3>
-                <p className="text-gray-400 text-sm">
-                  {user.plan.plans[0].planId.name == 'Pro' ? 'All features included' : 'Limited features'}
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+                  {user?.plan?.plans[0]?.planId?.name === 'Pro' ? 'All features included' : 'Limited features'}
                 </p>
               </div>
               <div className="flex gap-3">
                 <motion.button
-                  onClick={() =>handleTabClick('plan-details') }
+                  onClick={() => handleTabClick('plan-details')}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors"
+                  className="px-4 py-2 bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg transition-colors"
                 >
                   View Plan Details
                 </motion.button>
                 <motion.button
-                
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"

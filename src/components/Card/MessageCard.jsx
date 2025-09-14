@@ -6,7 +6,7 @@ const messageStyles = {
     success: { 
         bg: "bg-green-900/20 backdrop-blur-sm",
         border: "border-green-500/30",
-        text: "text-green-400",
+        text: "text-green-600",
         icon: <CheckCircle className="h-5 w-5 text-green-400" />,
         iconBg: "bg-green-900/50"
     },
@@ -61,7 +61,7 @@ const MessageCard = ({ title, message, type = "success", onClose }) => {
                             transition={{ delay: 0.2 }}
                         >
                             <h3 className={`text-sm font-medium ${style.text}`}>{title}</h3>
-                            <p className="text-sm text-gray-300 mt-1">{message}</p>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">{message}</p>
                         </motion.div>
                     </div>
                     <motion.button 
