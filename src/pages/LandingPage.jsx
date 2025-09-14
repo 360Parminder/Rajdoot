@@ -62,7 +62,8 @@ const LandingPage = () => {
 
   return (
     // <Lines>
-      <div className="container mx-auto px-4 py-12">
+      <div className=" px-4 py-12 pt-16 dark:text-neutral-100 flex flex-col
+      bg-radial-[at_25%_75%] from-[#5da6a2] via-[#80c7c4] to-[#086FCA] min-h-screen text-white">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

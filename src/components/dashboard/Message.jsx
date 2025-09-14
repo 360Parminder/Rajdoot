@@ -201,7 +201,7 @@ public class MessageSender {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen">
+    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-full">
       <AnimatePresence>
         {messageCard && (
           <MessageCard

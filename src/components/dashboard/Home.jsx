@@ -48,7 +48,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           onClick={() => handleTabClick('new-api')}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-2 bg-gradient-to-bl from-neutral-800 via-35% to-neutral-400 text-white px-4 py-3 shadow-2xl rounded-lg hover:shadow-lg transition-all"
+          className="flex items-center gap-2 bg-gradient-to-tl from-neutral-600 to-neutral-800 text-white px-4 py-3 shadow-2xl rounded-lg hover:shadow-lg transition-all"
         >
           <Plus size={18} />
           <span>Create New API</span>
@@ -130,7 +130,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
 
               <div className="mt-6 flex gap-3">
                 <button 
-                  onClick={() => handleTabClick('try')}
+                  onClick={() => handleTabClick('message')}
                   className="flex-1 flex items-center justify-center gap-2 bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
                   <Terminal size={16} />
