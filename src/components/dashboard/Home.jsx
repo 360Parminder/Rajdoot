@@ -35,7 +35,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           <motion.h1 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold text-neutral-200 mb-2"
+            className="text-3xl font-bold text-neutral-900 dark:text-neutral-200  mb-2"
           >
             API Dashboard
           </motion.h1>

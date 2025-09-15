@@ -43,7 +43,7 @@ const FeatureCard = ({
         </div>
       )}
       <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{title}</h3>
-      {description && <div className="text-gray-500">{description}</div>}
+      {description && <div className="text-gray-300">{description}</div>}
     </motion.div>
   );
 };

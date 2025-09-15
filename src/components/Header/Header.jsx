@@ -9,7 +9,7 @@ const Header = () => {
   const { user, logout } = useAuth();
   return (
     <motion.nav
-      className="py-2 px-3 fixed min-w-[90%] top-4 z-50 bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900 mx-10 rounded-full border-[1px] border-neutral-300/30"
+      className="py-2 px-3 fixed min-w-5xl top-4 z-50 bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900 mx-10 rounded-full border-[1px] border-neutral-300/30"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -24,7 +24,7 @@ const Header = () => {
           {/* {
             isDarkMode ?  <img className='w-auto h-[1.25rem]' src={logoLight} alt="RAJDOOT" />:<img className='w-auto h-[1.25rem]' src={logoDark} alt="RAJDOOT" /> 
           } */}
-          <img className='w-auto h-[1.25rem]' src={logoLight} alt="RAJDOOT" />
+          <img className='w-auto h-[1.25rem]' src={logoDark} alt="RAJDOOT" />
           <span className="text-xl text-neutral-900 dark:text-neutral-100">Rajdoot</span>
         </motion.button>
         <div className="hidden md:flex space-x-10">
@@ -60,7 +60,7 @@ const Header = () => {
               onClick={() => navigate(item.path)}
               key={index}
 
-              className="text-neutral-800 dark:text-neutral-100 hover:text-white transition cursor-pointer"
+              className="text-neutral-800 dark:text-neutral-100 hover:text-black hover:font-[600] dark:hover:text-white transition cursor-pointer"
               whilehover={{ y: -2 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}

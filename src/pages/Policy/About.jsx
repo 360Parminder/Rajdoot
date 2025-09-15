@@ -44,7 +44,7 @@ const About = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen mt-16">
+    <div className=" mx-auto px-4 py-12 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen mt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -30,7 +30,7 @@ const Footer = () => {
   };
   return (
     <footer className="bg-linear-to-b from-neutral-100/10 to-neutral-400 dark:to-neutral-900">
-      <div className="container mx-auto px-6 pt-10 pb-5">
+      <div className="mx-auto px-6 pt-10 pb-5">
         <motion.div
           className="grid md:grid-cols-4 gap-12"
           variants={staggerContainer}
