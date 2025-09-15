@@ -69,7 +69,7 @@ const LandingPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto text-center mb-20 flex flex-col items-center mt-12"
+        className="max-w-6xl mx-auto text-center mb-20 flex flex-col items-center mt-[10rem]"
       >
 
         <motion.h1
@@ -107,7 +107,7 @@ const LandingPage = () => {
             <motion.button
               whilehover={{ scale: 1.05 }}
               whiletap={{ scale: 0.95 }}
-              className="px-8 py-3 text-neutral-900   flex flex-row gap-0.5 "
+              className="px-4 py-3 text-neutral-900   flex flex-row gap-0.5  outline-1 outline-neutral-900 rounded-lg ml-0 sm:ml-4 mt-4 sm:mt-0  transition-colors  "
             >
               View Documentation
               <ArrowRightIcon />
