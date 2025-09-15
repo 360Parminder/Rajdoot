@@ -70,7 +70,7 @@ const Documentation = () => {
             className="max-w-xl mx-auto relative"
           >
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
+              <Search className="absolute left-4 z-10 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search documentation..."
@@ -184,7 +184,7 @@ const Documentation = () => {
           className="mt-20 text-center"
         >
           <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">Ready to Build Something Amazing?</h2>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-neutral-800 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
             Start integrating Rajdoot into your applications today and unlock the power of modern messaging.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

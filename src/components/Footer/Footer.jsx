@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import { path } from 'motion/react-client';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -30,7 +29,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="bg-linear-to-b from-neutral-00 to-neutral-400 dark:to-neutral-900">
+    <footer className="bg-linear-to-b from-neutral-100/10 to-neutral-400 dark:to-neutral-900">
       <div className="container mx-auto px-6 pt-10 pb-5">
         <motion.div
           className="grid md:grid-cols-4 gap-12"

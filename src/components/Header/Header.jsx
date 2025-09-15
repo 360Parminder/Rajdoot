@@ -95,7 +95,7 @@ const Header = () => {
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className="text-white px-6 py-1 rounded-3xl bg-neutral-900 cursor-pointer"
+                className="text-white dark:text-neutral-900 px-6 py-1 rounded-3xl bg-neutral-900 dark:bg-neutral-50 cursor-pointer"
                 whilehover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
                 whiletap={{ scale: 0.95 }}
               >
