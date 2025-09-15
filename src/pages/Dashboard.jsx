@@ -79,12 +79,12 @@ useCallback(() => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          className="absolute z-[100] left-72 bottom-4 w-72 bg-gray-900/80 backdrop-blur-sm rounded-xl shadow-xl border border-gray-700 overflow-hidden"
+          className="absolute z-[100] left-72 bottom-4 w-72 bg-neutral-300 text-neutral-900 dark:bg-neutral-800 backdrop-blur-sm rounded-xl shadow-xl border border-neutral-100 dark:border-neutral-700 overflow-hidden"
         >
-          <div className="p-6 border-b border-gray-700">
+          <div className="p-6 border-b border-neutral-700 overflow-hidden">
             <div className="flex justify-between items-start">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center overflow-hidden border border-gray-700">
+                <div className="w-10 h-10 rounded-xl bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-100 dark:border-neutral-700">
                   {user?.image ? (
                     <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
@@ -92,24 +92,24 @@ useCallback(() => {
                   )}
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-md font-semibold text-gray-200 capitalize">{user?.name}</h3>
-                  <p className="text-sm text-gray-400">{user?.email}</p>
+                  <h3 className="text-md font-semibold text-neutral-900 dark:text-neutral-100 capitalize">{user?.name}</h3>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{user?.email}</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowProfileCard(false)}
-                className="p-1 rounded-lg hover:bg-gray-800 transition-colors"
+                className="p-1 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
               >
-                <X className="w-4 h-4 text-gray-400" />
+                <X className="w-4 h-4 text-red-400" />
               </button>
             </div>
           </div>
   
-          <div className="p-4 border-b border-gray-700">
+          <div className="p-4 border-b border-neutral-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Current Plan</p>
-                <p className="text-sm font-medium text-gray-200">{user.plan.plans[0].planId.name || 'Free'} Plan</p>
+                <p className="text-sm text-neutral-900 dark:text-neutral-100">Current Plan</p>
+                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">{user.plan.plans[0].planId.name || 'Free'} Plan</p>
               </div>
               <span className="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-full">
                 Active
@@ -118,19 +118,19 @@ useCallback(() => {
           </div>
   
           <div className="p-2">
-            <button onClick={()=>[setActiveTab('account'),setShowProfileCard(false)]} className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
+            <button onClick={()=>[setActiveTab('account'),setShowProfileCard(false)]} className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors dark:text-neutral-100">
               <User className="w-5 h-5 mr-3 text-blue-400" />
               <span>Account Settings</span>
             </button>
             <button
               // onClick={()=>[setActiveTab('billing-history'),setShowProfileCard(false)]}
-             className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300">
+             className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors text-neutral-300">
               <CreditCard className="w-5 h-5 mr-3 text-purple-400" />
               <span>Billing & Plans</span>
             </button>
             <button
               onClick={logout}
-              className="w-full flex items-center p-3 rounded-lg hover:bg-gray-800 transition-colors text-red-400"
+              className="w-full flex items-center p-3 rounded-lg hover:bg-neutral-700 transition-colors text-red-400"
             >
               <LogOut className="w-5 h-5 mr-3" />
               <span>Logout</span>
@@ -142,8 +142,9 @@ useCallback(() => {
   };
 
   return (
-    <AnimatedBackground>
-      <div className="flex h-screen bg-gray-900/50 backdrop-blur-sm">
+    // <AnimatedBackground>
+      <>
+      <div className="flex h-screen bg-neutral-300 dark:bg-neutral-800 backdrop-blur-sm">
         <AnimatePresence>
             <motion.div
               initial={{ x: -300, opacity: 0 }}
@@ -166,19 +167,19 @@ useCallback(() => {
         </AnimatePresence>
 
         <div className="flex-grow overflow-auto">
-          <TopBar 
+          {/* <TopBar 
             toggleSidebar={toggleSidebar} 
             activeTab={activeTab} 
             handleTabClick={handleTabClick}
             sidebarOpen={sidebarOpen}
-          />
+          /> */}
           
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className='flex-1 max-w-[100vw] min-h-max bg-gray-900/70 backdrop-blur-sm m-4 rounded-2xl mt-20 border border-gray-800 shadow-xl'
+            className='flex-1 max-w-[100vw] min-h-[95%] bg-white dark:bg-neutral-900 backdrop-blur-sm m-2 rounded-2xl  border border-neutral-700 shadow-xl'
           >
             {renderContent()}
           </motion.div>
@@ -200,8 +201,8 @@ useCallback(() => {
           <ProfileCard user={user} setShowProfileCard={setShowProfileCard} />
         )}
       </AnimatePresence>
-
-    </AnimatedBackground>
+</>
+    // </AnimatedBackground>
   );
 };
 

@@ -3,9 +3,10 @@ import Footer from "../components/Footer/Footer";
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="bg-neutral-300 text-neutral-600 dark:bg-neutral-950 dark:text-neutral-100 min-h-screen flex flex-col">
+    <div className="bg-white  dark:bg-neutral-900 dark:text-neutral-100 flex flex-col
+       min-h-screen text-white items-center">
       <Header />
-      <main>{children}</main>
+      <main className="min-w-screen">{children}</main>
       <Footer />
     </div>
   );

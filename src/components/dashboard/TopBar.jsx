@@ -27,20 +27,20 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
     <motion.div
       initial={{ left: sidebarOpen ? 256 : 56 }}
       animate={{ left: sidebarOpen ? 256 : 56 }}
-      className="fixed top-0 right-0 z-40 py-3 px-6 bg-gray-900/80 backdrop-blur-sm border-b border-gray-800 flex items-center justify-between shadow-sm"
+      className="fixed top-0 right-0 z-40 py-3 px-6 bg-white dark:bg-neutral-800 backdrop-blur-sm border-b border-gray-800 flex items-center justify-between shadow-sm"
     >
       <div className="flex items-center gap-4">
         <button 
           onClick={toggleSidebar}
-          className="p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300"
+          className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-gray-800 transition-colors text-neutral-900 dark:text-gray-300"
         >
           <PanelLeft size={20} />
         </button>
-        
-        <nav className="text-gray-300 flex items-center">
+
+        <nav className="text-neutral-900 dark:text-gray-300 flex items-center">
           <button 
             onClick={() => handleTabClick('home')}
-            className="flex items-center hover:text-gray-100 transition-colors"
+            className="flex items-center hover:text-neutral-950 dark:hover:text-gray-100 transition-colors"
           >
             <House size={16} className="mr-2" />
             <span>Dashboard</span>
@@ -49,7 +49,7 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           {activeTab !== 'home' && (
             <>
               <ChevronRight size={14} className="mx-2 text-gray-500" />
-              <span className="text-gray-100 font-medium">
+              <span className="text-neutral-900 dark:text-gray-100 font-medium">
                 {getActiveTabLabel()}
               </span>
             </>
@@ -61,10 +61,10 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-gray-300"
+          className="text-neutral-900 dark:text-gray-300"
         >
           <span className="text-sm">Welcome back, </span>
-          <span className="font-medium capitalize text-gray-200">{user?.name}</span>
+          <span className="font-medium capitalize text-neutral-950 dark:text-gray-200">{user?.name}</span>
         </motion.div>
       )}
     </motion.div>
