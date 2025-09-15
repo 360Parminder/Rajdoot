@@ -150,10 +150,10 @@ const LandingPage = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto mb-20"
+        className="min-w-5xl mb-20 mx-auto"
       >
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl font-bold text-neutral-900 ">Simple, Transparent Pricing</h2>
           <p className="text-gray-500 max-w-xl mx-auto">
             Choose the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
           </p>
@@ -186,7 +186,7 @@ const LandingPage = () => {
                 description={
                   <div className="space-y-4">
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{plan.price != 0 ? plan.price : null}</span>
+                      <span className="text-3xl font-bold text-neutral-900">{plan.price != 0 ? plan.price : null}</span>
                       <span className="text-gray-500 ml-2">{plan.price != 0 ? plan.period : "Contact with Team"}</span>
                     </div>
                     <p className="text-gray-400">{plan.description}</p>

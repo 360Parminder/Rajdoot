@@ -29,7 +29,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="bg-linear-to-b from-neutral-100/10 to-neutral-400 dark:to-neutral-900">
+    <footer className="bg-linear-to-b from-neutral-100/10 to-neutral-400 dark:to-neutral-900 text-neutral-800 dark:text-neutral-300 border-t border-gray-300 dark:border-gray-800 mt-auto">
       <div className="mx-auto px-6 pt-10 pb-5">
         <motion.div
           className="grid md:grid-cols-4 gap-12"
