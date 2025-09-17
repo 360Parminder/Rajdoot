@@ -29,13 +29,13 @@ const Account = ({handleTabClick}) => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen">
+    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
+        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
           Account Settings
         </h1>
         <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">

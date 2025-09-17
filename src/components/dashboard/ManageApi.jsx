@@ -39,7 +39,7 @@ const ManageApi = () => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen">
+    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -56,7 +56,7 @@ const ManageApi = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
+        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
           Manage API Keys
         </h1>
         <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">

@@ -123,7 +123,7 @@ useCallback(() => {
               <span>Account Settings</span>
             </button>
             <button
-              // onClick={()=>[setActiveTab('billing-history'),setShowProfileCard(false)]}
+              onClick={()=>[setActiveTab('plan-details'),setShowProfileCard(false)]}
              className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors text-neutral-300">
               <CreditCard className="w-5 h-5 mr-3 text-purple-400" />
               <span>Billing & Plans</span>
