@@ -165,7 +165,7 @@ const Contact = () => {
         </div>
 
         {/* Map Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -185,7 +185,7 @@ const Contact = () => {
               className="rounded-lg"
             ></iframe>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Call to Action */}
         <motion.div

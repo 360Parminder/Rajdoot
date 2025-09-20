@@ -26,11 +26,11 @@ const userProfile = async (token) => {
     logout();
   }
 }
-const updateProfile = async(userid,name, email) => {
+const updateProfile = async(name, email, image) => {
   // setLoading(true);
 
  try {
-   const {data} = await axios.patch(`/users/updateUser?id=${userid}`, {name, email});
+   const {data} = await axios.patch(`/users/updateUser`, {name, email,image});
      setUser(data.data.doc);
     setLoading(false);
     setMessage(data.message);

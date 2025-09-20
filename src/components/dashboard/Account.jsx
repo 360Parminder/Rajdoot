@@ -14,7 +14,7 @@ const Account = ({handleTabClick}) => {
   });
 
   const handleSaveChanges = async() => {
-   const updatedUser = await updateProfile(user._id, name, email);
+   const updatedUser = await updateProfile(name, email, profilePic);
   };
 
   const handleImageUpload = (e) => {
