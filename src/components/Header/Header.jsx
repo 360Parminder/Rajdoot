@@ -67,7 +67,7 @@ const Header = () => {
   return (
     <>
       <motion.nav
-        className="py-2 px-4 md:px-3 fixed w-[calc(100%-30rem)] md:min-w-5xl top-4 z-50 bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900 mx-10 rounded-full border-[1px] border-neutral-300/30"
+        className="py-2 px-4 md:px-3 fixed w-[calc(100%-3rem)] md:w-[calc(100%-33rem)] top-4 z-50 bg-opacity-30 backdrop-blur-lg shadow-xl dark:text-neutral-100 text-neutral-900 mx-10 rounded-full border-[1px] border-neutral-300/30"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
