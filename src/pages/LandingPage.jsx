@@ -150,7 +150,7 @@ const LandingPage = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="min-w-5xl mb-20 mx-auto"
+        className="max-w-6xl mb-20 mx-auto"
       >
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 ">Simple, Transparent Pricing</h2>
@@ -158,7 +158,7 @@ const LandingPage = () => {
             Choose the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
           {plans.filter(plan => plan.isActive).map((plan, index) => (
             <motion.div
               key={index}
