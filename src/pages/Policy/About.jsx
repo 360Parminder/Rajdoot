@@ -1,8 +1,6 @@
-import React from 'react';
 import { Code2, GraduationCap, Lightbulb, Rocket, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import AnimatedBackground from '../../components/ui/AnimatedBackground';
 
 const About = () => {
   const skills = [
