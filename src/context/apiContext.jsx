@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, use, useEffect } from 'react';
 import axios from '../api/config';
 import { useAuth } from '../hooks/useAuth';
+import posthog from 'posthog-js';
 // Create the API context
 const ApiContext = createContext();
 
@@ -35,6 +36,7 @@ export const ApiProvider = ({ children }) => {
         try {
             const response = await axios.post(`/api-keys/create-api-key`, apiData);
             setApis(prevApis => [...prevApis, response.data]);
+            posthog.capture()
             return response.data;
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to create API');
