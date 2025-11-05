@@ -5,6 +5,7 @@ import { Mail, Lock, ArrowRight, Github, MailIcon } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import MessageCard from '../components/Card/MessageCard';
+import posthog from 'posthog-js';
 
 const Login = () => {
   const { login, googleLogin, githubLogin } = useAuth();
@@ -28,6 +29,7 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
+      posthog.identify();
       setMessage({
         title: 'Login Successful',
         message: 'You have successfully logged in.',

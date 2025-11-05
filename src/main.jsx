@@ -8,7 +8,7 @@ import { ApiProvider } from './context/apiContext.jsx'
 import { PlansProvider } from './hooks/fetchPlans.jsx'
 import { ApiServiceProvider } from './hooks/ApiService.jsx'
 import { Analytics } from "@vercel/analytics/react"
-
+import { PostHogProvider } from 'posthog-js/react'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,7 +18,17 @@ createRoot(document.getElementById('root')).render(
         <ApiProvider>
           <PlansProvider>
             <ApiServiceProvider>
-              <App />
+              <PostHogProvider
+                apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+                options={{
+                  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+                  defaults: '2025-05-24',
+                  capture_exceptions: true,
+                  debug: import.meta.env.MODE === 'development',
+                }}
+              >
+                <App />
+              </PostHogProvider>
             </ApiServiceProvider>
           </PlansProvider>
         </ApiProvider>
