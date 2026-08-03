@@ -1,250 +1,188 @@
-import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-import {
-  MessageSquare,
-  Zap,
-  Shield,
-  BarChart,
-  Globe,
-  Code,
-  ArrowRight,
-  Check,
-  Star,
-  ArrowRightIcon
-} from 'lucide-react';
-import FeatureCard from '../components/ui/FeatureCard';
 import { useAuth } from '../hooks/useAuth';
-import { usePlans } from '../hooks/fetchPlans';
+import { motion } from 'motion/react';
+
+// Landing page sections
+import HeroSection from './landing/HeroSection';
+import FeatureOverview from './landing/FeatureOverview';
+import FeatureDetail from './landing/FeatureDetail';
+import TemplatesSection from './landing/TemplatesSection';
+import PricingSection from './landing/PricingSection';
+import FAQSection from './landing/FAQSection';
+import CTABanner from './landing/CTABanner';
+
+// Images
+import integrationsImg from '../assets/image/landing/integrations_preview.png';
+import easySetupImg from '../assets/image/landing/easy_setup.png';
+import sandboxImg from '../assets/image/landing/sandbox_preview.png';
+
+// Styles
+import '../styles/landing.css';
 
 const LandingPage = () => {
-  const { plans } = usePlans();
   const { user } = useAuth();
 
-
-  const features = [
-    {
-      icon: <MessageSquare className="w-6 h-6" />,
-      title: "Advanced Messaging",
-      description: "Send and receive messages with support for text, media, and rich content formats.",
-      color: "blue"
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Real-time Delivery",
-      description: "Lightning-fast message delivery with real-time status updates and receipts.",
-      color: "yellow"
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: "End-to-End Encryption",
-      description: "Enterprise-grade security with end-to-end encryption for all communications.",
-      color: "green"
-    },
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: "RESTful APIs",
-      description: "Comprehensive REST APIs with detailed documentation and SDK support.",
-      color: "purple"
-    },
-    {
-      icon: <BarChart className="w-6 h-6" />,
-      title: "Message Analytics",
-      description: "Detailed insights into message delivery, engagement, and performance.",
-      color: "red"
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Global Infrastructure",
-      description: "Distributed infrastructure ensuring high availability and low latency.",
-      color: "cyan"
-    }
-  ];
-
   return (
-    // <Lines>
-    <div className=" px-4 py-12 pt-16 dark:text-neutral-100 flex flex-col
-    bg-radial from-[#80C7C4] via-[#F0F2ED] to-[#086FCA] text-white">
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto text-center mb-20 flex flex-col items-center mt-[10rem]"
-      >
+    <div className="landing-page">
+      {/* ───── 1. Hero ───── */}
+      <HeroSection user={user} />
 
-        <motion.h1
-          className="text-5xl md:text-6xl font-[400] mb-6 leading-tight text-neutral-900  max-w-3xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          Sophisticated Messaging APIs for Developers
-        </motion.h1>
-        <motion.p
-          className="text-xl text-[#7A7A7D] mb-8 max-w-lg mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          Build powerful messaging applications with our elegant, reliable, and affordable API platform.
-        </motion.p>
+      {/* ───── Divider ───── */}
+      <hr className="landing-divider" />
+
+      {/* ───── 2. Feature Overview Grid ───── */}
+      <FeatureOverview />
+
+      {/* ───── 3. Feature Detail — Integrations ───── */}
+      <FeatureDetail
+        title="Integrate with the tools your team already uses"
+        description="Rajdoot connects seamlessly with Slack, Discord, WhatsApp, and more. Use our SDKs for Node.js, Python, React, and other popular frameworks to get up and running in minutes."
+        imageSrc={integrationsImg}
+        imageAlt="Rajdoot integrations with popular developer tools and messaging platforms"
+        linkTo="/docs"
+        linkText="View integrations"
+      />
+
+      {/* ───── 4. Feature Detail — Easy Setup ───── */}
+      <FeatureDetail
+        title="Set up your messaging in just a few clicks"
+        description="Create an account, grab your API key, and send your first message — all in under 5 minutes. Our intuitive dashboard makes managing your messaging workflows effortless."
+        imageSrc={easySetupImg}
+        imageAlt="Simple 3-step setup wizard for Rajdoot messaging API"
+        reverse
+        linkTo="/register"
+        linkText="Get started now"
+      />
+
+      {/* ───── 5. Feature Detail — Sandbox ───── */}
+      <FeatureDetail
+        title="Test in our sandbox before going live"
+        description="Our developer sandbox lets you test API calls, preview message deliveries, and debug responses — all without sending real messages. Ship with confidence."
+        imageSrc={sandboxImg}
+        imageAlt="Rajdoot API sandbox with code editor and JSON response preview"
+        linkTo="/docs"
+        linkText="Try the sandbox"
+      />
+
+      {/* ───── 6. Templates ───── */}
+      <TemplatesSection />
+
+      {/* ───── 7. From Zero to Live (Steps) ───── */}
+      <section className="landing-section">
         <motion.div
+          className="landing-section-header"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row justify-center"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          <Link to={user ? '/dashboard' : '/register'}>
-            <motion.button
-              whilehover={{ scale: 1.05 }}
-              whiletap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-neutral-900 text-white rounded-lg  hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
-            >
-              Get Started Free
-            </motion.button>
-          </Link>
-          <Link to="/docs">
-            <motion.button
-              whilehover={{ scale: 1.05 }}
-              whiletap={{ scale: 0.95 }}
-              className="px-4 py-3 text-neutral-900   flex flex-row gap-0.5  outline-1 outline-neutral-900 rounded-lg ml-0 sm:ml-4 mt-4 sm:mt-0  transition-colors  "
-            >
-              View Documentation
-              <ArrowRightIcon />
-            </motion.button>
-          </Link>
+          <h2>From zero to live messaging in 10 minutes</h2>
+          <p>Getting started with Rajdoot is ridiculously simple.</p>
         </motion.div>
-      </motion.div>
 
-      {/* Features Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto mb-20"
-      >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-neutral-900 ">Powerful Features</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Discover the comprehensive suite of features that make Rajdoot the perfect choice for your messaging needs.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-              color={feature.color}
-              delay={index * 0.1}
-            />
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Pricing Section */}
-      {user ? null : <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="max-w-6xl mb-20 mx-auto"
-      >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-neutral-900 ">Simple, Transparent Pricing</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Choose the perfect plan for your messaging needs. All plans include our core features with different usage limits and support levels.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-          {plans.filter(plan => plan.isActive).map((plan, index) => (
+        <div className="landing-steps">
+          {[
+            {
+              number: '1',
+              title: 'Create Account',
+              description: 'Sign up for free — no credit card required. Takes 30 seconds.',
+            },
+            {
+              number: '2',
+              title: 'Get Your API Key',
+              description: 'Generate a secure API key from your dashboard instantly.',
+            },
+            {
+              number: '3',
+              title: 'Send First Message',
+              description: 'Use our quick-start guide to send your first message in minutes.',
+            },
+            {
+              number: '4',
+              title: 'Go Live',
+              description: 'Switch from sandbox to production and start reaching your users.',
+            },
+          ].map((step, index) => (
             <motion.div
               key={index}
+              className="landing-step"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative ${plan.recommended ? 'md:-mt-4 md:mb-4' : ''}`}
+              transition={{ duration: 0.4, delay: index * 0.12 }}
             >
-              {plan.recommended && (
-                <div className="absolute z-10 -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
-                    Recommended
-                  </div>
-                </div>
-              )}
-              <FeatureCard
-                className={`h-full ${plan.recommended ? 'border-purple-500/50 shadow-lg shadow-purple-500/20' : ''}`}
-                title={
-                  <div className="flex items-center justify-between">
-                    <span>{plan.name}</span>
-                    {plan.recommended && <Star className="w-5 h-5 text-yellow-500" />}
-                  </div>
-                }
-                description={
-                  <div className="space-y-4">
-                    <div className="flex items-baseline">
-                      <span className="text-3xl font-bold text-neutral-900">{plan.price != 0 ? plan.price : null}</span>
-                      <span className="text-gray-500 ml-2">{plan.price != 0 ? plan.period : "Contact with Team"}</span>
-                    </div>
-                    <p className="text-gray-400">{plan.description}</p>
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
-                          <span className="text-neutral-700">{feature.text}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to={user ? '/plans' : '/login'}>
-                      <motion.button
-                        whilehover={{ scale: 1.02 }}
-                        whiletap={{ scale: 0.98 }}
-                        className={`w-full  py-3 rounded-lg font-semibold transition-colors ${plan.recommended
-                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/20'
-                            : 'bg-neutral-800 text-white hover:bg-neutral-900'
-                          }`}
-                      >
-                        {plan.name === "Basic" ? "Start Free" : plan.name === "Enterprise" ? "Contact Sales" : "Subscribe Now"}
-                      </motion.button>
-                    </Link>
-                  </div>
-                }
-              />
+              <div className="landing-step-number">{step.number}</div>
+              <h4>{step.title}</h4>
+              <p>{step.description}</p>
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </section>
 
-      }
+      {/* ───── Divider ───── */}
+      <hr className="landing-divider" />
 
-      {/* CTA Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto text-center"
-      >
-        <h2 className="text-3xl font-bold mb-6 text-neutral-800 ">Ready to Get Started?</h2>
-        <p className="text-neutral-700 mb-8 max-w-2xl mx-auto">
-          Join thousands of developers who are already using Rajdoot to build powerful messaging applications.
-        </p>
-        <Link to={user ? '/dashboard' : '/register'}>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
-          >
-            Start Building Now
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.button>
-        </Link>
-      </motion.div>
+      {/* ───── 8. Pricing ───── */}
+      {!user && <PricingSection />}
+
+      {/* ───── 9. Integrations Logo Cloud ───── */}
+      <section className="landing-section" style={{ paddingTop: user ? '80px' : '0' }}>
+        <motion.div
+          className="landing-section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Works with your existing infrastructure</h2>
+          <p>
+            Rajdoot integrates with the platforms and languages you already use.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="landing-logos-strip"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {[
+            { name: 'Node.js', icon: '⬢' },
+            { name: 'Python', icon: '🐍' },
+            { name: 'React', icon: '⚛️' },
+            { name: 'Java', icon: '☕' },
+            { name: 'Go', icon: '🔷' },
+            { name: 'Ruby', icon: '💎' },
+            { name: 'Slack', icon: '💬' },
+            { name: 'Discord', icon: '🎮' },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="landing-logo-item"
+              whileHover={{ scale: 1.15, opacity: 1 }}
+              title={item.name}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+              }}
+            >
+              <span style={{ fontSize: '2rem' }}>{item.icon}</span>
+              <span>{item.name}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* ───── 10. FAQ ───── */}
+      <FAQSection />
+
+      {/* ───── 11. Final CTA ───── */}
+      <CTABanner user={user} />
     </div>
-    // </Lines>
   );
 };
 
