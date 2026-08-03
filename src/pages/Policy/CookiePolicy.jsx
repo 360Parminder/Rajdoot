@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft01Icon } from 'hugeicons-react';
 import AnimatedBackground from '../../components/ui/AnimatedBackground';
 
 const CookiePolicy = () => {
@@ -22,7 +22,7 @@ const CookiePolicy = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6"
               >
-                <ArrowLeft className="w-5 h-5 mr-2" />
+                <ArrowLeft01Icon className="w-5 h-5 mr-2" />
                 Back to Home
               </motion.button>
             </Link>

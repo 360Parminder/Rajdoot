@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight01Icon } from 'hugeicons-react';
 
 const CTABanner = ({ user }) => {
   return (
@@ -45,7 +45,7 @@ const CTABanner = ({ user }) => {
               whileTap={{ scale: 0.97 }}
             >
               Get Started Free
-              <ArrowRight size={18} />
+              <ArrowRight01Icon size={18} />
             </motion.button>
           </Link>
           <Link to="/docs">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { Camera, Save, User, Mail, MessageSquare } from 'lucide-react';
+import { Camera01Icon, FloppyDiskIcon, UserIcon, Mail01Icon, Message01Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 
 const Account = ({handleTabClick}) => {
@@ -47,7 +47,7 @@ const Account = ({handleTabClick}) => {
         {/* Profile Section */}
         <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
           <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 flex items-center gap-2">
-            <User className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+            <UserIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
             Profile Information
           </h2>
 
@@ -58,12 +58,12 @@ const Account = ({handleTabClick}) => {
                   <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full bg-neutral-200 dark:bg-neutral-600 flex items-center justify-center">
-                    <User className="w-16 h-16 text-neutral-400 dark:text-neutral-500" />
+                    <UserIcon className="w-16 h-16 text-neutral-400 dark:text-neutral-500" />
                   </div>
                 )}
               </div>
               <label className="absolute bottom-0 right-0 bg-neutral-200 dark:bg-neutral-700 p-2 rounded-full border border-neutral-300 dark:border-neutral-600 cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors">
-                <Camera className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
+                <Camera01Icon className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
                 <input
                   type="file"
                   accept="image/*"
@@ -79,7 +79,7 @@ const Account = ({handleTabClick}) => {
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2 flex items-center gap-2">
-                <User className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+                <UserIcon className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                 Full Name
               </label>
               <input
@@ -92,7 +92,7 @@ const Account = ({handleTabClick}) => {
 
             <div>
               <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+                <Mail01Icon className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
                 Email Address
               </label>
               <input
@@ -109,7 +109,7 @@ const Account = ({handleTabClick}) => {
               onClick={handleSaveChanges}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all mt-4"
             >
-              <Save className="w-5 h-5" />
+              <FloppyDiskIcon className="w-5 h-5" />
               <span>Save Changes</span>
             </motion.button>
           </div>
@@ -120,7 +120,7 @@ const Account = ({handleTabClick}) => {
           {/* Message Limit */}
           <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+              <Message01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
               Message Usage
             </h2>
             

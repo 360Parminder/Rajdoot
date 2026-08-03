@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import { CheckmarkBadge02Icon, CancelCircleIcon, ArrowRight01Icon } from 'hugeicons-react';
 
 const PaymentStatus = () => {
   const location = useLocation();
@@ -30,9 +30,9 @@ const PaymentStatus = () => {
         <div className="bg-gray-900 rounded-xl p-8 border border-gray-800">
           <div className="flex flex-col items-center justify-center mb-8">
             {status === "success" ? (
-              <CheckCircle2 className="w-16 h-16 text-green-500 mb-4" />
+              <CheckmarkBadge02Icon className="w-16 h-16 text-green-500 mb-4" />
             ) : (
-              <XCircle className="w-16 h-16 text-red-500 mb-4" />
+              <CancelCircleIcon className="w-16 h-16 text-red-500 mb-4" />
             )}
             <h2 className="text-3xl font-bold mb-2">
               Payment {status === "success" ? "Successful" : "Failed"}
@@ -70,7 +70,7 @@ const PaymentStatus = () => {
               className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
             >
               Go to Dashboard
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight01Icon className="w-4 h-4" />
             </button>
           </div>
         </div>

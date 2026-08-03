@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, Zap, Star, Crown } from 'lucide-react';
+import { Tick01Icon, LightningIcon, StarIcon, CrownIcon } from 'hugeicons-react';
 
 const getIcon = (iconName) => {
     switch (iconName) {
         case 'zap':
-            return <Zap className="w-6 h-6" />;
+            return <LightningIcon className="w-6 h-6" />;
         case 'star':
-            return <Star className="w-6 h-6" />;
+            return <StarIcon className="w-6 h-6" />;
         case 'crown':
-            return <Crown className="w-6 h-6" />;
+            return <CrownIcon className="w-6 h-6" />;
         default:
             return null;
     }
@@ -68,7 +68,7 @@ const PlanCard = ({ plan, isCurrentPlan, onSelect }) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                        <Check className="w-5 h-5 mr-2 text-indigo-400" />
+                        <Tick01Icon className="w-5 h-5 mr-2 text-indigo-400" />
                         <span className="group-hover:text-dark-200 transition-colors">{feature.text}</span>
                     </motion.div>
                 ))}

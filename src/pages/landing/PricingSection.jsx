@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight } from 'lucide-react';
+import { Tick01Icon, ArrowRight01Icon } from 'hugeicons-react';
 import { useAuth } from '../../hooks/useAuth';
 import { usePlans } from '../../hooks/fetchPlans';
 
@@ -129,7 +129,7 @@ const PricingSection = () => {
             <ul className="landing-pricing-features">
               {plan.features.map((feature, fIndex) => (
                 <li key={fIndex} className="landing-pricing-feature">
-                  <Check size={16} style={{ color: plan.isDark ? '#E8825C' : '#16A34A' }} />
+                  <Tick01Icon size={16} style={{ color: plan.isDark ? '#E8825C' : '#16A34A' }} />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -147,7 +147,7 @@ const PricingSection = () => {
                   : plan.name === 'Enterprise'
                     ? 'Contact Sales'
                     : 'Subscribe Now'}
-                <ArrowRight size={16} />
+                <ArrowRight01Icon size={16} />
               </motion.button>
             </Link>
           </motion.div>

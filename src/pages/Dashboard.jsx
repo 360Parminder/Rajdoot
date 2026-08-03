@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import Documentation from './Documentation';
 import useMessageCard from '../hooks/useMessageCard';
-import { CreditCard, LogOut, User, X, Menu } from 'lucide-react';
+import { CreditCardIcon, Logout01Icon, UserIcon, Cancel01Icon, Menu01Icon } from 'hugeicons-react';
 
 // Import components
 import MessageCard from '../components/Card/MessageCard';
@@ -118,7 +118,7 @@ const Dashboard = () => {
                   {user?.image ? (
                     <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
-                    <User className="w-5 h-5 text-gray-400" />
+                    <UserIcon className="w-5 h-5 text-gray-400" />
                   )}
                 </div>
                 <div className="ml-4">
@@ -130,7 +130,7 @@ const Dashboard = () => {
                 onClick={() => setShowProfileCard(false)}
                 className="p-1 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
               >
-                <X className="w-4 h-4 text-red-400" />
+                <Cancel01Icon className="w-4 h-4 text-red-400" />
               </button>
             </div>
           </div>
@@ -152,21 +152,21 @@ const Dashboard = () => {
               onClick={() => [setActiveTab('account'), setShowProfileCard(false)]} 
               className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors dark:text-neutral-100"
             >
-              <User className="w-5 h-5 mr-3 text-blue-400" />
+              <UserIcon className="w-5 h-5 mr-3 text-blue-400" />
               <span>Account Settings</span>
             </button>
             <button
               onClick={() => [setActiveTab('plan-details'), setShowProfileCard(false)]}
               className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors text-neutral-300"
             >
-              <CreditCard className="w-5 h-5 mr-3 text-purple-400" />
+              <CreditCardIcon className="w-5 h-5 mr-3 text-purple-400" />
               <span>Billing & Plans</span>
             </button>
             <button
               onClick={logout}
               className="w-full flex items-center p-3 rounded-lg hover:bg-neutral-700 transition-colors text-red-400"
             >
-              <LogOut className="w-5 h-5 mr-3" />
+              <Logout01Icon className="w-5 h-5 mr-3" />
               <span>Logout</span>
             </button>
           </div>
@@ -188,7 +188,7 @@ const Dashboard = () => {
               onClick={toggleSidebar}
               className="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
             >
-              <Menu className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
+              <Menu01Icon className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
             </button>
             <h1 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 capitalize">
               {activeTab.replace('-', ' ')}
@@ -200,7 +200,7 @@ const Dashboard = () => {
               {user?.image ? (
                 <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
               ) : (
-                <User className="w-4 h-4 text-gray-400" />
+                <UserIcon className="w-4 h-4 text-gray-400" />
               )}
             </button>
           </div>

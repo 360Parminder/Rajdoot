@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ArrowLeft } from 'lucide-react';
+import { Mail01Icon, ArrowLeft01Icon } from 'hugeicons-react';
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const ForgetPassword = () => {
                     to="/login" 
                     className="inline-flex items-center text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mb-6 transition-colors"
                 >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    <ArrowLeft01Icon className="w-4 h-4 mr-2" />
                     Back to Login
                 </Link>
 
@@ -56,7 +56,7 @@ const ForgetPassword = () => {
                     <div>
                         <label className="block text-neutral-700 dark:text-neutral-300 mb-2">Email Address</label>
                         <div className="relative">
-                            <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
+                            <Mail01Icon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
                             <input
                                 type="email"
                                 value={email}

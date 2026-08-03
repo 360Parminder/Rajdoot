@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { Check, AlertCircle, Zap, Crown, Star } from 'lucide-react';
+import { Tick01Icon, AlertCircleIcon, LightningIcon, CrownIcon, StarIcon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 
 const PlanDetails = ({handleTabClick}) => {
@@ -15,11 +15,11 @@ const PlanDetails = ({handleTabClick}) => {
   const getPlanIcon = (planName) => {
     switch (planName?.toLowerCase()) {
       case 'pro':
-        return <Crown className="w-6 h-6 text-yellow-500" />;
+        return <CrownIcon className="w-6 h-6 text-yellow-500" />;
       case 'premium':
-        return <Zap className="w-6 h-6 text-purple-500" />;
+        return <LightningIcon className="w-6 h-6 text-purple-500" />;
       default:
-        return <Star className="w-6 h-6 text-blue-500" />;
+        return <StarIcon className="w-6 h-6 text-blue-500" />;
     }
   };
 
@@ -99,25 +99,25 @@ const PlanDetails = ({handleTabClick}) => {
           <div className="space-y-4">
             {currentPlan?.features?.map((feature, index) => (
               <div key={index} className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <Tick01Icon className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
                 <span className="text-neutral-700 dark:text-neutral-300">{feature.text}</span>
               </div>
             )) || (
               <>
                 <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <Tick01Icon className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-neutral-700 dark:text-neutral-300">Basic API Access</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <Tick01Icon className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-neutral-700 dark:text-neutral-300">Limited Message Quota</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <Tick01Icon className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-neutral-700 dark:text-neutral-300">Standard Support</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <Tick01Icon className="w-5 h-5 text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0" />
                   <span className="text-neutral-700 dark:text-neutral-300">Email Notifications</span>
                 </div>
               </>
@@ -132,7 +132,7 @@ const PlanDetails = ({handleTabClick}) => {
               className="mt-6 p-4 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg"
             >
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                <AlertCircleIcon className="w-5 h-5 text-red-500 dark:text-red-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <h3 className="text-red-700 dark:text-red-400 font-medium">Usage Limit Reached</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
@@ -157,7 +157,7 @@ const PlanDetails = ({handleTabClick}) => {
               className="mt-6 p-4 bg-blue-100 dark:bg-blue-900/20 border border-blue-300 dark:border-blue-700 rounded-lg"
             >
               <div className="flex items-start gap-3">
-                <Zap className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <LightningIcon className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <h3 className="text-blue-700 dark:text-blue-400 font-medium">Unlock More Features</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">

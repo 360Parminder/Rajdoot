@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import { motion } from 'framer-motion';
-import { CreditCard, CheckCircle2, XCircle, Clock } from 'lucide-react';
+import { CreditCardIcon, CheckmarkBadge02Icon, CancelCircleIcon, Clock01Icon } from 'hugeicons-react';
 
 
 
@@ -16,11 +16,11 @@ const BillingHistory = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle2 className="w-5 h-5 text-green-500" />;
+        return <CheckmarkBadge02Icon className="w-5 h-5 text-green-500" />;
       case 'failed':
-        return <XCircle className="w-5 h-5 text-red-500" />;
+        return <CancelCircleIcon className="w-5 h-5 text-red-500" />;
       case 'pending':
-        return <Clock className="w-5 h-5 text-yellow-500" />;
+        return <Clock01Icon className="w-5 h-5 text-yellow-500" />;
       default:
         return null;
     }

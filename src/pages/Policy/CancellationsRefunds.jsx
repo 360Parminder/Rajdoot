@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, CheckCircle, XCircle, CreditCard, AlertTriangle, Info, ExternalLink } from 'lucide-react';
+import { Clock01Icon, CheckmarkBadge01Icon, CancelCircleIcon, CreditCardIcon, Alert01Icon, InformationCircleIcon, LinkSquare01Icon } from 'hugeicons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../../components/Card/MessageCard';
@@ -100,7 +100,7 @@ const CancellationsRefunds = () => {
               transition={{ duration: 0.3 }}
             >
               <h2 className="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-blue-400" />
+                <CreditCardIcon className="w-5 h-5 text-blue-400" />
                 Request a Refund
               </h2>
               <p className="text-gray-400 mb-6">
@@ -110,7 +110,7 @@ const CancellationsRefunds = () => {
 
               <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 mb-6">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                  <Alert01Icon className="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-sm font-medium text-gray-200 mb-1">Refund Policy</h3>
                     <p className="text-sm text-gray-400">
@@ -123,7 +123,7 @@ const CancellationsRefunds = () => {
                       rel="noopener noreferrer"
                       className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 transition-colors"
                     >
-                      View complete refund policy <ExternalLink className="w-4 h-4" />
+                      View complete refund policy <LinkSquare01Icon className="w-4 h-4" />
                     </a>
                   </div>
                 </div>
@@ -152,12 +152,12 @@ const CancellationsRefunds = () => {
                 >
                   {isProcessing ? (
                     <>
-                      <Clock className="w-5 h-5 animate-pulse" />
+                      <Clock01Icon className="w-5 h-5 animate-pulse" />
                       <span>Processing...</span>
                     </>
                   ) : (
                     <>
-                      <CheckCircle className="w-5 h-5" />
+                      <CheckmarkBadge01Icon className="w-5 h-5" />
                       <span>Submit Refund Request</span>
                     </>
                   )}
@@ -171,7 +171,7 @@ const CancellationsRefunds = () => {
               transition={{ duration: 0.3 }}
             >
               <h2 className="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
-                <XCircle className="w-5 h-5 text-red-400" />
+                <CancelCircleIcon className="w-5 h-5 text-red-400" />
                 Cancel Subscription Plan
               </h2>
               <p className="text-gray-400 mb-6">
@@ -218,7 +218,7 @@ const CancellationsRefunds = () => {
 
               <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 mt-6">
                 <div className="flex items-start gap-3">
-                  <Info className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                  <InformationCircleIcon className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-sm font-medium text-gray-200 mb-1">Cancellation Policy</h3>
                     <p className="text-sm text-gray-400">

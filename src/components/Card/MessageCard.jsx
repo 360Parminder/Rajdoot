@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, X, AlertTriangle, XCircle, Info } from 'lucide-react';
+import { CheckmarkBadge01Icon, Cancel01Icon, Alert01Icon, CancelCircleIcon, InformationCircleIcon } from 'hugeicons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const messageStyles = {
@@ -7,28 +7,28 @@ const messageStyles = {
         bg: "bg-green-900/20 backdrop-blur-sm",
         border: "border-green-500/30",
         text: "text-green-600",
-        icon: <CheckCircle className="h-5 w-5 text-green-400" />,
+        icon: <CheckmarkBadge01Icon className="h-5 w-5 text-green-400" />,
         iconBg: "bg-green-900/50"
     },
     error: { 
         bg: "bg-red-900/20 backdrop-blur-sm",
         border: "border-red-500/30",
         text: "text-red-400",
-        icon: <XCircle className="h-5 w-5 text-red-400" />,
+        icon: <CancelCircleIcon className="h-5 w-5 text-red-400" />,
         iconBg: "bg-red-900/50"
     },
     warning: { 
         bg: "bg-yellow-900/20 backdrop-blur-sm",
         border: "border-yellow-500/30",
         text: "text-yellow-400",
-        icon: <AlertTriangle className="h-5 w-5 text-yellow-400" />,
+        icon: <Alert01Icon className="h-5 w-5 text-yellow-400" />,
         iconBg: "bg-yellow-900/50"
     },
     info: {
         bg: "bg-blue-900/20 backdrop-blur-sm",
         border: "border-blue-500/30",
         text: "text-blue-400",
-        icon: <Info className="h-5 w-5 text-blue-400" />,
+        icon: <InformationCircleIcon className="h-5 w-5 text-blue-400" />,
         iconBg: "bg-blue-900/50"
     }
 };
@@ -72,7 +72,7 @@ const MessageCard = ({ title, message, type = "success", onClose }) => {
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.1 }}
                     >
-                        <X className="h-4 w-4" />
+                        <Cancel01Icon className="h-4 w-4" />
                     </motion.button>
                 </div>
                 <motion.div 

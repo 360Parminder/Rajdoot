@@ -1,6 +1,6 @@
 // Sidebar.jsx
 import { useNavigate } from 'react-router-dom';
-import { House, ChevronsLeftRight, BadgePlus, SquareTerminal, LayoutDashboard, User, Settings, ChevronRight, X, CreditCard, LogOut } from 'lucide-react';
+import { Home01Icon, ArrowLeftRightIcon, BadgeIcon, TerminalIcon, DashboardSquare01Icon, UserIcon, Settings01Icon, ArrowRight01Icon, Cancel01Icon, CreditCardIcon, Logout01Icon } from 'hugeicons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import icon from '../../assets/image/logo_dark.png';
 import { useAuth } from '../../hooks/useAuth';
@@ -13,31 +13,31 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
     {
       id: 'home',
       label: 'Home',
-      icon: <House size={20} className="text-neutral-900 dark:text-neutral-100" />
+      icon: <Home01Icon size={20} className="text-neutral-900 dark:text-neutral-100" />
     },
     {
       id: 'api-section',
       label: 'API Management',
-      icon: <ChevronsLeftRight size={20} className="text-neutral-900 dark:text-neutral-100" />,
+      icon: <ArrowLeftRightIcon size={20} className="text-neutral-900 dark:text-neutral-100" />,
       subItems: [
-        { id: 'new-api', label: 'Create New API', icon: <BadgePlus size={20} className="text-neutral-900 dark:text-neutral-100" /> },
-        { id: 'message', label: 'Message', icon: <SquareTerminal size={20} className="text-neutral-900 dark:text-neutral-100" /> },
-        { id: 'OTPVerification', label: 'OTP Verification', icon: <SquareTerminal size={20} className="text-neutral-900 dark:text-neutral-100" /> },
-        { id: 'manage-api', label: 'Manage API', icon: <LayoutDashboard size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'new-api', label: 'Create New API', icon: <BadgeIcon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'message', label: 'Message', icon: <TerminalIcon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'OTPVerification', label: 'OTP Verification', icon: <TerminalIcon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'manage-api', label: 'Manage API', icon: <DashboardSquare01Icon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
       ]
     },
     {
       id: 'documentation',
       label: 'Documentation',
-      icon: <LayoutDashboard size={20} className="text-neutral-900 dark:text-neutral-100" />
+      icon: <DashboardSquare01Icon size={20} className="text-neutral-900 dark:text-neutral-100" />
     },
     {
       id: 'user-section',
       label: 'User Settings',
-      icon: <User size={20} className="text-neutral-900 dark:text-neutral-100" />,
+      icon: <UserIcon size={20} className="text-neutral-900 dark:text-neutral-100" />,
       subItems: [
-        { id: 'account', label: 'Account', icon: <User size={20} className="text-neutral-900 dark:text-neutral-100" /> },
-        { id: 'settings', label: 'Settings', icon: <Settings size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'account', label: 'Account', icon: <UserIcon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
+        { id: 'settings', label: 'Settings', icon: <Settings01Icon size={20} className="text-neutral-900 dark:text-neutral-100" /> },
       ]
     }
   ];
@@ -82,7 +82,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
                       {sidebarOpen && <span className="text-sm">{item.label}</span>}
                     </div>
                     {sidebarOpen && (
-                      <ChevronRight
+                      <ArrowRight01Icon
                         size={16}
                         className={`transition-transform ${openSubmenus[item.id] ? 'rotate-90' : ''}`}
                       />
@@ -141,7 +141,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
             {user?.image ? (
               <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
             ) : (
-              <User className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
+              <UserIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
             )}
           </div>
           {sidebarOpen && (

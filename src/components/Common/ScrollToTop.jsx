@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp01Icon } from 'hugeicons-react';
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +35,7 @@ const ScrollToTop = () => {
                     className="scroll-to-top"
                     aria-label="Scroll to top"
                 >
-                   <ArrowUp size={24} color="white" />
+                   <ArrowUp01Icon size={24} color="white" />
                 </button>
             )}
 

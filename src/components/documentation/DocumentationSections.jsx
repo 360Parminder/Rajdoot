@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight01Icon } from 'hugeicons-react';
 
 // Animation variants
 export const fadeInUp = {
@@ -125,7 +125,7 @@ Body:
             className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
           >
             Try It Out
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight01Icon className="ml-2 w-4 h-4" />
           </motion.button>
         </div>
 
@@ -199,7 +199,7 @@ export const DefaultSection = ({ title }) => (
             className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow inline-flex items-center"
           >
             Contact Support
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight01Icon className="ml-2 w-4 h-4" />
           </motion.button>
         </Link>
       </div>

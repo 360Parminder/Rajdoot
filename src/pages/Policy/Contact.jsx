@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Twitter, Instagram, Linkedin, ArrowRight, ExternalLink, CreditCard } from 'lucide-react';
+import { Mail01Icon, Location01Icon, TwitterIcon, InstagramIcon, Linkedin01Icon, ArrowRight01Icon, LinkSquare01Icon, CreditCardIcon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../../components/Card/MessageCard';
@@ -16,19 +16,19 @@ const Contact = () => {
   const socialLinks = [
     {
       name: 'Twitter',
-      icon: <Twitter className="w-6 h-6" />,
+      icon: <TwitterIcon className="w-6 h-6" />,
       url: 'https://x.com/360parminder',
       color: 'hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-400 dark:hover:border-blue-400'
     },
     {
       name: 'Instagram',
-      icon: <Instagram className="w-6 h-6" />,
+      icon: <InstagramIcon className="w-6 h-6" />,
       url: 'https://www.instagram.com/360_parminder/',
       color: 'hover:bg-pink-100 dark:hover:bg-pink-900/30 hover:border-pink-400 dark:hover:border-pink-400'
     },
     {
       name: 'LinkedIn',
-      icon: <Linkedin className="w-6 h-6" />,
+      icon: <Linkedin01Icon className="w-6 h-6" />,
       url: 'https://www.linkedin.com/in/parminder-singh-storm/',
       color: 'hover:bg-blue-100 dark:hover:bg-blue-800/30 hover:border-blue-500 dark:hover:border-blue-500'
     }
@@ -81,7 +81,7 @@ const Contact = () => {
             {/* Email */}
             <div className="flex items-start mb-8">
               <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <Mail className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+                <Mail01Icon className="w-6 h-6 text-blue-500 dark:text-blue-400" />
               </div>
               <div>
                 <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Email</h3>
@@ -99,7 +99,7 @@ const Contact = () => {
             {/* Location */}
             <div className="flex items-start mb-8">
               <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <MapPin className="w-6 h-6 text-purple-500 dark:text-purple-400" />
+                <Location01Icon className="w-6 h-6 text-purple-500 dark:text-purple-400" />
               </div>
               <div>
                 <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Location</h3>
@@ -113,7 +113,7 @@ const Contact = () => {
             {/* Payment Support */}
             <div className="flex items-start">
               <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <CreditCard className="w-6 h-6 text-green-500 dark:text-green-400" />
+                <CreditCardIcon className="w-6 h-6 text-green-500 dark:text-green-400" />
               </div>
               <div>
                 <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Payment Support</h3>
@@ -123,7 +123,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center gap-1"
                 >
-                  Contact Razorpay Support <ExternalLink className="w-4 h-4" />
+                  Contact Razorpay Support <LinkSquare01Icon className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -157,7 +157,7 @@ const Contact = () => {
                   <div className="flex-1">
                     <span className="text-neutral-800 dark:text-neutral-200 font-medium">{social.name}</span>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+                  <ArrowRight01Icon className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
                 </motion.a>
               ))}
             </div>
@@ -205,7 +205,7 @@ const Contact = () => {
             className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/20"
           >
             Send me an email
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <ArrowRight01Icon className="w-5 h-5 ml-2" />
           </motion.a>
         </motion.div>
       </motion.div>

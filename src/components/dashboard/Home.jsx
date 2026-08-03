@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Copy, Plus, Key, Terminal, Eye, EyeOff } from 'lucide-react';
+import { Copy01Icon, PlusSignIcon, Key01Icon, TerminalIcon, ViewIcon, ViewOffIcon } from 'hugeicons-react';
 import ApiContext from '../../context/apiContext';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +50,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           whileTap={{ scale: 0.97 }}
           className="flex items-center gap-2 bg-gradient-to-tl from-neutral-600 to-neutral-800 text-white px-4 py-3 shadow-2xl rounded-lg hover:shadow-lg transition-all"
         >
-          <Plus size={18} />
+          <PlusSignIcon size={18} />
           <span>Create New API</span>
         </motion.button>
       </div>
@@ -89,7 +89,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
                       className="absolute right-2 top-2 p-1.5 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
                       aria-label="Copy API ID"
                     >
-                      <Copy size={16} className={copied === `id-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
+                      <Copy01Icon size={16} className={copied === `id-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
                     </button>
                   </div>
                 </div>
@@ -110,9 +110,9 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
                         aria-label={showApiKeys[api.keyId] ? "Hide API Key" : "Show API Key"}
                       >
                         {showApiKeys[api.keyId] ? (
-                          <EyeOff size={16} className="text-neutral-500 dark:text-neutral-400" />
+                          <ViewOffIcon size={16} className="text-neutral-500 dark:text-neutral-400" />
                         ) : (
-                          <Eye size={16} className="text-neutral-500 dark:text-neutral-400" />
+                          <ViewIcon size={16} className="text-neutral-500 dark:text-neutral-400" />
                         )}
                       </button>
                       <button
@@ -121,7 +121,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
                         className="p-1.5 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
                         aria-label="Copy API Key"
                       >
-                        <Copy size={16} className={copied === `key-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
+                        <Copy01Icon size={16} className={copied === `key-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
                       </button>
                     </div>
                   </div>
@@ -133,14 +133,14 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
                   onClick={() => handleTabClick('message')}
                   className="flex-1 flex items-center justify-center gap-2 bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
-                  <Terminal size={16} />
+                  <TerminalIcon size={16} />
                   <span>Try API</span>
                 </button>
                 <button 
                   onClick={() => handleTabClick('manage-api')}
                   className="flex-1 flex items-center justify-center gap-2 bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
-                  <Key size={16} />
+                  <Key01Icon size={16} />
                   <span>Manage</span>
                 </button>
               </div>
@@ -154,7 +154,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           className="bg-neutral-100 dark:bg-neutral-800/50 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-xl p-12 text-center mt-8"
         >
           <div className="mx-auto max-w-md">
-            <Key size={48} className="mx-auto text-neutral-400 dark:text-neutral-500 mb-4" />
+            <Key01Icon size={48} className="mx-auto text-neutral-400 dark:text-neutral-500 mb-4" />
             <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-100 mb-2">No APIs yet</h3>
             <p className="text-neutral-600 dark:text-neutral-500 mb-6">
               Get started by creating your first API to integrate with your applications.
@@ -165,7 +165,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
               onClick={() => handleTabClick('new-api')}
               className="inline-flex items-center gap-2 bg-neutral-950 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
-              <Plus size={18} />
+              <PlusSignIcon size={18} />
               <span>Create New API</span>
             </motion.button>
           </div>
