@@ -9,8 +9,8 @@ import Features from "./pages/Features";
 import Docs from "./pages/Documentation";
 import AuthLayout from "./layouts/AuthLayout";
 import TermsService from "./pages/Policy/TermsService";
-import PrivacyPolicy from "./pages/Policy/PrivacyPolicy";
-import CookiePolicy from "./pages/Policy/CookiePolicy";
+// import PrivacyPolicy from "./pages/Policy/PrivacyPolicy";
+// import CookiePolicy from "./pages/Policy/CookiePolicy";
 import Contact from "./pages/Policy/Contact";
 import About from "./pages/Policy/About";
 import NotFound from "./pages/NotFound";
@@ -28,8 +28,8 @@ import PaymentStatus from "./pages/PaymentStatus";
 
 function App() {
   return (
-   <>
-       <ScrollToTop />
+    <>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoutes />}>
@@ -38,15 +38,15 @@ function App() {
           {/* <Route path="/pricing" element={<Pricing />} /> */}
           <Route path="/docs" element={<Docs />} />
           <Route path="/api-reference" element={<APIReference />} />
-          <Route path="/terms-of-service" element={<TermsService/>} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
-          <Route path="/cookie-policy" element={<CookiePolicy/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/plans" element={<Plans/>} />
-          <Route path="/payment" element={<PaymentComponent/>} />
-          <Route path="/documentation" element={<Documentation/>} />
-          <Route path="/CancellationsRefunds" element={<CancellationsRefunds/>} />
+          <Route path="/terms-of-service" element={<TermsService />} />
+          {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} /> */}
+          {/* <Route path="/cookie-policy" element={<CookiePolicy />} /> */}
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/plans" element={<Plans />} />
+          <Route path="/payment" element={<PaymentComponent />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/CancellationsRefunds" element={<CancellationsRefunds />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
@@ -61,18 +61,18 @@ function App() {
 
         {/* Protected Dashboard Routes with DashboardLayout */}
         <Route element={<PrivateRoutes />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/payment-status" element={<PaymentStatus />} />
-            {/* <Route path="/" */}
-            {/* <Route path="/api-keys" element={<APIKeys />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/payment-status" element={<PaymentStatus />} />
+          {/* <Route path="/" */}
+          {/* <Route path="/api-keys" element={<APIKeys />} /> */}
         </Route>
 
         {/* 404 Page */}
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-  
-   </>
-    
+
+    </>
+
   );
 }
 
