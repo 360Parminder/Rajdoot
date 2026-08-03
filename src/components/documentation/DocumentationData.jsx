@@ -1,15 +1,15 @@
 import React from 'react';
-import { BookIcon, CodeIcon, FileTextIcon, TerminalIcon, DatabaseIcon, Settings01Icon, BookOpen01Icon, FileCodeIcon, LightningIcon, Shield01Icon, GlobeIcon } from 'hugeicons-react';
+import { Book01Icon, CodeIcon, File01Icon, ComputerTerminal01Icon, DatabaseIcon, Settings01Icon, BookOpen01Icon, CodeFolderIcon, FlashIcon, Shield01Icon, GlobeIcon } from 'hugeicons-react';
 
 // Documentation sections data
 export const DOCUMENTATION_SECTIONS = [
-  { id: 'getting-started', title: 'Getting Started', icon: <BookIcon className="w-5 h-5" /> },
+  { id: 'getting-started', title: 'Getting Started', icon: <Book01Icon className="w-5 h-5" /> },
   { id: 'authentication', title: 'Authentication', icon: <Shield01Icon className="w-5 h-5" /> },
-  { id: 'messaging', title: 'Messaging', icon: <FileTextIcon className="w-5 h-5" /> },
-  { id: 'webhooks', title: 'Webhooks', icon: <LightningIcon className="w-5 h-5" /> },
+  { id: 'messaging', title: 'Messaging', icon: <File01Icon className="w-5 h-5" /> },
+  { id: 'webhooks', title: 'Webhooks', icon: <FlashIcon className="w-5 h-5" /> },
   { id: 'analytics', title: 'Analytics', icon: <DatabaseIcon className="w-5 h-5" /> },
   { id: 'sdk', title: 'SDKs & Libraries', icon: <CodeIcon className="w-5 h-5" /> },
-  { id: 'api-reference', title: 'API Reference', icon: <TerminalIcon className="w-5 h-5" /> },
+  { id: 'api-reference', title: 'API Reference', icon: <ComputerTerminal01Icon className="w-5 h-5" /> },
   { id: 'configuration', title: 'Configuration', icon: <Settings01Icon className="w-5 h-5" /> }
 ];
 
@@ -45,7 +45,7 @@ export const RESOURCES = [
     link: "/api-reference"
   },
   {
-    icon: <FileCodeIcon className="w-6 h-6" />,
+    icon: <CodeFolderIcon className="w-6 h-6" />,
     title: "Code Examples",
     description: "Ready-to-use code examples in multiple languages",
     color: "purple",

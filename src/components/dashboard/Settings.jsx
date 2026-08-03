@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield01Icon, Notification01Icon, Mail01Icon, SmartPhone01Icon, FloppyDiskIcon, Slider01Icon } from 'hugeicons-react';
+import { Shield01Icon, Notification01Icon, Mail01Icon, SmartPhone01Icon, FloppyDiskIcon, SlidersHorizontalIcon } from 'hugeicons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
@@ -157,7 +157,7 @@ const Settings = () => {
             <div className="flex items-center justify-between p-3 bg-neutral-100 dark:bg-neutral-700/30 rounded-lg border border-neutral-300 dark:border-neutral-600">
               <div>
                 <h3 className="font-medium text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                  <Mail01Icon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                  <SlidersHorizontalIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                   Email Notifications
                 </h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 ml-6">Receive important updates via email</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Message01Icon, LightningIcon, Shield01Icon, BarChartIcon, GlobeIcon, CodeIcon, Clock01Icon, UsersIcon, Notification01Icon, Settings01Icon, DatabaseIcon, LockIcon } from 'hugeicons-react';
+import { Message01Icon, FlashIcon, Shield01Icon, BarChartIcon, GlobeIcon, CodeIcon, Clock01Icon, UserGroupIcon, Notification01Icon, Settings01Icon, DatabaseIcon, LockIcon } from 'hugeicons-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ const Features = () => {
           color: "blue"
         },
         {
-          icon: <LightningIcon className="w-6 h-6" />,
+          icon: <FlashIcon className="w-6 h-6" />,
           title: "Real-time Delivery",
           description: "Lightning-fast message delivery with real-time status updates and receipts.",
           color: "yellow"
@@ -66,7 +66,7 @@ const Features = () => {
           color: "red"
         },
         {
-          icon: <UsersIcon className="w-6 h-6" />,
+          icon: <UserGroupIcon className="w-6 h-6" />,
           title: "User Management",
           description: "Comprehensive user management with role-based access control.",
           color: "orange"

@@ -1,4 +1,4 @@
-import { CodeIcon, EducationIcon, BulbIcon, Rocket01Icon, ArrowRight01Icon } from 'hugeicons-react';
+import { CodeIcon, GlobalEducationIcon, BulbIcon, Rocket01Icon, ArrowRight01Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const About = () => {
       description: "Creating tools and solutions that make developers' lives easier and more productive."
     },
     {
-      icon: <EducationIcon className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
+      icon: <GlobalEducationIcon className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
       title: "Continuous Learning",
       description: "As a BTech CSE student, I'm constantly learning and applying new technologies to solve real-world problems."
     },
