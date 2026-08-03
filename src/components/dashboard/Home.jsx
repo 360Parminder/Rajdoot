@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Copy01Icon, PlusSignIcon, Key01Icon, TerminalIcon, ViewIcon, ViewOffIcon } from 'hugeicons-react';
+import { Copy01Icon, PlusSignIcon, Key01Icon, ComputerTerminal01Icon, ViewIcon, ViewOffIcon } from 'hugeicons-react';
 import ApiContext from '../../context/apiContext';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -133,7 +133,7 @@ const Home = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
                   onClick={() => handleTabClick('message')}
                   className="flex-1 flex items-center justify-center gap-2 bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 py-2 px-4 rounded-lg text-sm transition-colors"
                 >
-                  <TerminalIcon size={16} />
+                  <ComputerTerminal01Icon size={16} />
                   <span>Try API</span>
                 </button>
                 <button 

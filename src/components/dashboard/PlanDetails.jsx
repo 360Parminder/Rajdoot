@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { Tick01Icon, AlertCircleIcon, LightningIcon, CrownIcon, StarIcon } from 'hugeicons-react';
+import { Tick01Icon, AlertCircleIcon, FlashIcon, CrownIcon, StarIcon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 
 const PlanDetails = ({handleTabClick}) => {
@@ -17,7 +17,7 @@ const PlanDetails = ({handleTabClick}) => {
       case 'pro':
         return <CrownIcon className="w-6 h-6 text-yellow-500" />;
       case 'premium':
-        return <LightningIcon className="w-6 h-6 text-purple-500" />;
+        return <FlashIcon className="w-6 h-6 text-purple-500" />;
       default:
         return <StarIcon className="w-6 h-6 text-blue-500" />;
     }
@@ -157,7 +157,7 @@ const PlanDetails = ({handleTabClick}) => {
               className="mt-6 p-4 bg-blue-100 dark:bg-blue-900/20 border border-blue-300 dark:border-blue-700 rounded-lg"
             >
               <div className="flex items-start gap-3">
-                <LightningIcon className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <FlashIcon className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <h3 className="text-blue-700 dark:text-blue-400 font-medium">Unlock More Features</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">

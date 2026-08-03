@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Copy01Icon, SendIcon, TerminalIcon, CodeIcon, SmartPhone01Icon, ArrowDown01Icon, Tick01Icon, Key01Icon } from 'hugeicons-react';
+import { Copy01Icon, SentIcon, ComputerTerminal01Icon, CodeIcon, SmartPhone01Icon, ArrowDown01Icon, Tick01Icon, Key01Icon } from 'hugeicons-react';
 import ApiContext from '../../context/apiContext';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
@@ -346,7 +346,7 @@ public class MessageSender {
               onClick={() => handleSendMessage()}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all"
             >
-              <SendIcon className="w-5 h-5" />
+              <SentIcon className="w-5 h-5" />
               <span>Send Test Message</span>
             </motion.button>
           </div>
@@ -356,7 +356,7 @@ public class MessageSender {
         <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <TerminalIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+              <ComputerTerminal01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
               Code Samples
             </h2>
             <div className="flex gap-1">

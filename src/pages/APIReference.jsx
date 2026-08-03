@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown01Icon, ArrowRight01Icon, CodeIcon, Copy01Icon, Tick01Icon, SearchIcon, Mail01Icon, Message01Icon, SmartPhone01Icon, HashIcon, ServerIcon } from 'hugeicons-react';
+import { ArrowDown01Icon, ArrowRight01Icon, CodeIcon, Copy01Icon, Tick01Icon, Search01Icon, Mail01Icon, Message01Icon, SmartPhone01Icon, HashtagIcon, CloudServerIcon } from 'hugeicons-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const APIReference = () => {
@@ -115,7 +115,7 @@ const APIReference = () => {
     {
       id: 'verifying-otps',
       title: 'Verifying OTPs',
-      icon: <HashIcon className="w-5 h-5" />,
+      icon: <HashtagIcon className="w-5 h-5" />,
       description: 'Verify OTPs sent to users',
       endpoints: [
         {
@@ -225,7 +225,7 @@ const APIReference = () => {
               
               <div className="relative mb-6">
                 <div className="absolute z-50 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <SearchIcon className="w-5 h-5 text-gray-500" />
+                  <Search01Icon className="w-5 h-5 text-gray-500" />
                 </div>
                 <input
                   type="text"
@@ -261,7 +261,7 @@ const APIReference = () => {
               <div className="mt-8 pt-6 border-t border-gray-800">
                 <h3 className="text-sm font-medium text-gray-400 mb-3">API Base URL</h3>
                 <div className="bg-gray-800 p-3 rounded-lg flex items-center">
-                  <ServerIcon className="w-4 h-4 text-gray-500 mr-2" />
+                  <CloudServerIcon className="w-4 h-4 text-gray-500 mr-2" />
                   <code className="text-sm text-gray-300 overflow-x-scroll ">https://api.rajdoot.wtf</code>
                 </div>
               </div>

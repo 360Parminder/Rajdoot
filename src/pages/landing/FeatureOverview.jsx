@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Message01Icon, LightningIcon, Shield01Icon, BarChartIcon, GlobeIcon, CodeIcon } from 'hugeicons-react';
+import { Message01Icon, CloudAngledZapIcon, Shield01Icon, BarChartIcon, GlobeIcon, CodeIcon } from 'hugeicons-react';
 
 const features = [
   {
@@ -10,7 +10,7 @@ const features = [
     iconColor: '#6366F1',
   },
   {
-    icon: <LightningIcon size={22} />,
+    icon: <CloudAngledZapIcon size={22} />,
     title: "Real-time Delivery",
     description: "Lightning-fast message delivery with real-time status updates, delivery receipts, and webhook notifications.",
     bgColor: '#FEF9C3',

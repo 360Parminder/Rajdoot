@@ -51,7 +51,7 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-neutral-800 py-3' 
+            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-neutral-200 py-3' 
             : 'bg-transparent py-6'
         }`}
       >
@@ -63,7 +63,7 @@ const Header = () => {
             className="flex items-center gap-1 cursor-pointer z-50"
           >
             <span className="text-[#E8825C] font-bold text-xl">/</span>
-            <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-widest">
+            <span className="text-xl font-bold text-neutral-900 tracking-widest">
               RAJDOOT
             </span>
           </Link>
@@ -74,7 +74,7 @@ const Header = () => {
               <Link
                 key={index}
                 to={item.path}
-                className="text-[15px] text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white font-medium transition-colors"
+                className="text-[15px] text-neutral-700 hover:text-neutral-900 font-medium transition-colors"
               >
                 {item.name}
               </Link>
@@ -86,11 +86,11 @@ const Header = () => {
             {user ? (
               <>
                 <Link to="/dashboard">
-                  <button className="px-5 py-2.5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-sm font-semibold rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
+                  <button className="px-5 py-2.5 bg-neutral-900 text-white text-sm font-semibold rounded-lg hover:bg-neutral-800 transition-colors">
                     Dashboard
                   </button>
                 </Link>
-                <div className="w-9 h-9 rounded-full overflow-hidden border border-neutral-200 dark:border-neutral-700">
+                <div className="w-9 h-9 rounded-full overflow-hidden border border-neutral-200">
                   <img className="w-full h-full object-cover" src={user?.image} alt="profile" />
                 </div>
               </>
@@ -98,12 +98,12 @@ const Header = () => {
               <>
                 <Link 
                   to="/login"
-                  className="text-[15px] text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white font-medium transition-colors"
+                  className="text-[15px] text-neutral-700 hover:text-neutral-900 font-medium transition-colors"
                 >
                   Log in
                 </Link>
                 <Link to="/register">
-                  <button className="px-5 py-2.5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-sm font-semibold rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-sm">
+                  <button className="px-5 py-2.5 bg-neutral-900 text-white text-sm font-semibold rounded-lg hover:bg-neutral-800 transition-colors shadow-sm">
                     Sign up
                   </button>
                 </Link>
@@ -118,17 +118,17 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 mb-1.5 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 mb-1.5 rounded-full transition-colors"
               animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 mb-1.5 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 mb-1.5 rounded-full transition-colors"
               animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 rounded-full transition-colors"
               animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />

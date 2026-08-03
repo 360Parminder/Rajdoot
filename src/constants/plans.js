@@ -1,4 +1,4 @@
-import { LightningIcon, StarIcon, CrownIcon } from 'hugeicons-react';
+import { FlashIcon, StarIcon, CrownIcon } from 'hugeicons-react';
 
 export const CURRENT_PLAN = {
     name: "Pro Plan",

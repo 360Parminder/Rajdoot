@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Tick01Icon, LightningIcon, StarIcon, CrownIcon } from 'hugeicons-react';
+import { Tick01Icon, FlashIcon, StarIcon, CrownIcon } from 'hugeicons-react';
 
 const getIcon = (iconName) => {
     switch (iconName) {
         case 'zap':
-            return <LightningIcon className="w-6 h-6" />;
+            return <FlashIcon className="w-6 h-6" />;
         case 'star':
             return <StarIcon className="w-6 h-6" />;
         case 'crown':
