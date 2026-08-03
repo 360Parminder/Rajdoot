@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, X } from 'lucide-react';
+import { CheckmarkBadge01Icon, Cancel01Icon } from 'hugeicons-react';
 
 const SuccessCard = ({ title, message }) => {
     const [isVisible, setIsVisible] = useState(true);
@@ -13,11 +13,11 @@ const SuccessCard = ({ title, message }) => {
                 onClick={() => setIsVisible(false)}
                 aria-label="Close"
             >
-                <X className="h-4 w-4" />
+                <Cancel01Icon className="h-4 w-4" />
             </button>
             <div className="flex items-center">
                 <div className="flex-shrink-0">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <CheckmarkBadge01Icon className="h-5 w-5 text-green-600" />
                 </div>
                 <div className="ml-3">
                     <h3 className="text-lg font-medium text-green-800">{title}</h3>

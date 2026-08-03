@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft01Icon } from 'hugeicons-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const NotFound = () => {
@@ -49,7 +49,7 @@ const NotFound = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
               >
-                <ArrowLeft className="w-5 h-5 mr-2" />
+                <ArrowLeft01Icon className="w-5 h-5 mr-2" />
                 Back to Home
               </motion.button>
             </Link>

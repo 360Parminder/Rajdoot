@@ -1,6 +1,6 @@
 // TopBar.jsx
 import React from 'react';
-import { PanelLeft, House, ChevronRight } from 'lucide-react';
+import { LayoutLeftIcon, Home01Icon, ArrowRight01Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -34,7 +34,7 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
           onClick={toggleSidebar}
           className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-gray-800 transition-colors text-neutral-900 dark:text-gray-300"
         >
-          <PanelLeft size={20} />
+          <LayoutLeftIcon size={20} />
         </button>
 
         <nav className="text-neutral-900 dark:text-gray-300 flex items-center">
@@ -42,13 +42,13 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
             onClick={() => handleTabClick('home')}
             className="flex items-center hover:text-neutral-950 dark:hover:text-gray-100 transition-colors"
           >
-            <House size={16} className="mr-2" />
+            <Home01Icon size={16} className="mr-2" />
             <span>Dashboard</span>
           </button>
           
           {activeTab !== 'home' && (
             <>
-              <ChevronRight size={14} className="mx-2 text-gray-500" />
+              <ArrowRight01Icon size={14} className="mx-2 text-gray-500" />
               <span className="text-neutral-900 dark:text-gray-100 font-medium">
                 {getActiveTabLabel()}
               </span>

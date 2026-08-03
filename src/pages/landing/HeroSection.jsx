@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight01Icon, SparklesIcon } from 'hugeicons-react';
 import heroDashboard from '../../assets/image/landing/hero_dashboard.png';
 
 const HeroSection = ({ user }) => {
@@ -12,7 +12,7 @@ const HeroSection = ({ user }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Sparkles size={14} />
+        <SparklesIcon size={14} />
         <span>Now with real-time delivery tracking</span>
       </motion.div>
 
@@ -47,7 +47,7 @@ const HeroSection = ({ user }) => {
             whileTap={{ scale: 0.97 }}
           >
             Get Started Free
-            <ArrowRight size={18} />
+            <ArrowRight01Icon size={18} />
           </motion.button>
         </Link>
         <Link to="/docs">

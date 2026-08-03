@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Check, ArrowLeft } from 'lucide-react';
+import { LockIcon, Tick01Icon, ArrowLeft01Icon } from 'hugeicons-react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
@@ -68,7 +68,7 @@ const ResetPassword = () => {
                     to="/login" 
                     className="inline-flex items-center text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mb-6 transition-colors"
                 >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    <ArrowLeft01Icon className="w-4 h-4 mr-2" />
                     Back to Login
                 </Link>
 
@@ -109,7 +109,7 @@ const ResetPassword = () => {
                     <div>
                         <label className="block text-neutral-700 dark:text-neutral-300 mb-2">New Password</label>
                         <div className="relative">
-                            <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
+                            <LockIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
                             <input
                                 type="password"
                                 value={password}
@@ -128,7 +128,7 @@ const ResetPassword = () => {
                     <div>
                         <label className="block text-neutral-700 dark:text-neutral-300 mb-2">Confirm Password</label>
                         <div className="relative">
-                            <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
+                            <LockIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-400 w-5 h-5" />
                             <input
                                 type="password"
                                 value={confirmPassword}
@@ -157,7 +157,7 @@ const ResetPassword = () => {
                                             ? 'bg-green-500 text-white' 
                                             : 'bg-neutral-300 dark:bg-neutral-600 text-transparent'
                                     }`}>
-                                        <Check className="w-3 h-3" />
+                                        <Tick01Icon className="w-3 h-3" />
                                     </div>
                                     <span className={`text-sm ${req.met ? 'text-green-600 dark:text-green-400' : 'text-neutral-600 dark:text-neutral-400'}`}>
                                         {req.text}

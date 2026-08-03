@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Loader2 } from 'lucide-react';
+import { PlusSignIcon, Loading02Icon } from 'hugeicons-react';
 import useApi from '../../hooks/useApi';
 import useMessageCard from '../../hooks/useMessageCard';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -106,12 +106,12 @@ const NewApi = () => {
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loading02Icon className="w-5 h-5 animate-spin" />
                   <span>Creating API...</span>
                 </>
               ) : (
                 <>
-                  <Plus className="w-5 h-5" />
+                  <PlusSignIcon className="w-5 h-5" />
                   <span>Create API</span>
                 </>
               )}

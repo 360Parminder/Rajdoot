@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Eye, EyeOff, Trash2, RefreshCw, Key, Copy, Loader2 } from 'lucide-react';
+import { ViewIcon, ViewOffIcon, Delete02Icon, RefreshIcon, Key01Icon, Copy01Icon, Loading02Icon } from 'hugeicons-react';
 import ApiContext from '../../context/apiContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
@@ -81,7 +81,7 @@ const ManageApi = () => {
                 <tr>
                   <td colSpan="5" className="py-8 text-center">
                     <div className="flex flex-col items-center justify-center text-neutral-500 dark:text-neutral-400">
-                      <Key size={48} className="mb-4 text-neutral-400 dark:text-neutral-500" />
+                      <Key01Icon size={48} className="mb-4 text-neutral-400 dark:text-neutral-500" />
                       <p className="text-lg">No API keys found</p>
                       <p className="text-sm mt-1">Create your first API key to get started</p>
                     </div>
@@ -105,7 +105,7 @@ const ManageApi = () => {
                           className="p-1.5 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
                           aria-label="Copy API ID"
                         >
-                          <Copy size={16} className={copied === `id-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
+                          <Copy01Icon size={16} className={copied === `id-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
                         </button>
                       </div>
                     </td>
@@ -124,9 +124,9 @@ const ManageApi = () => {
                             aria-label={showApiKey[api.keyId] ? "Hide API Key" : "Show API Key"}
                           >
                             {showApiKey[api.keyId] ? (
-                              <EyeOff size={16} className="text-neutral-500 dark:text-neutral-400" />
+                              <ViewOffIcon size={16} className="text-neutral-500 dark:text-neutral-400" />
                             ) : (
-                              <Eye size={16} className="text-neutral-500 dark:text-neutral-400" />
+                              <ViewIcon size={16} className="text-neutral-500 dark:text-neutral-400" />
                             )}
                           </button>
                           <button
@@ -134,7 +134,7 @@ const ManageApi = () => {
                             className="p-1.5 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
                             aria-label="Copy API Key"
                           >
-                            <Copy size={16} className={copied === `key-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
+                            <Copy01Icon size={16} className={copied === `key-${api.keyId}` ? 'text-green-600 dark:text-green-400' : 'text-neutral-500 dark:text-neutral-400'} />
                           </button>
                         </div>
                       </div>
@@ -150,7 +150,7 @@ const ManageApi = () => {
                           className="p-2 bg-blue-100 dark:bg-blue-900/20 hover:bg-blue-200 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg transition-colors"
                           onClick={() => {/* Add update functionality */}}
                         >
-                          <RefreshCw size={16} />
+                          <RefreshIcon size={16} />
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
@@ -160,9 +160,9 @@ const ManageApi = () => {
                           disabled={deletingId === api.keyId}
                         >
                           {deletingId === api.keyId ? (
-                            <Loader2 size={16} className="animate-spin" />
+                            <Loading02Icon size={16} className="animate-spin" />
                           ) : (
-                            <Trash2 size={16} />
+                            <Delete02Icon size={16} />
                           )}
                         </motion.button>
                       </div>

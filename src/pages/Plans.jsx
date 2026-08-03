@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star } from 'lucide-react';
+import { Tick01Icon, StarIcon } from 'hugeicons-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import PaymentComponent from '../components/PaymentComponent';
@@ -79,7 +79,7 @@ const Plans = () => {
                   title={
                     <div className="flex items-center justify-between">
                       <span>{plan.name}</span>
-                      {plan.recommended && <Star className="w-5 h-5 text-yellow-500" />}
+                      {plan.recommended && <StarIcon className="w-5 h-5 text-yellow-500" />}
                     </div>
                   }
                   description={
@@ -92,7 +92,7 @@ const Plans = () => {
                       <ul className="space-y-3">
                         {plan.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-start">
-                            <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
+                            <Tick01Icon className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
                             <span className="text-gray-300">{feature.text}</span>
                           </li>
                         ))}

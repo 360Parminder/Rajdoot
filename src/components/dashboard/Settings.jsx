@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Bell, Mail, Smartphone, Save, Sliders } from 'lucide-react';
+import { Shield01Icon, Notification01Icon, Mail01Icon, SmartPhone01Icon, FloppyDiskIcon, Slider01Icon } from 'hugeicons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
@@ -71,7 +71,7 @@ const Settings = () => {
           className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Shield className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+            <Shield01Icon className="w-6 h-6 text-blue-500 dark:text-blue-400" />
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">API Configuration</h2>
           </div>
 
@@ -149,7 +149,7 @@ const Settings = () => {
           className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Bell className="w-6 h-6 text-purple-500 dark:text-purple-400" />
+            <Notification01Icon className="w-6 h-6 text-purple-500 dark:text-purple-400" />
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Notification Preferences</h2>
           </div>
 
@@ -157,7 +157,7 @@ const Settings = () => {
             <div className="flex items-center justify-between p-3 bg-neutral-100 dark:bg-neutral-700/30 rounded-lg border border-neutral-300 dark:border-neutral-600">
               <div>
                 <h3 className="font-medium text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                  <Mail01Icon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                   Email Notifications
                 </h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 ml-6">Receive important updates via email</p>
@@ -176,7 +176,7 @@ const Settings = () => {
             <div className="flex items-center justify-between p-3 bg-neutral-100 dark:bg-neutral-700/30 rounded-lg border border-neutral-300 dark:border-neutral-600">
               <div>
                 <h3 className="font-medium text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                  <Smartphone className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                  <SmartPhone01Icon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                   SMS Notifications
                 </h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 ml-6">Get alerts via text message</p>
@@ -239,7 +239,7 @@ const Settings = () => {
           onClick={saveSettings}
           className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
         >
-          <Save className="w-5 h-5" />
+          <FloppyDiskIcon className="w-5 h-5" />
           <span>Save Settings</span>
         </motion.button>
       </motion.div>

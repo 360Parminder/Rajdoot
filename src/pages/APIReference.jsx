@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  ChevronDown, 
-  ChevronRight, 
-  Code, 
-  Copy, 
-  Check, 
-  Search,
-  Mail,
-  MessageSquare,
-  Smartphone,
-  Hash,
-  Server
-} from 'lucide-react';
+import { ArrowDown01Icon, ArrowRight01Icon, CodeIcon, Copy01Icon, Tick01Icon, SearchIcon, Mail01Icon, Message01Icon, SmartPhone01Icon, HashIcon, ServerIcon } from 'hugeicons-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 
 const APIReference = () => {
@@ -30,7 +18,7 @@ const APIReference = () => {
     {
       id: 'sending-messages',
       title: 'Sending Messages',
-      icon: <MessageSquare className="w-5 h-5" />,
+      icon: <Message01Icon className="w-5 h-5" />,
       description: 'Send SMS messages to recipients',
       endpoints: [
         {
@@ -79,7 +67,7 @@ const APIReference = () => {
     {
       id: 'sending-otps',
       title: 'Sending OTPs',
-      icon: <Smartphone className="w-5 h-5" />,
+      icon: <SmartPhone01Icon className="w-5 h-5" />,
       description: 'Generate and send OTPs to phone numbers',
       endpoints: [
         {
@@ -127,7 +115,7 @@ const APIReference = () => {
     {
       id: 'verifying-otps',
       title: 'Verifying OTPs',
-      icon: <Hash className="w-5 h-5" />,
+      icon: <HashIcon className="w-5 h-5" />,
       description: 'Verify OTPs sent to users',
       endpoints: [
         {
@@ -170,7 +158,7 @@ const APIReference = () => {
     {
       id: 'message-balance',
       title: 'Checking Message Balance',
-      icon: <Mail className="w-5 h-5" />,
+      icon: <Mail01Icon className="w-5 h-5" />,
       description: 'Check your remaining message balance',
       endpoints: [
         {
@@ -231,13 +219,13 @@ const APIReference = () => {
               className="w-full md:w-1/4 bg-gray-900 rounded-xl p-6 border border-gray-800 h-fit sticky top-6"
             >
               <h2 className="text-2xl font-bold mb-6 flex items-center">
-                <Code className="w-6 h-6 mr-2 text-purple-500" />
+                <CodeIcon className="w-6 h-6 mr-2 text-purple-500" />
                 Messaging API
               </h2>
               
               <div className="relative mb-6">
                 <div className="absolute z-50 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="w-5 h-5 text-gray-500" />
+                  <SearchIcon className="w-5 h-5 text-gray-500" />
                 </div>
                 <input
                   type="text"
@@ -262,9 +250,9 @@ const APIReference = () => {
                     {section.icon}
                     <span className="ml-3">{section.title}</span>
                     {activeSection === section.id ? (
-                      <ChevronDown className="w-4 h-4 ml-auto" />
+                      <ArrowDown01Icon className="w-4 h-4 ml-auto" />
                     ) : (
-                      <ChevronRight className="w-4 h-4 ml-auto" />
+                      <ArrowRight01Icon className="w-4 h-4 ml-auto" />
                     )}
                   </button>
                 ))}
@@ -273,7 +261,7 @@ const APIReference = () => {
               <div className="mt-8 pt-6 border-t border-gray-800">
                 <h3 className="text-sm font-medium text-gray-400 mb-3">API Base URL</h3>
                 <div className="bg-gray-800 p-3 rounded-lg flex items-center">
-                  <Server className="w-4 h-4 text-gray-500 mr-2" />
+                  <ServerIcon className="w-4 h-4 text-gray-500 mr-2" />
                   <code className="text-sm text-gray-300 overflow-x-scroll ">https://api.rajdoot.wtf</code>
                 </div>
               </div>
@@ -375,9 +363,9 @@ const APIReference = () => {
                                   className="p-1 rounded-md hover:bg-gray-700 transition-colors"
                                 >
                                   {copiedCode === `${section.id}-${index}` ? (
-                                    <Check className="w-4 h-4 text-green-500" />
+                                    <Tick01Icon className="w-4 h-4 text-green-500" />
                                   ) : (
-                                    <Copy className="w-4 h-4 text-gray-400" />
+                                    <Copy01Icon className="w-4 h-4 text-gray-400" />
                                   )}
                                 </button>
                               </div>

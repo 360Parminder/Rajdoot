@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus } from 'lucide-react';
+import { PlusSignIcon } from 'hugeicons-react';
 
 const faqData = [
   {
@@ -76,7 +76,7 @@ const FAQSection = () => {
               aria-expanded={openIndex === index}
             >
               <span>{faq.question}</span>
-              <Plus
+              <PlusSignIcon
                 size={20}
                 className={`landing-faq-icon ${openIndex === index ? 'open' : ''}`}
               />

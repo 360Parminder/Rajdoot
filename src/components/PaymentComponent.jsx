@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, Loader2 } from "lucide-react";
+import { Tick01Icon, Loading02Icon } from 'hugeicons-react';
 import { useLocation } from "react-router-dom";
 import { usePayment } from "../hooks/usePayment";
 
@@ -68,7 +68,7 @@ const PaymentComponent = ({ onSuccess, onError }) => {
                 className="flex items-center"
               >
                 <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-4">
-                  <Check className="w-4 h-4 text-green-500" />
+                  <Tick01Icon className="w-4 h-4 text-green-500" />
                 </div>
                 <span className="text-gray-300">{feature.text}</span>
               </motion.div>
@@ -90,7 +90,7 @@ const PaymentComponent = ({ onSuccess, onError }) => {
         >
           {loading ? (
             <div className="flex items-center justify-center">
-              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              <Loading02Icon className="w-5 h-5 mr-2 animate-spin" />
               Processing...
             </div>
           ) : (

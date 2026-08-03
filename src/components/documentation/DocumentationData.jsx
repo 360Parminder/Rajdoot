@@ -1,28 +1,16 @@
 import React from 'react';
-import { 
-  Book, 
-  Code, 
-  FileText, 
-  Terminal, 
-  Database, 
-  Settings,
-  BookOpen,
-  FileCode,
-  Zap,
-  Shield,
-  Globe
-} from 'lucide-react';
+import { BookIcon, CodeIcon, FileTextIcon, TerminalIcon, DatabaseIcon, Settings01Icon, BookOpen01Icon, FileCodeIcon, LightningIcon, Shield01Icon, GlobeIcon } from 'hugeicons-react';
 
 // Documentation sections data
 export const DOCUMENTATION_SECTIONS = [
-  { id: 'getting-started', title: 'Getting Started', icon: <Book className="w-5 h-5" /> },
-  { id: 'authentication', title: 'Authentication', icon: <Shield className="w-5 h-5" /> },
-  { id: 'messaging', title: 'Messaging', icon: <FileText className="w-5 h-5" /> },
-  { id: 'webhooks', title: 'Webhooks', icon: <Zap className="w-5 h-5" /> },
-  { id: 'analytics', title: 'Analytics', icon: <Database className="w-5 h-5" /> },
-  { id: 'sdk', title: 'SDKs & Libraries', icon: <Code className="w-5 h-5" /> },
-  { id: 'api-reference', title: 'API Reference', icon: <Terminal className="w-5 h-5" /> },
-  { id: 'configuration', title: 'Configuration', icon: <Settings className="w-5 h-5" /> }
+  { id: 'getting-started', title: 'Getting Started', icon: <BookIcon className="w-5 h-5" /> },
+  { id: 'authentication', title: 'Authentication', icon: <Shield01Icon className="w-5 h-5" /> },
+  { id: 'messaging', title: 'Messaging', icon: <FileTextIcon className="w-5 h-5" /> },
+  { id: 'webhooks', title: 'Webhooks', icon: <LightningIcon className="w-5 h-5" /> },
+  { id: 'analytics', title: 'Analytics', icon: <DatabaseIcon className="w-5 h-5" /> },
+  { id: 'sdk', title: 'SDKs & Libraries', icon: <CodeIcon className="w-5 h-5" /> },
+  { id: 'api-reference', title: 'API Reference', icon: <TerminalIcon className="w-5 h-5" /> },
+  { id: 'configuration', title: 'Configuration', icon: <Settings01Icon className="w-5 h-5" /> }
 ];
 
 // Quick start guide data
@@ -50,21 +38,21 @@ export const QUICK_START_GUIDE = [
 // Resources data
 export const RESOURCES = [
   {
-    icon: <BookOpen className="w-6 h-6" />,
+    icon: <BookOpen01Icon className="w-6 h-6" />,
     title: "API Reference",
     description: "Comprehensive documentation for all API endpoints",
     color: "blue",
     link: "/api-reference"
   },
   {
-    icon: <FileCode className="w-6 h-6" />,
+    icon: <FileCodeIcon className="w-6 h-6" />,
     title: "Code Examples",
     description: "Ready-to-use code examples in multiple languages",
     color: "purple",
     link: "/docs/examples"
   },
   {
-    icon: <Globe className="w-6 h-6" />,
+    icon: <GlobeIcon className="w-6 h-6" />,
     title: "SDKs & Libraries",
     description: "Official SDKs for popular programming languages",
     color: "green",

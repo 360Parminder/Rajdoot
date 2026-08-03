@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Twitter, Facebook, Instagram, Github } from 'lucide-react';
+import { TwitterIcon, Facebook01Icon, InstagramIcon, GithubIcon } from 'hugeicons-react';
 import { motion } from 'motion/react';
 
 const Footer = () => {
@@ -48,16 +48,16 @@ const Footer = () => {
         {/* Social Icons */}
         <div className="flex gap-8 mb-10">
           <a href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Twitter">
-            <Twitter size={20} strokeWidth={2} />
+            <TwitterIcon size={20} strokeWidth={2} />
           </a>
           <a href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Facebook">
-            <Facebook size={20} strokeWidth={2} />
+            <Facebook01Icon size={20} strokeWidth={2} />
           </a>
           <a href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="Instagram">
-            <Instagram size={20} strokeWidth={2} />
+            <InstagramIcon size={20} strokeWidth={2} />
           </a>
           <a href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors" aria-label="GitHub">
-            <Github size={20} strokeWidth={2} />
+            <GithubIcon size={20} strokeWidth={2} />
           </a>
         </div>
 

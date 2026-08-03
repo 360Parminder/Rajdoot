@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Copy, Send, Terminal, Code, Smartphone, ChevronDown, Check, Key } from 'lucide-react';
+import { Copy01Icon, SendIcon, TerminalIcon, CodeIcon, SmartPhone01Icon, ArrowDown01Icon, Tick01Icon, Key01Icon } from 'hugeicons-react';
 import ApiContext from '../../context/apiContext';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
@@ -229,7 +229,7 @@ public class MessageSender {
       {/* API Key Selection */}
       <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 mb-6">
         <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
-          <Key className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+          <Key01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
           Select API Key
         </h2>
         <select
@@ -259,7 +259,7 @@ public class MessageSender {
               onClick={() => setActiveTab('code')}
             >
               <div className="flex items-center justify-center gap-2">
-                <Code className="w-5 h-5" />
+                <CodeIcon className="w-5 h-5" />
                 <span>Code Testing</span>
               </div>
             </motion.button>
@@ -270,7 +270,7 @@ public class MessageSender {
               onClick={handleNoCodeTest}
             >
               <div className="flex items-center justify-center gap-2">
-                <Smartphone className="w-5 h-5" />
+                <SmartPhone01Icon className="w-5 h-5" />
                 <span>No-Code Test</span>
               </div>
             </motion.button>
@@ -289,7 +289,7 @@ public class MessageSender {
                   >
                     <span>{selectedCountry.flag}</span>
                     <span>{selectedCountry.code}</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                    <ArrowDown01Icon className={`w-4 h-4 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>
                     {isCountryDropdownOpen && (
@@ -310,7 +310,7 @@ public class MessageSender {
                             <span className="flex-1">{country.country}</span>
                             <span>{country.code}</span>
                             {selectedCountry.code === country.code && (
-                              <Check className="w-4 h-4" />
+                              <Tick01Icon className="w-4 h-4" />
                             )}
                           </button>
                         ))}
@@ -346,7 +346,7 @@ public class MessageSender {
               onClick={() => handleSendMessage()}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all"
             >
-              <Send className="w-5 h-5" />
+              <SendIcon className="w-5 h-5" />
               <span>Send Test Message</span>
             </motion.button>
           </div>
@@ -356,7 +356,7 @@ public class MessageSender {
         <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+              <TerminalIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
               Code Samples
             </h2>
             <div className="flex gap-1">
@@ -395,7 +395,7 @@ public class MessageSender {
                 className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300 p-1 rounded"
                 aria-label="Copy code"
               >
-                <Copy className="w-4 h-4" />
+                <Copy01Icon className="w-4 h-4" />
               </motion.button>
             </div>
             <pre className="p-4 overflow-auto max-h-80 text-neutral-900 dark:text-neutral-100 font-mono text-sm bg-white dark:bg-neutral-800">

@@ -1,4 +1,4 @@
-import { Code2, GraduationCap, Lightbulb, Rocket, ArrowRight } from 'lucide-react';
+import { CodeIcon, EducationIcon, BulbIcon, Rocket01Icon, ArrowRight01Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -20,22 +20,22 @@ const About = () => {
 
   const features = [
     {
-      icon: <Code2 className="w-8 h-8 text-blue-500 dark:text-blue-400" />,
+      icon: <CodeIcon className="w-8 h-8 text-blue-500 dark:text-blue-400" />,
       title: "Developer-First Approach",
       description: "Creating tools and solutions that make developers' lives easier and more productive."
     },
     {
-      icon: <GraduationCap className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
+      icon: <EducationIcon className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
       title: "Continuous Learning",
       description: "As a BTech CSE student, I'm constantly learning and applying new technologies to solve real-world problems."
     },
     {
-      icon: <Lightbulb className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />,
+      icon: <BulbIcon className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />,
       title: "Innovation Focus",
       description: "Developing innovative solutions that address common challenges in software development."
     },
     {
-      icon: <Rocket className="w-8 h-8 text-pink-500 dark:text-pink-400" />,
+      icon: <Rocket01Icon className="w-8 h-8 text-pink-500 dark:text-pink-400" />,
       title: "Future-Ready",
       description: "Building scalable and maintainable solutions that can grow with the evolving tech landscape."
     }
@@ -172,7 +172,7 @@ const About = () => {
               className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/20"
             >
               Get in Touch
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight01Icon className="w-5 h-5 ml-2" />
             </motion.button>
           </Link>
         </motion.div>

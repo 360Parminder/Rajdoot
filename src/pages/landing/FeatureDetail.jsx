@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight01Icon } from 'hugeicons-react';
 
 const FeatureDetail = ({
   title,
@@ -33,7 +33,7 @@ const FeatureDetail = ({
                 whileTap={{ scale: 0.97 }}
               >
                 {linkText || 'Learn more'}
-                <ArrowRight size={16} />
+                <ArrowRight01Icon size={16} />
               </motion.button>
             </Link>
           )}

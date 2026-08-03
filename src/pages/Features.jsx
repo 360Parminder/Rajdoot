@@ -1,19 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MessageSquare, 
-  Zap, 
-  Shield, 
-  BarChart, 
-  Globe, 
-  Code,
-  Clock,
-  Users,
-  Bell,
-  Settings,
-  Database,
-  Lock
-} from 'lucide-react';
+import { Message01Icon, LightningIcon, Shield01Icon, BarChartIcon, GlobeIcon, CodeIcon, Clock01Icon, UsersIcon, Notification01Icon, Settings01Icon, DatabaseIcon, LockIcon } from 'hugeicons-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { useNavigate } from 'react-router-dom';
@@ -27,19 +14,19 @@ const Features = () => {
       category: "Core Features",
       items: [
         {
-          icon: <MessageSquare className="w-6 h-6" />,
+          icon: <Message01Icon className="w-6 h-6" />,
           title: "Advanced Messaging",
           description: "Send and receive messages with support for text, media, and rich content formats.",
           color: "blue"
         },
         {
-          icon: <Zap className="w-6 h-6" />,
+          icon: <LightningIcon className="w-6 h-6" />,
           title: "Real-time Delivery",
           description: "Lightning-fast message delivery with real-time status updates and receipts.",
           color: "yellow"
         },
         {
-          icon: <Shield className="w-6 h-6" />,
+          icon: <Shield01Icon className="w-6 h-6" />,
           title: "End-to-End Encryption",
           description: "Enterprise-grade security with end-to-end encryption for all communications.",
           color: "green"
@@ -50,19 +37,19 @@ const Features = () => {
       category: "Developer Tools",
       items: [
         {
-          icon: <Code className="w-6 h-6" />,
+          icon: <CodeIcon className="w-6 h-6" />,
           title: "RESTful APIs",
           description: "Comprehensive REST APIs with detailed documentation and SDK support.",
           color: "purple"
         },
         {
-          icon: <Database className="w-6 h-6" />,
+          icon: <DatabaseIcon className="w-6 h-6" />,
           title: "Webhooks",
           description: "Real-time event notifications through configurable webhooks.",
           color: "pink"
         },
         {
-          icon: <Settings className="w-6 h-6" />,
+          icon: <Settings01Icon className="w-6 h-6" />,
           title: "Custom Integrations",
           description: "Seamlessly integrate with your existing tools and workflows.",
           color: "indigo"
@@ -73,19 +60,19 @@ const Features = () => {
       category: "Analytics & Insights",
       items: [
         {
-          icon: <BarChart className="w-6 h-6" />,
+          icon: <BarChartIcon className="w-6 h-6" />,
           title: "Message Analytics",
           description: "Detailed insights into message delivery, engagement, and performance.",
           color: "red"
         },
         {
-          icon: <Users className="w-6 h-6" />,
+          icon: <UsersIcon className="w-6 h-6" />,
           title: "User Management",
           description: "Comprehensive user management with role-based access control.",
           color: "orange"
         },
         {
-          icon: <Bell className="w-6 h-6" />,
+          icon: <Notification01Icon className="w-6 h-6" />,
           title: "Smart Notifications",
           description: "Intelligent notification system with customizable delivery rules.",
           color: "teal"
@@ -96,19 +83,19 @@ const Features = () => {
       category: "Enterprise Features",
       items: [
         {
-          icon: <Globe className="w-6 h-6" />,
+          icon: <GlobeIcon className="w-6 h-6" />,
           title: "Global Infrastructure",
           description: "Distributed infrastructure ensuring high availability and low latency.",
           color: "cyan"
         },
         {
-          icon: <Lock className="w-6 h-6" />,
+          icon: <LockIcon className="w-6 h-6" />,
           title: "Compliance",
           description: "Built-in compliance features for GDPR, HIPAA, and other regulations.",
           color: "gray"
         },
         {
-          icon: <Clock className="w-6 h-6" />,
+          icon: <Clock01Icon className="w-6 h-6" />,
           title: "24/7 Support",
           description: "Round-the-clock technical support and dedicated account management.",
           color: "blue"
