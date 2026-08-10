@@ -1,10 +1,12 @@
 // Sidebar.jsx
 import { useNavigate } from 'react-router-dom';
-import { Home01Icon, ArrowLeftRightIcon, CheckmarkBadge01Icon, ComputerTerminal01Icon, DashboardSquare01Icon, UserIcon, Settings01Icon, ArrowRight01Icon, Cancel01Icon, CreditCardIcon, Logout01Icon } from 'hugeicons-react';
+import { Home01Icon, ArrowLeftRightIcon, CheckmarkBadge01Icon, ComputerTerminal01Icon, DashboardSquare01Icon, UserIcon, Settings01Icon, ArrowRight01Icon, Cancel01Icon, CreditCardIcon, Logout01Icon, Key01Icon } from 'hugeicons-react';
+import { BarChart3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import icon from '../../assets/image/icon.png';
 import { useAuth } from '../../hooks/useAuth';
 import { cn } from "../../lib/utils";
+import ThemeToggle from '../Common/ThemeToggle';
 
 const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, openSubmenus, showProfileCard, setOpenSubmenus }) => {
   const navigate = useNavigate();
@@ -21,6 +23,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
       label: 'API Management',
       icon: <ArrowLeftRightIcon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} />,
       subItems: [
+        { id: 'api-keys', label: 'API Keys', icon: <Key01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
+        { id: 'api-analytics', label: 'API Analytics', icon: <BarChart3 size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'new-api', label: 'Create New API', icon: <CheckmarkBadge01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'message', label: 'Message', icon: <ComputerTerminal01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'OTPVerification', label: 'OTP Verification', icon: <ComputerTerminal01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
@@ -51,7 +55,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
     <motion.div
       initial={{ width: sidebarOpen ? 256 : 56 }}
       animate={{ width: sidebarOpen ? 256 : 56 }}
-      className={`h-[95%] my-2 ml-2 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 backdrop-blur-sm border rounded-2xl flex flex-col py-3 relative transition-all duration-300`}
+      className={`h-[95%] my-2 ml-2 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 border-neutral-300 dark:border-neutral-700 backdrop-blur-sm border rounded-2xl flex flex-col py-3 relative transition-all duration-300`}
     >
       <div className={`flex items-center justify-between mx-2 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors`}>
         <button onClick={() => navigate('/')} className={cn('flex', 'items-center')}>
@@ -102,8 +106,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
                             onClick={() => handleTabClick(subItem.id)}
                             className={`flex items-center w-full px-4 py-2 gap-3 text-sm rounded-lg transition-colors
                               ${activeTab === subItem.id
-                                ? 'bg-neutral-100 dark:bg-neutral-700 text-blue-600 dark:text-blue-400'
-                                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                                ? 'bg-orange-500/15 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 font-medium border-l-2 border-orange-500'
+                                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-orange-500 dark:hover:text-orange-400'
                               }`}
                           >
                             {subItem.icon}
@@ -119,8 +123,8 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
                   onClick={() => handleTabClick(item.id)}
                   className={`flex items-center w-full ${sidebarOpen ? "px-4 py-3" : "p-2 mx-3"} gap-3 rounded-lg transition-colors
                     ${activeTab === item.id
-                      ? 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
-                      : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100'
+                      ? 'bg-orange-500/15 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 font-medium border-l-2 border-orange-500'
+                      : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-orange-500 dark:hover:text-orange-400'
                     }`}
                 >
                   {item.icon}
@@ -132,7 +136,18 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
         </ul>
       </nav>
 
-      <div className={cn('px-3', 'py-4')}>
+      <div className={cn('px-3', 'py-3', 'space-y-2', 'border-t', 'border-neutral-200', 'dark:border-neutral-800')}>
+        <div className="flex items-center justify-between px-1">
+          {sidebarOpen ? (
+            <div className="flex items-center justify-between w-full py-1">
+              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Theme</span>
+              <ThemeToggle showLabel={true} />
+            </div>
+          ) : (
+            <ThemeToggle className="w-8 h-8 p-1 justify-center mx-auto" size={16} />
+          )}
+        </div>
+
         <button
           onClick={() => setShowProfileCard(true)}
           className={`flex items-center ${sidebarOpen ? 'w-full p-2' : 'p-2'} rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors`}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import ThemeToggle from '../Common/ThemeToggle';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-neutral-200 py-3' 
+            ? 'bg-slate-100/90 dark:bg-neutral-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-neutral-800 py-3' 
             : 'bg-transparent py-6'
         }`}
       >
@@ -81,8 +82,9 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Desktop Auth Section (Right) */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop Auth & Theme Section (Right) */}
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             {user ? (
               <>
                 <Link to="/dashboard">
@@ -159,6 +161,9 @@ const Header = () => {
             </nav>
 
             <div className="mt-auto mb-12 flex flex-col gap-4">
+              <div className="flex justify-center mb-2">
+                <ThemeToggle showLabel={true} className="w-full py-2.5 justify-center" />
+              </div>
               {user ? (
                 <>
                   <div className="flex items-center justify-center gap-3 mb-4">

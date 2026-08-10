@@ -14,7 +14,7 @@ const ApiExplorer = () => {
           <option>POST /orders</option>
         </select>
       </div>
-      <button className="bg-[#18181a] hover:bg-[#7170709a] text-white px-4 py-2 rounded">
+      <button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-5 py-2.5 rounded-lg font-medium shadow-md shadow-orange-500/20 transition-all">
         Send Request
       </button>
     </div>

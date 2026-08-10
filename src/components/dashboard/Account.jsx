@@ -29,7 +29,7 @@ const Account = ({handleTabClick}) => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
+    <div className="p-6 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,9 +45,9 @@ const Account = ({handleTabClick}) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Section */}
-        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+        <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
           <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 flex items-center gap-2">
-            <UserIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+            <UserIcon className="w-5 h-5 text-orange-500 dark:text-orange-400" />
             Profile Information
           </h2>
 
@@ -86,7 +86,7 @@ const Account = ({handleTabClick}) => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/30 transition-all"
               />
             </div>
 
@@ -99,7 +99,7 @@ const Account = ({handleTabClick}) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/30 transition-all"
               />
             </div>
 
@@ -107,7 +107,7 @@ const Account = ({handleTabClick}) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleSaveChanges}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all mt-4"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-3 px-6 rounded-lg shadow-md shadow-orange-500/20 transition-all mt-4 font-medium"
             >
               <FloppyDiskIcon className="w-5 h-5" />
               <span>Save Changes</span>
@@ -118,9 +118,9 @@ const Account = ({handleTabClick}) => {
         {/* Usage Stats Section */}
         <div className="lg:col-span-2 space-y-6">
           {/* Message Limit */}
-          <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+          <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
-              <Message01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+              <Message01Icon className="w-5 h-5 text-orange-500 dark:text-orange-400" />
               Message Usage
             </h2>
             
@@ -131,7 +131,7 @@ const Account = ({handleTabClick}) => {
               </div>
               <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2.5">
                 <div
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full"
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 h-2.5 rounded-full"
                   style={{ width: `${(messageLimit.used / messageLimit.total) * 100}%` }}
                 ></div>
               </div>
@@ -160,7 +160,7 @@ const Account = ({handleTabClick}) => {
           </div>
 
           {/* Plan Information */}
-          <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+          <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Current Plan</h2>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
@@ -183,7 +183,7 @@ const Account = ({handleTabClick}) => {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
+                  className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-lg shadow-md shadow-orange-500/20 transition-all font-medium"
                 >
                   Upgrade Plan
                 </motion.button>

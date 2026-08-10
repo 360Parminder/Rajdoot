@@ -39,7 +39,7 @@ const ManageApi = () => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
+    <div className="p-6 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -64,7 +64,7 @@ const ManageApi = () => {
         </p>
       </motion.div>
 
-      <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+      <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-neutral-100 dark:bg-neutral-700/50 border-b border-neutral-200 dark:border-neutral-700">
@@ -147,7 +147,7 @@ const ManageApi = () => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="p-2 bg-blue-100 dark:bg-blue-900/20 hover:bg-blue-200 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg transition-colors"
+                          className="p-2 bg-orange-100 dark:bg-orange-950/40 hover:bg-orange-200 dark:hover:bg-orange-900/40 text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-800/40 rounded-lg transition-colors"
                           onClick={() => {/* Add update functionality */}}
                         >
                           <RefreshIcon size={16} />

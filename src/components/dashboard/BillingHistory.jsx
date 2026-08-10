@@ -33,7 +33,7 @@ const BillingHistory = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 text-transparent bg-clip-text mb-2">
           Billing History
         </h1>
         <p className="text-gray-400 max-w-2xl">
