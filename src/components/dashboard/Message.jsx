@@ -201,7 +201,7 @@ public class MessageSender {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-full rounded-2xl">
+    <div className="p-6 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-full rounded-2xl">
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -227,13 +227,13 @@ public class MessageSender {
       </motion.div>
 
       {/* API Key Selection */}
-      <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 mb-6">
+      <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6 mb-6">
         <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center gap-2">
-          <Key01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+          <Key01Icon className="w-5 h-5 text-orange-500 dark:text-orange-400" />
           Select API Key
         </h2>
         <select
-          className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+          className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/30 transition-all"
         >
           {value?.apis?.length > 0 ? (
             value.apis.map((item, index) => (
@@ -250,12 +250,12 @@ public class MessageSender {
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Side - Test Panel */}
-        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+        <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex border-b border-neutral-200 dark:border-neutral-700 mb-6">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'code' ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
+              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'code' ? 'text-orange-600 dark:text-orange-400 border-b-2 border-orange-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
               onClick={() => setActiveTab('code')}
             >
               <div className="flex items-center justify-center gap-2">
@@ -266,7 +266,7 @@ public class MessageSender {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'nocode' ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
+              className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeTab === 'nocode' ? 'text-orange-600 dark:text-orange-400 border-b-2 border-orange-500' : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'}`}
               onClick={handleNoCodeTest}
             >
               <div className="flex items-center justify-center gap-2">
@@ -303,7 +303,7 @@ public class MessageSender {
                           <button
                             key={country.code}
                             onClick={() => handleCountryChange(country)}
-                            className={`w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors flex items-center gap-2 ${selectedCountry.code === country.code ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' : 'text-neutral-800 dark:text-neutral-300'
+                            className={`w-full text-left px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors flex items-center gap-2 ${selectedCountry.code === country.code ? 'bg-orange-100 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400' : 'text-neutral-800 dark:text-neutral-300'
                               }`}
                           >
                             <span>{country.flag}</span>
@@ -320,7 +320,7 @@ public class MessageSender {
                 </div>
                 <input
                   type="tel"
-                  className="flex-1 bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+                  className="flex-1 bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/30 transition-all"
                   placeholder="Enter phone number"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, '').slice(0, 10))}
@@ -333,7 +333,7 @@ public class MessageSender {
                 Message Content
               </label>
               <textarea
-                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all min-h-[150px]"
+                className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/30 transition-all min-h-[150px]"
                 placeholder="Enter your message here..."
                 value={messageText}
                 onChange={(e) => setMessageText(e.target.value)}
@@ -344,7 +344,7 @@ public class MessageSender {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => handleSendMessage()}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-3 px-6 rounded-lg shadow-md shadow-orange-500/20 transition-all font-medium"
             >
               <SentIcon className="w-5 h-5" />
               <span>Send Test Message</span>
@@ -353,10 +353,10 @@ public class MessageSender {
         </div>
 
         {/* Right Side - Code Samples */}
-        <div className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+        <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <ComputerTerminal01Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+              <ComputerTerminal01Icon className="w-5 h-5 text-orange-500 dark:text-orange-400" />
               Code Samples
             </h2>
             <div className="flex gap-1">
@@ -367,7 +367,7 @@ public class MessageSender {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveLanguage(lang)}
                   className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${activeLanguage === lang
-                    ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-blue-700'
+                    ? 'bg-orange-100 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-800/50'
                     : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'
                     }`}
                 >

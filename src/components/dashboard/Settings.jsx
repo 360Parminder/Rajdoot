@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Shield01Icon, Notification01Icon, Mail01Icon, SmartPhone01Icon, FloppyDiskIcon, SlidersHorizontalIcon } from 'hugeicons-react';
+import { Shield01Icon, Notification01Icon, Mail01Icon, SmartPhone01Icon, FloppyDiskIcon, SlidersHorizontalIcon, Sun01Icon } from 'hugeicons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../Card/MessageCard';
+import ThemeToggle from '../Common/ThemeToggle';
 
 const Settings = () => {
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
@@ -38,7 +39,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
+    <div className="p-6 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -64,14 +65,32 @@ const Settings = () => {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Appearance Settings */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="lg:col-span-2 bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Sun01Icon className="w-6 h-6 text-orange-500 dark:text-orange-400" />
+              <div>
+                <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Appearance</h2>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Switch between light and dark theme modes</p>
+              </div>
+            </div>
+            <ThemeToggle showLabel={true} className="px-4 py-2" />
+          </div>
+        </motion.div>
+
         {/* API Settings */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6"
+          className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Shield01Icon className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+            <Shield01Icon className="w-6 h-6 text-orange-500 dark:text-orange-400" />
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">API Configuration</h2>
           </div>
 
@@ -88,7 +107,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('api', 'rateLimiting')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -104,7 +123,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('api', 'errorLogging')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -120,7 +139,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('api', 'requestValidation')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -136,7 +155,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('api', 'ipFiltering')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
           </div>
@@ -146,10 +165,10 @@ const Settings = () => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6"
+          className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6"
         >
           <div className="flex items-center gap-3 mb-6">
-            <Notification01Icon className="w-6 h-6 text-purple-500 dark:text-purple-400" />
+            <Notification01Icon className="w-6 h-6 text-amber-500 dark:text-amber-400" />
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Notification Preferences</h2>
           </div>
 
@@ -169,7 +188,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('notifications', 'email')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -188,7 +207,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('notifications', 'sms')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -204,7 +223,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('notifications', 'slack')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
 
@@ -220,7 +239,7 @@ const Settings = () => {
                   onChange={() => handleSettingChange('notifications', 'criticalAlerts')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
               </label>
             </div>
           </div>
@@ -237,7 +256,7 @@ const Settings = () => {
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           onClick={saveSettings}
-          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
+          className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-lg shadow-md shadow-orange-500/20 transition-all font-medium"
         >
           <FloppyDiskIcon className="w-5 h-5" />
           <span>Save Settings</span>

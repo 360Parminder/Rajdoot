@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -33,6 +35,13 @@ input:-webkit-autofill:active {
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #000;
-    color: #fff;
+    background-color: #f3f4f6;
+    color: #18181b;
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+html.dark body,
+body.dark {
+    background-color: #09090b;
+    color: #ffffff;
 }

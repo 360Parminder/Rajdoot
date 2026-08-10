@@ -18,6 +18,9 @@ import PlanDetails from '../components/dashboard/PlanDetails';
 import BillingHistory from '../components/dashboard/BillingHistory';
 import Message from '../components/dashboard/Message';
 import OTPVerification from '../components/dashboard/OTPVerification';
+import ApiAnalytics from '../components/dashboard/ApiAnalytics';
+import ApiKeys from '../components/dashboard/ApiKeys';
+import ThemeToggle from '../components/Common/ThemeToggle';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -73,6 +76,10 @@ const Dashboard = () => {
     switch (activeTab) {
       case 'home':
         return <Home handleTabClick={handleTabClick} />;
+      case 'api-keys':
+        return <ApiKeys handleTabClick={handleTabClick} />;
+      case 'api-analytics':
+        return <ApiAnalytics />;
       case 'new-api':
         return <NewApi />;
       case 'documentation':
@@ -141,7 +148,7 @@ const Dashboard = () => {
                 <p className="text-sm text-neutral-900 dark:text-neutral-100">Current Plan</p>
                 <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">{user.plan.plans[0].planId.name || 'Free'} Plan</p>
               </div>
-              <span className="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-full">
+              <span className="px-2.5 py-1 text-xs font-medium bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/30">
                 Active
               </span>
             </div>
@@ -152,14 +159,14 @@ const Dashboard = () => {
               onClick={() => [setActiveTab('account'), setShowProfileCard(false)]} 
               className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors dark:text-neutral-100"
             >
-              <UserIcon className="w-5 h-5 mr-3 text-blue-400" />
+              <UserIcon className="w-5 h-5 mr-3 text-orange-400" />
               <span>Account Settings</span>
             </button>
             <button
               onClick={() => [setActiveTab('plan-details'), setShowProfileCard(false)]}
               className="w-full flex items-center p-3 rounded-lg dark:hover:bg-neutral-700 transition-colors text-neutral-300"
             >
-              <CreditCardIcon className="w-5 h-5 mr-3 text-purple-400" />
+              <CreditCardIcon className="w-5 h-5 mr-3 text-amber-400" />
               <span>Billing & Plans</span>
             </button>
             <button
@@ -178,12 +185,12 @@ const Dashboard = () => {
   return (
     <>
       <div 
-        className="flex h-screen bg-neutral-300 dark:bg-neutral-800 backdrop-blur-sm relative"
+        className="flex h-screen bg-slate-200/60 dark:bg-neutral-800 backdrop-blur-sm relative"
         onClick={handleBackdropClick}
       >
         {/* Mobile Header */}
         {isMobile && (
-          <div className="absolute top-0 left-0 right-0 z-50 bg-white dark:bg-neutral-900 border-b border-neutral-700 p-4 flex justify-between items-center">
+          <div className="absolute top-0 left-0 right-0 z-50 bg-slate-100 dark:bg-neutral-900 border-b border-neutral-300 dark:border-neutral-700 p-4 flex justify-between items-center">
             <button
               onClick={toggleSidebar}
               className="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
@@ -193,16 +200,19 @@ const Dashboard = () => {
             <h1 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 capitalize">
               {activeTab.replace('-', ' ')}
             </h1>
-            <button
-              onClick={() => setShowProfileCard(!showProfileCard)}
-              className="w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-300 dark:border-neutral-700"
-            >
-              {user?.image ? (
-                <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
-              ) : (
-                <UserIcon className="w-4 h-4 text-gray-400" />
-              )}
-            </button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle size={18} />
+              <button
+                onClick={() => setShowProfileCard(!showProfileCard)}
+                className="w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-300 dark:border-neutral-700"
+              >
+                {user?.image ? (
+                  <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  <UserIcon className="w-4 h-4 text-gray-400" />
+                )}
+              </button>
+            </div>
           </div>
         )}
 
@@ -257,7 +267,7 @@ const Dashboard = () => {
               isMobile 
                 ? 'max-w-full min-h-[calc(100vh-4rem)] m-0 rounded-none' 
                 : 'max-w-[100vw] min-h-[95%] m-2 rounded-2xl'
-            } bg-white dark:bg-neutral-900 backdrop-blur-sm border border-neutral-700 shadow-xl`}
+            } bg-slate-50 dark:bg-neutral-900 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 shadow-md`}
           >
             {renderContent()}
           </motion.div>

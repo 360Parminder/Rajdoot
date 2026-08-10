@@ -19,12 +19,12 @@ const PlanDetails = ({handleTabClick}) => {
       case 'premium':
         return <FlashIcon className="w-6 h-6 text-purple-500" />;
       default:
-        return <StarIcon className="w-6 h-6 text-blue-500" />;
+        return <StarIcon className="w-6 h-6 text-orange-500" />;
     }
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
+    <div className="p-6 bg-slate-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen rounded-2xl">
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ const PlanDetails = ({handleTabClick}) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Plan Overview Card */}
-        <div className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
+        <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-3">
               {getPlanIcon(currentPlan?.name)}
@@ -82,7 +82,7 @@ const PlanDetails = ({handleTabClick}) => {
               </div>
               <div className="w-full bg-neutral-300 dark:bg-neutral-600 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${usagePercentage}%` }}
                 ></div>
               </div>
@@ -94,7 +94,7 @@ const PlanDetails = ({handleTabClick}) => {
         </div>
 
         {/* Features Card */}
-        <div className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
+        <div className="bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6">
           <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6">Plan Features</h2>
           <div className="space-y-4">
             {currentPlan?.features?.map((feature, index) => (
@@ -154,18 +154,18 @@ const PlanDetails = ({handleTabClick}) => {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 p-4 bg-blue-100 dark:bg-blue-900/20 border border-blue-300 dark:border-blue-700 rounded-lg"
+              className="mt-6 p-4 bg-orange-500/10 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/50 rounded-lg"
             >
               <div className="flex items-start gap-3">
-                <FlashIcon className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <FlashIcon className="w-5 h-5 text-orange-500 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="text-blue-700 dark:text-blue-400 font-medium">Unlock More Features</h3>
+                  <h3 className="text-orange-800 dark:text-orange-300 font-medium">Unlock More Features</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
                     Upgrade to a premium plan for higher limits, priority support, and advanced features.
                   </p>
                   <button
                     onClick={() => handleTabClick('upgrade')}
-                    className="mt-2 text-sm text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+                    className="mt-2 text-sm text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-semibold transition-colors"
                   >
                     View Upgrade Options →
                   </button>
@@ -181,7 +181,7 @@ const PlanDetails = ({handleTabClick}) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mt-8 bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6"
+        className="mt-8 bg-slate-100/70 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl p-6"
       >
         <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Billing Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

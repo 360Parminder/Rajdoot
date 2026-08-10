@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { PlusSignIcon, Loading02Icon } from 'hugeicons-react';
+import { AddSquareIcon, Loading02Icon } from 'hugeicons-react';
 import useApi from '../../hooks/useApi';
 import useMessageCard from '../../hooks/useMessageCard';
 import { AnimatePresence, motion } from 'framer-motion';
 import MessageCard from '../Card/MessageCard';
+import { cn } from "../../lib/utils";
 
 const NewApi = () => {
   const [name, setName] = useState('');
@@ -23,7 +24,7 @@ const NewApi = () => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-full transition-colors rounded-2xl">
+    <div className={cn('p-6', 'bg-slate-50', 'dark:bg-neutral-900', 'text-neutral-900', 'dark:text-neutral-100', 'min-h-full', 'transition-colors', 'rounded-2xl')}>
       <AnimatePresence>
         {messageCard && (
           <MessageCard
@@ -40,10 +41,10 @@ const NewApi = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+        <h1 className={cn('text-3xl', 'font-bold', 'text-neutral-900', 'dark:text-neutral-100', 'mb-2')}>
           Create New API
         </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
+        <p className={cn('text-neutral-600', 'dark:text-neutral-400', 'max-w-2xl')}>
           Set up a new API endpoint for your application. Provide a name and description to get started.
         </p>
       </motion.div>
@@ -53,39 +54,39 @@ const NewApi = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
         onSubmit={createApi}
-        className="bg-white dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 shadow-lg"
+        className={cn('bg-slate-100/70', 'dark:bg-neutral-800/50', 'backdrop-blur-sm', 'border', 'border-neutral-300', 'dark:border-neutral-700', 'rounded-xl', 'p-6', 'shadow-md')}
       >
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2">
+            <label className={cn('block', 'text-sm', 'font-medium', 'text-neutral-800', 'dark:text-neutral-200', 'mb-2')}>
               API Name
-              <span className="text-red-500 dark:text-red-400 ml-1">*</span>
+              <span className={cn('text-red-500', 'dark:text-red-400', 'ml-1')}>*</span>
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all"
+              className={cn('w-full', 'bg-neutral-100', 'dark:bg-neutral-700/50', 'border', 'border-neutral-300', 'dark:border-neutral-600', 'rounded-lg', 'py-2.5', 'px-4', 'text-neutral-900', 'dark:text-neutral-100', 'focus:outline-none', 'focus:ring-2', 'focus:ring-orange-500/50', 'focus:border-orange-500/30', 'transition-all')}
               placeholder="e.g., User Authentication API"
               required
             />
-            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className={cn('mt-1', 'text-xs', 'text-neutral-500', 'dark:text-neutral-400')}>
               Choose a descriptive name for your API (3-50 characters)
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-2">
+            <label className={cn('block', 'text-sm', 'font-medium', 'text-neutral-800', 'dark:text-neutral-200', 'mb-2')}>
               Description
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-300 dark:border-neutral-600 rounded-lg py-2.5 px-4 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/30 transition-all min-h-[120px]"
+              className={cn('w-full', 'bg-neutral-100', 'dark:bg-neutral-700/50', 'border', 'border-neutral-300', 'dark:border-neutral-600', 'rounded-lg', 'py-2.5', 'px-4', 'text-neutral-900', 'dark:text-neutral-100', 'focus:outline-none', 'focus:ring-2', 'focus:ring-orange-500/50', 'focus:border-orange-500/30', 'transition-all', 'min-h-[120px]')}
               placeholder="Describe what this API endpoint does..."
               rows={4}
             />
-            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className={cn('mt-1', 'text-xs', 'text-neutral-500', 'dark:text-neutral-400')}>
               Optional but recommended for better documentation
             </p>
           </div>
@@ -98,20 +99,16 @@ const NewApi = () => {
             <button
               type="submit"
               disabled={loading || !name.trim()}
-              className={`w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg text-white font-medium transition-all transform-3d ${
-                loading || !name.trim()
-                  ? 'bg-gradient-to-r from-neutral-900  to-purple-600 cursor-not-allowed text-neutral-500 dark:text-neutral-400'
-                  : 'bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:shadow-lg'
-              }`}
+              className={cn('w-full', 'flex', 'items-center', 'justify-center', 'gap-2', 'py-3', 'px-6', 'rounded-lg', 'text-white', 'font-medium', 'transition-all', 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-md shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed')}
             >
               {loading ? (
                 <>
-                  <Loading02Icon className="w-5 h-5 animate-spin" />
+                  <Loading02Icon className={cn('w-5', 'h-5', 'animate-spin')} />
                   <span>Creating API...</span>
                 </>
               ) : (
                 <>
-                  <PlusSignIcon className="w-5 h-5" />
+                  <AddSquareIcon className={cn('w-5', 'h-5')} />
                   <span>Create API</span>
                 </>
               )}

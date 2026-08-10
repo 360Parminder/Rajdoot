@@ -3,12 +3,15 @@ import React from 'react';
 import { LayoutLeftIcon, Home01Icon, ArrowRight01Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../hooks/useAuth';
+import ThemeToggle from '../Common/ThemeToggle';
 
 const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
   const { user } = useAuth();
 
   const getActiveTabLabel = () => {
     switch(activeTab) {
+      case 'api-keys': return 'API Keys';
+      case 'api-analytics': return 'API Analytics';
       case 'new-api': return 'Create New API';
       case 'documentation': return 'Documentation';
       case 'api': return 'API Explorer';
@@ -57,16 +60,19 @@ const TopBar = ({ toggleSidebar, activeTab, handleTabClick, sidebarOpen }) => {
         </nav>
       </div>
 
-      {activeTab === 'home' && (
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-neutral-900 dark:text-gray-300"
-        >
-          <span className="text-sm">Welcome back, </span>
-          <span className="font-medium capitalize text-neutral-950 dark:text-gray-200">{user?.name}</span>
-        </motion.div>
-      )}
+      <div className="flex items-center gap-4">
+        {activeTab === 'home' && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-neutral-900 dark:text-gray-300 hidden sm:block"
+          >
+            <span className="text-sm">Welcome back, </span>
+            <span className="font-medium capitalize text-neutral-950 dark:text-gray-200">{user?.name}</span>
+          </motion.div>
+        )}
+        <ThemeToggle size={18} />
+      </div>
     </motion.div>
   );
 };
