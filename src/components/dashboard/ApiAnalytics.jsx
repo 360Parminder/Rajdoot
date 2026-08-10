@@ -34,6 +34,7 @@ import {
   Pie,
   Cell
 } from 'recharts';
+import useAnalytics from '../../hooks/useAnalytics';
 
 // Mock Data for Analytics
 const messagesTimeData = [
@@ -109,11 +110,22 @@ const activeAlerts = [
 const ApiAnalytics = () => {
   const [timeRange, setTimeRange] = useState('24h');
   const [selectedService, setSelectedService] = useState('all');
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const { analyticsData, loading, refetch } = useAnalytics(timeRange, selectedService);
+
+  const {
+    overview,
+    messagesTimeData,
+    callsTimeData,
+    topErrorCodesData,
+    costBreakdownData,
+    recentFailedMessages,
+    recentLowQualityCalls,
+    topPhoneNumbers,
+    activeAlerts
+  } = analyticsData;
 
   const handleRefresh = () => {
-    setIsRefreshing(true);
-    setTimeout(() => setIsRefreshing(false), 800);
+    refetch();
   };
 
   return (
@@ -165,12 +177,12 @@ const ApiAnalytics = () => {
           {/* Refresh Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleRefresh}
             className="flex items-center gap-1.5 p-2 bg-slate-200/80 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-orange-500 rounded-xl transition-all"
             title="Refresh analytics data"
           >
-            <RefreshCw size={18} className={isRefreshing ? 'animate-spin text-orange-500' : ''} />
+            <RefreshCw size={18} className={loading ? 'animate-spin text-orange-500' : ''} />
           </motion.button>
         </div>
       </div>
@@ -183,16 +195,16 @@ const ApiAnalytics = () => {
           className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-4 shadow-sm"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Messages Sent (24h)</span>
+            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Messages Sent ({timeRange})</span>
             <div className="p-2 rounded-xl bg-orange-500/10 text-orange-500 border border-orange-500/20">
               <Send size={18} />
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">124,850</span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.messagesSent}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
               <TrendingUp size={14} />
-              <span>+12.4% vs prev 24h</span>
+              <span>{overview?.messagesTrend}</span>
             </div>
           </div>
         </motion.div>
@@ -209,10 +221,10 @@ const ApiAnalytics = () => {
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">98.6%</span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.deliveryRate}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
               <TrendingUp size={14} />
-              <span>+0.8% deliverability</span>
+              <span>{overview?.deliveryTrend}</span>
             </div>
           </div>
         </motion.div>
@@ -229,10 +241,10 @@ const ApiAnalytics = () => {
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">45,210</span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.callsConnected}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
               <TrendingUp size={14} />
-              <span>+8.1% connection rate</span>
+              <span>{overview?.callsTrend}</span>
             </div>
           </div>
         </motion.div>
@@ -249,28 +261,28 @@ const ApiAnalytics = () => {
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">2m 45s</span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.avgCallDuration}</span>
             <div className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
-              MOS Avg: <span className="font-semibold text-emerald-600 dark:text-emerald-400">4.35 / 5.0</span>
+              MOS Avg: <span className="font-semibold text-emerald-600 dark:text-emerald-400">{overview?.mosScore}</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Card 5: Total Spend (7d) */}
+        {/* Card 5: Total Spend */}
         <motion.div
           whileHover={{ y: -3 }}
           className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-4 shadow-sm"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Total Spend (7d)</span>
+            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Total Spend ({timeRange})</span>
             <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500 border border-purple-500/20">
               <CreditCard size={18} />
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">$1,482.50</span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.totalSpend}</span>
             <div className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
-              Within monthly budget
+              {overview?.spendStatus}
             </div>
           </div>
         </motion.div>
@@ -287,10 +299,10 @@ const ApiAnalytics = () => {
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">99.2<span className="text-sm font-normal text-neutral-500">/100</span></span>
+            <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.healthScore}</span>
             <div className="flex items-center gap-1 text-xs text-orange-600 dark:text-orange-400 font-semibold mt-1">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Optimal Routing</span>
+              <span>{overview?.healthStatus}</span>
             </div>
           </div>
         </motion.div>
