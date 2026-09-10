@@ -1,182 +1,104 @@
-import { CodeIcon, GlobalEducationIcon, BulbIcon, Rocket01Icon, ArrowRight01Icon } from 'hugeicons-react';
+import { CheckmarkCircle02Icon } from 'hugeicons-react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 const About = () => {
-  const skills = [
-    'React.js',
-    'JavaScript',
-    'Node.js',
-    'Python',
-    'Java',
-    'SQL',
-    'Git',
-    'REST APIs',
-    'TypeScript',
-    'Tailwind CSS',
-    'Framer Motion',
-    'Next.js'
-  ];
-
-  const features = [
+  const coreValues = [
     {
-      icon: <CodeIcon className="w-8 h-8 text-blue-500 dark:text-blue-400" />,
-      title: "Developer-First Approach",
-      description: "Creating tools and solutions that make developers' lives easier and more productive."
+      title: "Developer-Centric Simplicity",
+      description: "No complex telecom jargon — only clean REST APIs, modular SDKs, and effortless setup."
     },
     {
-      icon: <GlobalEducationIcon className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
-      title: "Continuous Learning",
-      description: "As a BTech CSE student, I'm constantly learning and applying new technologies to solve real-world problems."
+      title: "Clarity Over Noise",
+      description: "Transparent pay-as-you-go pricing, real-time delivery receipts, and actionable error insights."
     },
     {
-      icon: <BulbIcon className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />,
-      title: "Innovation Focus",
-      description: "Developing innovative solutions that address common challenges in software development."
-    },
-    {
-      icon: <Rocket01Icon className="w-8 h-8 text-pink-500 dark:text-pink-400" />,
-      title: "Future-Ready",
-      description: "Building scalable and maintainable solutions that can grow with the evolving tech landscape."
+      title: "Seamless Reliability",
+      description: "Automated carrier failovers guaranteeing your OTPs and critical alerts land in seconds."
     }
   ];
 
   return (
-    <div className=" mx-auto px-4 py-12 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen mt-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto"
-      >
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text mb-4">
-            About Me
-          </h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            A passionate developer crafting solutions for developers
-          </p>
-        </motion.div>
-
-        {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {/* Left Column - Introduction */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ y: -5 }}
-            className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-          >
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">Who I Am</h2>
-            <p className="text-neutral-700 dark:text-neutral-300 mb-4 leading-relaxed">
-              I am a BTech CSE student from Rajasthan, India, with a passion for creating innovative solutions
-              that empower developers. My journey in technology is driven by the desire to build tools and
-              platforms that make software development more efficient and enjoyable.
-            </p>
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Currently pursuing my degree, I combine academic knowledge with practical experience to develop
-              projects that address real-world challenges in the developer community.
-            </p>
-          </motion.div>
-
-          {/* Right Column - Skills */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            whileHover={{ y: -5 }}
-            className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-          >
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">Skills & Expertise</h2>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
-                  className="px-4 py-2 bg-neutral-200 dark:bg-neutral-700/50 text-neutral-800 dark:text-neutral-300 rounded-full text-sm border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Features Grid */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
-        >
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              whileHover={{ y: -5 }}
-              className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-            >
-              <div className="mb-6">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-neutral-700 dark:text-neutral-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Vision Section */}
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 pt-32 pb-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+      <div className="max-w-5xl mx-auto">
+        {/* Top Hero / Purpose Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          whileHover={{ y: -5 }}
-          className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all mb-16"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16 sm:mb-20"
         >
-          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">My Vision</h2>
-          <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            As a developer and student, I believe in the power of technology to transform lives and businesses.
-            My goal is to contribute to the developer community by creating tools and solutions that make
-            software development more accessible, efficient, and enjoyable. Through continuous learning and
-            innovation, I aim to build a portfolio of projects that demonstrate the potential of technology
-            to solve real-world problems.
+          <span className="text-xs font-semibold tracking-[0.25em] text-[#EA580C] dark:text-[#F4A261] uppercase mb-4 block">
+            OUR PURPOSE
+          </span>
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-neutral-900 dark:text-white tracking-tight max-w-4xl mx-auto leading-[1.15] mb-6">
+            Empowering seamless communication through intelligent design.
+          </h1>
+
+          <p className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+            We build tools that seamlessly turn complex telecom protocols into simple, delightful daily developer experiences.
           </p>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Large Rounded Vision & Values Card */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="text-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="bg-[#FAF7F5] dark:bg-neutral-900/60 rounded-[28px] sm:rounded-[36px] p-8 sm:p-12 lg:p-16 border border-[#F0E4DC] dark:border-neutral-800 shadow-sm"
         >
-          <p className="text-neutral-600 dark:text-neutral-400 mb-6 text-lg">
-            Interested in collaborating or learning more about my projects?
-          </p>
-          <Link to="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/20"
-            >
-              Get in Touch
-              <ArrowRight01Icon className="w-5 h-5 ml-2" />
-            </motion.button>
-          </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* Left Column: Vision */}
+            <div className="lg:col-span-7">
+              <span className="text-xs font-semibold tracking-[0.22em] text-[#EA580C] dark:text-[#F4A261] uppercase mb-4 block">
+                THE RAJDOOT VISION
+              </span>
+
+              <h2 className="text-2xl sm:text-3xl md:text-[32px] font-bold text-neutral-900 dark:text-white tracking-tight leading-snug mb-6">
+                Messaging infrastructure that respects your time.
+              </h2>
+
+              <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed mb-4">
+                Most messaging and telecom platforms are cluttered, fragile, and tedious to integrate.
+                At Rajdoot, we believe dispatching notifications and OTPs should feel as smooth and natural
+                as making a single function call.
+              </p>
+
+              <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                We blend carrier-grade routing, developer-first APIs, and real-time observability to give
+                your engineering team real peace of mind.
+              </p>
+            </div>
+
+            {/* Right Column: Values Card */}
+            <div className="lg:col-span-5">
+              <div className="bg-white dark:bg-neutral-800/90 rounded-2xl p-6 sm:p-8 border border-[#F0E4DC]/80 dark:border-neutral-700/60 shadow-sm">
+                <h3 className="text-xs font-bold tracking-[0.2em] text-neutral-900 dark:text-white uppercase mb-6">
+                  OUR CORE VALUES
+                </h3>
+
+                <div className="space-y-6">
+                  {coreValues.map((value, index) => (
+                    <div key={index} className="flex items-start gap-3.5">
+                      <CheckmarkCircle02Icon className="w-5 h-5 text-[#EA580C] dark:text-[#F4A261] shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-sm font-bold text-neutral-900 dark:text-white mb-0.5 leading-snug">
+                          {value.title}
+                        </h4>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                          {value.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 };

@@ -50,50 +50,55 @@ const Header = () => {
 
   return (
     <>
+      {/* Top Accent Stripe */}
+      <div className="fixed top-0 left-0 w-full h-[3px] bg-[#E8825C] z-50" />
+
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-slate-100/90 dark:bg-neutral-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-neutral-800 py-3' 
-            : 'bg-transparent py-6'
+        className={`fixed top-[3px] left-0 w-full z-40 transition-all duration-200 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800/80 ${
+          isScrolled ? 'py-2.5 shadow-sm' : 'py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
           
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2.5 cursor-pointer z-50"
-          >
-            <img src={icon} alt="Rajdoot Logo" className="w-7 h-7 object-contain" />
-            {/* <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-widest">
-              RAJDOOT
-            </span> */}
-          </Link>
+          {/* Left: Logo & Navigation Links Grouped Together */}
+          <div className="flex items-center gap-7 md:gap-9">
+            <Link 
+              to="/" 
+              className="flex items-center gap-2 cursor-pointer select-none"
+            >
+              <div className="w-7 h-7 flex items-center justify-center">
+                <img src={icon} alt="Rajdoot Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-[17px] font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                rajdoot
+              </span>
+            </Link>
 
-          {/* Desktop Navigation (Center) */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-8">
-            {menuItems.map((item, index) => (
-              <Link
-                key={index}
-                to={item.path}
-                className="text-[15px] text-neutral-700 hover:text-neutral-900 font-medium transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {/* Desktop Navigation (Left aligned next to logo) */}
+            <nav className="hidden md:flex items-center space-x-6">
+              {menuItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={item.path}
+                  className="text-[14px] text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white font-medium transition-colors"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          {/* Desktop Auth & Theme Section (Right) */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right: Auth Buttons & Theme Toggle */}
+          <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             {user ? (
               <>
                 <Link to="/dashboard">
-                  <button className="px-5 py-2.5 bg-neutral-900 text-white text-sm font-semibold rounded-lg hover:bg-neutral-800 transition-colors">
+                  <button className="px-4 py-1.5 bg-[#EA580C] hover:bg-[#D4703E] text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
                     Dashboard
                   </button>
                 </Link>
-                <div className="w-9 h-9 rounded-full overflow-hidden border border-neutral-200">
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-neutral-200 dark:border-neutral-700">
                   <img className="w-full h-full object-cover" src={user?.image} alt="profile" />
                 </div>
               </>
@@ -101,13 +106,13 @@ const Header = () => {
               <>
                 <Link 
                   to="/login"
-                  className="text-[15px] text-neutral-700 hover:text-neutral-900 font-medium transition-colors"
+                  className="px-4 py-1.5 text-sm font-medium text-neutral-700 dark:text-neutral-200 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700/60 transition-colors shadow-sm"
                 >
-                  Log in
+                  Login
                 </Link>
                 <Link to="/register">
-                  <button className="px-5 py-2.5 bg-neutral-900 text-white text-sm font-semibold rounded-lg hover:bg-neutral-800 transition-colors shadow-sm">
-                    Sign up
+                  <button className="px-4 py-1.5 bg-[#EA580C] hover:bg-[#D4703E] text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                    Start free trial
                   </button>
                 </Link>
               </>
@@ -121,17 +126,17 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 mb-1.5 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 mb-1.5 rounded-full transition-colors"
               animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 mb-1.5 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 mb-1.5 rounded-full transition-colors"
               animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-neutral-900 rounded-full transition-colors"
+              className="w-6 h-0.5 bg-neutral-900 dark:bg-neutral-100 rounded-full transition-colors"
               animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
@@ -183,13 +188,13 @@ const Header = () => {
               ) : (
                 <>
                   <Link to="/login" className="w-full">
-                    <button className="w-full py-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white text-lg font-semibold rounded-xl">
-                      Log in
+                    <button className="w-full py-3.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 text-base font-medium rounded-xl shadow-sm">
+                      Login
                     </button>
                   </Link>
                   <Link to="/register" className="w-full">
-                    <button className="w-full py-4 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-lg font-semibold rounded-xl shadow-lg shadow-neutral-200 dark:shadow-none">
-                      Sign up
+                    <button className="w-full py-3.5 bg-[#EA580C] hover:bg-[#D4703E] text-white text-base font-medium rounded-xl shadow-md shadow-[#EA580C]/20">
+                      Start free trial
                     </button>
                   </Link>
                 </>
