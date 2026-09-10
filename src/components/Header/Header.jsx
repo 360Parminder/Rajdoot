@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import ThemeToggle from '../Common/ThemeToggle';
+import icon from '../../assets/image/icon.png';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -61,10 +62,10 @@ const Header = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center gap-1 cursor-pointer z-50"
+            className="flex items-center gap-2.5 cursor-pointer z-50"
           >
-            <span className="text-[#E8825C] font-bold text-xl">/</span>
-            <span className="text-xl font-bold text-neutral-900 tracking-widest">
+            <img src={icon} alt="Rajdoot Logo" className="w-7 h-7 object-contain" />
+            <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-widest">
               RAJDOOT
             </span>
           </Link>
