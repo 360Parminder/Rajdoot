@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { useAuth } from '../hooks/useAuth';
 import MessageCard from '../components/Card/MessageCard';
 import { ViewIcon, ViewOffIcon } from 'hugeicons-react';
+import icon from '../assets/image/icon.png';
 
 const Register = () => {
   const { register, googleLogin, loading } = useAuth();
@@ -80,11 +81,9 @@ const Register = () => {
       >
         <div className="flex flex-col items-center text-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1.5 mb-6">
-             <div className="bg-[#F05B43] text-white p-1 rounded">
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><line x1="9" y1="10" x2="15" y2="10"></line><line x1="12" y1="7" x2="12" y2="13"></line></svg>
-             </div>
-             <span className="text-xl font-bold tracking-tight text-neutral-800 dark:text-neutral-100">Rajdoot</span>
+          <Link to="/" className="flex items-center gap-2.5 mb-6">
+             <img src={icon} alt="Rajdoot Logo" className="w-8 h-8 object-contain" />
+             <span className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-100">Rajdoot</span>
           </Link>
           
           <h2 className="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">

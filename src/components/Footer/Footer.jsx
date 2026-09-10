@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { NewTwitterIcon, Facebook01Icon, InstagramIcon, GithubIcon } from 'hugeicons-react';
 import { motion } from 'motion/react';
 import { cn } from "../../lib/utils";
+import icon from '../../assets/image/icon.png';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -20,11 +21,11 @@ const Footer = () => {
       <div className={cn('max-w-4xl', 'mx-auto', 'px-6', 'flex', 'flex-col', 'items-center')}>
         {/* Logo */}
         <motion.div
-          className={cn('flex', 'items-center', 'gap-1', 'mb-10', 'cursor-pointer')}
+          className={cn('flex', 'items-center', 'gap-2', 'mb-10', 'cursor-pointer')}
           onClick={() => navigate('/')}
           whileHover={{ scale: 1.05 }}
         >
-          <span className={cn('text-[#E8825C]', 'font-bold', 'text-xl')}>/</span>
+          <img src={icon} alt="Rajdoot Logo" className="w-6 h-6 object-contain" />
           <span className={cn('font-bold', 'text-xl', 'tracking-widest')}>RAJDOOT</span>
         </motion.div>
 
