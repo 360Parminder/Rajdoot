@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import ThemeToggle from '../Common/ThemeToggle';
 import icon from '../../assets/image/icon.png';
 
 const Header = () => {
@@ -88,9 +87,8 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* Right: Auth Buttons & Theme Toggle */}
+          {/* Right: Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
             {user ? (
               <>
                 <Link to="/dashboard">
@@ -167,9 +165,6 @@ const Header = () => {
             </nav>
 
             <div className="mt-auto mb-12 flex flex-col gap-4">
-              <div className="flex justify-center mb-2">
-                <ThemeToggle showLabel={true} className="w-full py-2.5 justify-center" />
-              </div>
               {user ? (
                 <>
                   <div className="flex items-center justify-center gap-3 mb-4">

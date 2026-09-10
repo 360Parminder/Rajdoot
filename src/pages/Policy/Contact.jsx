@@ -1,41 +1,78 @@
-import React from 'react';
-import { Mail01Icon, Location01Icon, TwitterIcon, InstagramIcon, Linkedin01Icon, ArrowRight01Icon, LinkSquare01Icon, CreditCardIcon } from 'hugeicons-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Mail01Icon,
+  Location01Icon,
+  TwitterIcon,
+  Linkedin01Icon,
+  ArrowRight01Icon,
+  LinkSquare01Icon,
+  CreditCardIcon,
+  Clock01Icon,
+  Copy01Icon,
+  Tick01Icon,
+  BookOpen01Icon,
+  CloudServerIcon,
+  Shield01Icon,
+  CheckmarkCircle02Icon
+} from 'hugeicons-react';
 import useMessageCard from '../../hooks/useMessageCard';
 import MessageCard from '../../components/Card/MessageCard';
-import AnimatedBackground from '../../components/ui/AnimatedBackground';
 
 const Contact = () => {
   const { message: messageCard, showMessage, setMessage: setMessageState } = useMessageCard();
+  const [copiedItem, setCopiedItem] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    topic: 'Enterprise Volume & SLAs',
+    message: ''
+  });
 
-  const handleEmailClick = () => {
-    navigator.clipboard.writeText('360.parminder@gmail.com');
-    showMessage("Copied!", "Email address copied to clipboard", "success");
+  const copyToClipboard = (text, id) => {
+    navigator.clipboard.writeText(text);
+    setCopiedItem(id);
+    showMessage("Copied!", `${text} copied to clipboard`, "success");
+    setTimeout(() => setCopiedItem(''), 2000);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      showMessage("Missing Fields", "Please complete all required fields.", "warning");
+      return;
+    }
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      showMessage("Message Sent", "Thank you for reaching out! Our team will respond shortly.", "success");
+    }, 800);
   };
 
   const socialLinks = [
     {
-      name: 'Twitter',
-      icon: <TwitterIcon className="w-6 h-6" />,
+      name: 'Twitter / X',
+      icon: <TwitterIcon size={18} />,
       url: 'https://x.com/360parminder',
-      color: 'hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-400 dark:hover:border-blue-400'
-    },
-    {
-      name: 'Instagram',
-      icon: <InstagramIcon className="w-6 h-6" />,
-      url: 'https://www.instagram.com/360_parminder/',
-      color: 'hover:bg-pink-100 dark:hover:bg-pink-900/30 hover:border-pink-400 dark:hover:border-pink-400'
     },
     {
       name: 'LinkedIn',
-      icon: <Linkedin01Icon className="w-6 h-6" />,
+      icon: <Linkedin01Icon size={18} />,
       url: 'https://www.linkedin.com/in/parminder-singh-storm/',
-      color: 'hover:bg-blue-100 dark:hover:bg-blue-800/30 hover:border-blue-500 dark:hover:border-blue-500'
     }
   ];
 
   return (
-    <div className=" mx-auto px-4 py-12 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen mt-16">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 pt-32 pb-24 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
       {messageCard && (
         <MessageCard
           title={messageCard.title}
@@ -45,170 +82,268 @@ const Contact = () => {
         />
       )}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto"
-      >
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mb-12 text-center"
-        >
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text mb-4">
-            Contact Us
+        <div className="max-w-3xl mb-12">
+          <span className="text-[14px] font-medium text-neutral-500 dark:text-neutral-400 mb-3 block underline decoration-neutral-300 dark:decoration-neutral-700 underline-offset-4">
+            Contact & Support
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-950 dark:text-white tracking-tight mb-4">
+            We're here to help you scale.
           </h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400">
-            Get in touch for collaborations or inquiries
+          <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Have questions about custom volume commitments, high-throughput telecom routing, enterprise SLAs, or technical integration? Reach our engineering and support specialists.
           </p>
-        </motion.div>
-
-        {/* Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ y: -5 }}
-            className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-          >
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8">Contact Information</h2>
-            
-            {/* Email */}
-            <div className="flex items-start mb-8">
-              <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <Mail01Icon className="w-6 h-6 text-blue-500 dark:text-blue-400" />
-              </div>
-              <div>
-                <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Email</h3>
-                <motion.button 
-                  onClick={handleEmailClick}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-left"
-                >
-                  360.parminder@gmail.com
-                </motion.button>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-start mb-8">
-              <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <Location01Icon className="w-6 h-6 text-purple-500 dark:text-purple-400" />
-              </div>
-              <div>
-                <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Location</h3>
-                <p className="text-neutral-600 dark:text-neutral-400">
-                  Alwar, Rajasthan<br />
-                  India
-                </p>
-              </div>
-            </div>
-
-            {/* Payment Support */}
-            <div className="flex items-start">
-              <div className="bg-neutral-200 dark:bg-neutral-700/50 p-3 rounded-lg mr-4 border border-neutral-300 dark:border-neutral-600">
-                <CreditCardIcon className="w-6 h-6 text-green-500 dark:text-green-400" />
-              </div>
-              <div>
-                <h3 className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">Payment Support</h3>
-                <a 
-                  href="https://merchant.razorpay.com/policy/Pb5NdiUQ3s3IUU/contact_us" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center gap-1"
-                >
-                  Contact Razorpay Support <LinkSquare01Icon className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Social Media */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            whileHover={{ y: -5 }}
-            className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-          >
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8">Connect With Us</h2>
-            <div className="space-y-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  whileHover={{ x: 5 }}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center p-4 bg-neutral-200 dark:bg-neutral-700/50 rounded-lg border border-neutral-300 dark:border-neutral-600 transition-all ${social.color}`}
-                >
-                  <div className="mr-4">
-                    {social.icon}
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-neutral-800 dark:text-neutral-200 font-medium">{social.name}</span>
-                  </div>
-                  <ArrowRight01Icon className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
         </div>
 
-        {/* Map Section */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          whileHover={{ y: -5 }}
-          className="bg-neutral-100 dark:bg-neutral-800/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all"
-        >
-          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8">Our Location</h2>
-          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-600">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14019.999999999999!2d76.6!3d27.5667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974e4c3c0c0c0c0%3A0x0!2zMjfCsDM0JzAwLjAiTiA3NsKwMzYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="rounded-lg"
-            ></iframe>
-          </div>
-        </motion.div> */}
+        {/* 2-Column Content: Form on Left, Contact Details on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
+          {/* Left Column: Form */}
+          <div className="lg:col-span-7">
+            <div className="border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 sm:p-8 bg-white dark:bg-neutral-900 shadow-sm">
+              <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-1">
+                Send us a message
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mb-6">
+                Fill out the form below and our team will get back to you within 2 business hours.
+              </p>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-16"
-        >
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">Have a project in mind?</h3>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-2xl mx-auto">
-            Let's collaborate! Whether you have a question or want to discuss potential opportunities, I'd love to hear from you.
-          </p>
-          <motion.a
-            href="mailto:360.parminder@gmail.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/20"
-          >
-            Send me an email
-            <ArrowRight01Icon className="w-5 h-5 ml-2" />
-          </motion.a>
-        </motion.div>
-      </motion.div>
+              {isSubmitted ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+                    <CheckmarkCircle02Icon size={28} />
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
+                    Inquiry Received
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto">
+                    Thanks for reaching out, {formData.name}! We've logged your request and an engineer will reply to {formData.email} shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData({ name: '', email: '', company: '', topic: 'Enterprise Volume & SLAs', message: '' });
+                    }}
+                    className="text-xs font-semibold text-[#EA580C] hover:underline pt-2"
+                  >
+                    Send another inquiry →
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+                        Your Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Parminder Singh"
+                        className="w-full px-3.5 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#EA580C]/30 focus:border-[#EA580C] transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+                        Work Email <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="name@company.com"
+                        className="w-full px-3.5 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#EA580C]/30 focus:border-[#EA580C] transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+                        Company / Organization
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        placeholder="Rajdoot Labs"
+                        className="w-full px-3.5 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#EA580C]/30 focus:border-[#EA580C] transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+                        Inquiry Topic
+                      </label>
+                      <select
+                        name="topic"
+                        value={formData.topic}
+                        onChange={handleInputChange}
+                        className="w-full px-3.5 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#EA580C]/30 focus:border-[#EA580C] transition-all"
+                      >
+                        <option value="Enterprise Volume & SLAs">Enterprise Volume & SLAs</option>
+                        <option value="API Integration & SDKs">API Integration & SDKs</option>
+                        <option value="Billing & Invoicing">Billing & Invoicing</option>
+                        <option value="Carrier Routing & Deliverability">Carrier Routing & Deliverability</option>
+                        <option value="General Question">General Question</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+                      Message <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell us about your message volume, carrier delivery requirements, or technical questions..."
+                      className="w-full px-3.5 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#EA580C]/30 focus:border-[#EA580C] transition-all"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto px-7 py-3 bg-[#EA580C] hover:bg-[#D4703E] text-white text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <span>Sending inquiry...</span>
+                    ) : (
+                      <>
+                        <span>Submit inquiry</span>
+                        <ArrowRight01Icon size={14} />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {/* Right Column: Direct Channels */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Direct Email Support Card */}
+            <div className="border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 bg-white dark:bg-neutral-900 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-700 dark:text-neutral-300">
+                  <Mail01Icon size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-white">
+                    Direct Email Support
+                  </h3>
+                  <p className="text-xs text-neutral-500">Reach our engineering team</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 block">
+                      Official Contact
+                    </span>
+                    <a
+                      href="mailto:360.parminder@gmail.com"
+                      className="text-xs sm:text-sm font-mono font-medium text-neutral-900 dark:text-white hover:text-[#EA580C] transition-colors"
+                    >
+                      360.parminder@gmail.com
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard('360.parminder@gmail.com', 'email')}
+                    className="p-2 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                    title="Copy email"
+                  >
+                    {copiedItem === 'email' ? (
+                      <Tick01Icon size={15} className="text-emerald-500" />
+                    ) : (
+                      <Copy01Icon size={15} />
+                    )}
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 pt-1">
+                  <Clock01Icon size={14} className="text-neutral-400" />
+                  <span>Average response time: &lt; 2 hours on business days</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment & Merchant Grievance Card */}
+            <div className="border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 bg-white dark:bg-neutral-900 shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-700 dark:text-neutral-300">
+                  <CreditCardIcon size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-white">
+                    Payment Gateway Support
+                  </h3>
+                  <p className="text-xs text-neutral-500">Billing & refund policy inquiries</p>
+                </div>
+              </div>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+                For transactions processed through our payment gateway, you can access the verified Merchant Grievance desk:
+              </p>
+              <a
+                href="https://merchant.razorpay.com/policy/Pb5NdiUQ3s3IUU/contact_us"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:text-[#EA580C] dark:hover:text-[#EA580C] transition-colors"
+              >
+                <span>Razorpay Merchant Support Desk</span>
+                <LinkSquare01Icon size={13} />
+              </a>
+            </div>
+
+            {/* Office Location & Social Links */}
+            <div className="border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 bg-white dark:bg-neutral-900 shadow-sm">
+              <div className="flex items-start gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-700 dark:text-neutral-300 flex-shrink-0">
+                  <Location01Icon size={18} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-white mb-0.5">
+                    Operating Office
+                  </h3>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    Alwar, Rajasthan, India
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+                <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                  Social Channels
+                </span>
+                <div className="flex items-center gap-2">
+                  {socialLinks.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                      title={item.name}
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Send,
-  CheckCircle2,
-  Clock,
-  CreditCard,
-  AlertTriangle,
-  XCircle,
-  PhoneCall,
-  RefreshCw,
-  Download,
-  Filter,
-  ShieldCheck,
-  BarChart3,
-  TrendingUp,
-  TrendingDown,
-  Info,
-  Terminal,
-  User
-} from 'lucide-react';
+  SentIcon,
+  CheckmarkCircle02Icon,
+  Clock01Icon,
+  CreditCardIcon,
+  Alert02Icon,
+  CancelCircleIcon,
+  CallIcon,
+  RefreshIcon,
+  SecurityCheckIcon,
+  BarChartIcon,
+  ChartIncreaseIcon,
+  ComputerTerminal01Icon
+} from 'hugeicons-react';
 import {
   ResponsiveContainer,
   AreaChart,
@@ -134,7 +129,7 @@ const ApiAnalytics = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-8 h-8 text-orange-500" />
+            <BarChartIcon className="w-8 h-8 text-orange-500" />
             <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
               API Analytics & Deliverability
             </h1>
@@ -182,7 +177,7 @@ const ApiAnalytics = () => {
             className="flex items-center gap-1.5 p-2 bg-slate-200/80 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-orange-500 rounded-xl transition-all"
             title="Refresh analytics data"
           >
-            <RefreshCw size={18} className={loading ? 'animate-spin text-orange-500' : ''} />
+            <RefreshIcon size={18} className={loading ? 'animate-spin text-orange-500' : ''} />
           </motion.button>
         </div>
       </div>
@@ -197,13 +192,13 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Messages Sent ({timeRange})</span>
             <div className="p-2 rounded-xl bg-orange-500/10 text-orange-500 border border-orange-500/20">
-              <Send size={18} />
+              <SentIcon size={18} />
             </div>
           </div>
           <div className="mt-3">
             <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.messagesSent}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
-              <TrendingUp size={14} />
+              <ChartIncreaseIcon size={14} />
               <span>{overview?.messagesTrend}</span>
             </div>
           </div>
@@ -217,13 +212,13 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Delivery Rate</span>
             <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-              <CheckCircle2 size={18} />
+              <CheckmarkCircle02Icon size={18} />
             </div>
           </div>
           <div className="mt-3">
             <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.deliveryRate}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
-              <TrendingUp size={14} />
+              <ChartIncreaseIcon size={14} />
               <span>{overview?.deliveryTrend}</span>
             </div>
           </div>
@@ -237,13 +232,13 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Calls Connected</span>
             <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
-              <PhoneCall size={18} />
+              <CallIcon size={18} />
             </div>
           </div>
           <div className="mt-3">
             <span className="text-2xl font-extrabold text-neutral-900 dark:text-neutral-100">{overview?.callsConnected}</span>
             <div className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
-              <TrendingUp size={14} />
+              <ChartIncreaseIcon size={14} />
               <span>{overview?.callsTrend}</span>
             </div>
           </div>
@@ -257,7 +252,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Avg Call Duration</span>
             <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/20">
-              <Clock size={18} />
+              <Clock01Icon size={18} />
             </div>
           </div>
           <div className="mt-3">
@@ -276,7 +271,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Total Spend ({timeRange})</span>
             <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500 border border-purple-500/20">
-              <CreditCard size={18} />
+              <CreditCardIcon size={18} />
             </div>
           </div>
           <div className="mt-3">
@@ -295,7 +290,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Health Score</span>
             <div className="p-2 rounded-xl bg-orange-500/10 text-orange-500 border border-orange-500/20">
-              <ShieldCheck size={18} />
+              <SecurityCheckIcon size={18} />
             </div>
           </div>
           <div className="mt-3">
@@ -315,7 +310,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                <Send className="w-5 h-5 text-orange-500" />
+                <SentIcon className="w-5 h-5 text-orange-500" />
                 Messages Over Time
               </h3>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">Breakdown by Delivered, Failed, and Queued status</p>
@@ -368,7 +363,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                <PhoneCall className="w-5 h-5 text-amber-500" />
+                <CallIcon className="w-5 h-5 text-amber-500" />
                 Calls Over Time (Inbound vs Outbound)
               </h3>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">Call connection status by direction</p>
@@ -408,7 +403,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-red-500" />
+                <Alert02Icon className="w-5 h-5 text-red-500" />
                 Delivery & Top Error Codes
               </h3>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">Most frequent API error responses in last 24h</p>
@@ -446,7 +441,7 @@ const ApiAnalytics = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-orange-500" />
+                <CreditCardIcon className="w-5 h-5 text-orange-500" />
                 Cost Breakdown by Subaccount ($)
               </h3>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">Stacked cost allocation across services</p>
@@ -485,7 +480,7 @@ const ApiAnalytics = () => {
         <div className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <XCircle className="w-5 h-5 text-red-500" />
+              <CancelCircleIcon className="w-5 h-5 text-red-500" />
               Recent Failed Messages
             </h3>
             <span className="text-xs font-semibold text-red-500 bg-red-500/10 px-2.5 py-1 rounded-full border border-red-500/20">
@@ -525,7 +520,7 @@ const ApiAnalytics = () => {
         <div className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <PhoneCall className="w-5 h-5 text-amber-500" />
+              <CallIcon className="w-5 h-5 text-amber-500" />
               Recent Failed / Low-Quality Calls
             </h3>
             <span className="text-xs font-semibold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
@@ -561,7 +556,7 @@ const ApiAnalytics = () => {
         <div className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-orange-500" />
+              <ComputerTerminal01Icon className="w-5 h-5 text-orange-500" />
               Top Phone Numbers by Volume & Cost
             </h3>
             <span className="text-xs font-semibold text-orange-500 bg-orange-500/10 px-2.5 py-1 rounded-full border border-orange-500/20">
@@ -599,7 +594,7 @@ const ApiAnalytics = () => {
         <div className="bg-slate-100/80 dark:bg-neutral-800/50 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700/80 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-orange-500" />
+              <SecurityCheckIcon className="w-5 h-5 text-orange-500" />
               Active Debugger & Monitor Alerts
             </h3>
             <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 flex items-center gap-1">

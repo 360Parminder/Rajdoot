@@ -1,7 +1,6 @@
 // Sidebar.jsx
 import { useNavigate } from 'react-router-dom';
-import { Home01Icon, ArrowLeftRightIcon, CheckmarkBadge01Icon, ComputerTerminal01Icon, DashboardSquare01Icon, UserIcon, Settings01Icon, ArrowRight01Icon, Cancel01Icon, CreditCardIcon, Logout01Icon, Key01Icon } from 'hugeicons-react';
-import { BarChart3 } from 'lucide-react';
+import { Home01Icon, ArrowLeftRightIcon, CheckmarkBadge01Icon, ComputerTerminal01Icon, DashboardSquare01Icon, UserIcon, Settings01Icon, ArrowRight01Icon, Cancel01Icon, CreditCardIcon, Logout01Icon, Key01Icon, BarChartIcon } from 'hugeicons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import icon from '../../assets/image/icon.png';
 import { useAuth } from '../../hooks/useAuth';
@@ -24,7 +23,7 @@ const Sidebar = ({ sidebarOpen, activeTab, handleTabClick, setShowProfileCard, o
       icon: <ArrowLeftRightIcon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} />,
       subItems: [
         { id: 'api-keys', label: 'API Keys', icon: <Key01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
-        { id: 'api-analytics', label: 'API Analytics', icon: <BarChart3 size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
+        { id: 'api-analytics', label: 'API Analytics', icon: <BarChartIcon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'new-api', label: 'Create New API', icon: <CheckmarkBadge01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'message', label: 'Message', icon: <ComputerTerminal01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },
         { id: 'OTPVerification', label: 'OTP Verification', icon: <ComputerTerminal01Icon size={20} className={cn('text-neutral-900', 'dark:text-neutral-100')} /> },

@@ -35,15 +35,16 @@ function App() {
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/features" element={<Features />} />
-          {/* <Route path="/pricing" element={<Pricing />} /> */}
+          <Route path="/pricing" element={<Plans />} />
+          <Route path="/plans" element={<Plans />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/api-reference" element={<APIReference />} />
+          <Route path="/resources" element={<APIReference />} />
           <Route path="/terms-of-service" element={<TermsService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/plans" element={<Plans />} />
           <Route path="/payment" element={<PaymentComponent />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/CancellationsRefunds" element={<CancellationsRefunds />} />
