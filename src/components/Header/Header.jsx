@@ -65,9 +65,9 @@ const Header = () => {
             className="flex items-center gap-2.5 cursor-pointer z-50"
           >
             <img src={icon} alt="Rajdoot Logo" className="w-7 h-7 object-contain" />
-            <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-widest">
+            {/* <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-widest">
               RAJDOOT
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Navigation (Center) */}
